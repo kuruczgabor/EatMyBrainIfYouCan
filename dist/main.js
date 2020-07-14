@@ -86,14 +86,63 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/game.js":
+/*!*********************!*\
+  !*** ./src/game.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero */ \"./src/hero.js\");\n\n\nclass Game {\n    \n    constructor() {\n        this.hero = new _hero__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+
+/***/ }),
+
+/***/ "./src/game_view.js":
+/*!**************************!*\
+  !*** ./src/game_view.js ***!
+  \**************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nclass GameView {\n\n    constructor(game, ctx) {\n        this.game = game;\n        this.ctx = ctx;\n    }\n\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GameView);\n\n//# sourceURL=webpack:///./src/game_view.js?");
+
+/***/ }),
+
+/***/ "./src/hero.js":
+/*!*********************!*\
+  !*** ./src/hero.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\n\nconst HERO_RADIUS = 20;\n\nclass Hero extends _moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n\n    constructor(game, pos, vel, radius, color) {\n        super(game, pos);\n        this.vel = vel || [0,0];\n        this.radius = HERO_RADIUS \n        this.color = color\n    }\n\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Hero);\n\n//# sourceURL=webpack:///./src/hero.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-eval("\n\ndocument.addEventListener(\"DOMContentLoaded\", function () {\n    const canvas = document.getElementsByTagName(\"game-canvas\");\n    const ctx = canvas.getContext('2d');\n\n    \n});\n\n//# sourceURL=webpack:///./src/index.js?");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n/* harmony import */ var _game_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\n\n\n\nwindow.addEventListener(\"DOMContentLoaded\", () => {\n\n    const cvs = document.getElementById(\"game-canvas\");\n    const ctx = cvs.getContext(\"2d\");\n\n    const game = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    const gameView = new _game_view__WEBPACK_IMPORTED_MODULE_1__[\"default\"](game, ctx);\n\n    gameView.start();\n\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/moving_object.js":
+/*!******************************!*\
+  !*** ./src/moving_object.js ***!
+  \******************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\nconst NORMAL_FRAME_TIME_DELTA = 1000/60;\n\n\nclass MovingObject {\n\n    constructor(game, pos, vel, radius, color) {\n        this.game = game;\n        this.pos = pos;\n        this.vel = vel;\n        this.radius = radius;\n        this.color = color;\n    }\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n\n        ctx.beginPath();\n        ctx.arc(\n            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true\n        );\n        ctx.fill();\n    }\n\n    move() {\n        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,\n            offsetX = this.vel[0] * velocityScale,\n            offsetY = this.vel[1] * velocityScale;\n            \n        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];\n    }\n\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (MovingObject);\n\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
 
 /***/ })
 
