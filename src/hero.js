@@ -32,7 +32,7 @@ fireBullet() {
     ];
 
     const bullet = new Bullet(
-        this.game, this.pos, this.vel, this.radius, this.color
+        this.game, this.pos, bulletVel, this.radius, this.color
     );
 
     this.game.add(bullet);
