@@ -2,7 +2,7 @@ import Hero from "./hero";
 import Bullet from "./bullet";
 import Util from "./util"
 
-const GAME_BG_COLOR = "#000000";
+const GAME_BG_COLOR = "#FFFFFF";
 const GAME_DIM_X = 1000;
 const GAME_DIM_Y = 600;
 const GAME_FPS = 32;
@@ -17,7 +17,6 @@ class Game {
 
     add(object) {
         if (object instanceof Bullet) {
-            debugger
             this.bullets.push(object);
         } else if (object instanceof Hero) {
             this.heroes.push(object);
@@ -28,16 +27,11 @@ class Game {
 
     addHero() {
         let that = this
-        // debugger
-        // const hero = new Hero({
-        //     game: that,
-        //     pos: [150, 150]
-        // })
+
         const hero = new Hero(
             that, [150, 150]
         )
-        // const hero = new Hero();
-        // debugger
+
         this.add(hero);
         return hero;
     };

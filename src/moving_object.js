@@ -33,13 +33,9 @@ class MovingObject {
 
     move(timeDelta) {
 
-        // debugger
-
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
             offsetX = this.vel[0] * velocityScale,
             offsetY = this.vel[1] * velocityScale;
-
-        // debugger
 
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
 
