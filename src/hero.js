@@ -1,8 +1,9 @@
 import MovingObject from "./moving_object";
 import Bullet from "./bullet";
+import Util from "./util";
 
-const Util = require("./util");
 const HERO_RADIUS = 15;
+const BULLET_SPEED = 15;
 
 function randomColor() {
     const hexDigits = "0123456789ABCDEF";
@@ -22,7 +23,9 @@ class Hero extends MovingObject {
         this.radius = HERO_RADIUS;
         this.vel = vel || [0, 0];
         this.color = color || randomColor();
-        this.pos = pos || [200, 200];
+        // this.pos = pos || [200, 200];
+        // this.game = game
+        // this.fireBullet.bind(this)
     }
 
 
@@ -35,21 +38,33 @@ fireBullet() {
         return;
     }
 
+    debugger
+
     const relVel = Util.scale(
         Util.dir(this.vel),
-        Bullet.SPEED
+        BULLET_SPEED
     );
+
+    debugger
 
     const bulletVel = [
         relVel[0] + this.vel[0], relVel[1] + this.vel[1]
     ];
 
-    const bullet = new Bullet({
-        pos: this.pos,
-        vel: bulletVel,
-        color: this.color,
-        game: this.game
-    });
+    debugger
+
+    // const bullet = new Bullet({
+    //     pos: this.pos,
+    //     vel: bulletVel,
+    //     color: this.color,
+    //     game: this.game
+    // });
+
+    const bullet = new Bullet(this.game, this.pos, this.vel, this.radius, this.color);
+    // const bullet = new Bullet(game, pos, vel, radius, color);
+
+
+    debugger
 
     this.game.add(bullet);
 };

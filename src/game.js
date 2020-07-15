@@ -1,5 +1,6 @@
 import Hero from "./hero";
 import Bullet from "./bullet";
+import Util from "./util"
 
 const GAME_BG_COLOR = "#000000";
 const GAME_DIM_X = 1000;
@@ -16,9 +17,9 @@ class Game {
 
     add(object) {
         if (object instanceof Bullet) {
+            debugger
             this.bullets.push(object);
         } else if (object instanceof Hero) {
-            debugger
             this.heroes.push(object);
         } else {
             throw new Error("unknown type of object");
@@ -26,11 +27,17 @@ class Game {
     };
 
     addHero() {
-        const hero = new Hero({
-            game: this,
-            pos: [150, 150]
-        })
-        debugger
+        let that = this
+        // debugger
+        // const hero = new Hero({
+        //     game: that,
+        //     pos: [150, 150]
+        // })
+        const hero = new Hero(
+            that, [150, 150]
+        )
+        // const hero = new Hero();
+        // debugger
         this.add(hero);
         return hero;
     };

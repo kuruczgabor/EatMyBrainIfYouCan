@@ -9,23 +9,19 @@ class GameView {
 
     constructor(game, ctx) {
         this.game = game;
-        this.ctx = ctx;
-        debugger
-        // this.hero = this.game.__proto__.addHero()   
-        // this.hero = this.game.addHero()        
+        this.ctx = ctx;       
     }
 
     bindKeyHandlers() {
         const hero = this.game.heroes[0];
-        debugger
 
         Object.keys(GAME_VIEW_MOVES).forEach(function (k) {
             const move = GAME_VIEW_MOVES[k];
-            debugger
-            key(k, function () { hero.power(move); });
+            key(k, () => { hero.power(move); });
         });
 
-        key("space", function () { hero.fireBullet(); });
+        key("space", () => { hero.fireBullet(); });
+
     };
 
     start() {

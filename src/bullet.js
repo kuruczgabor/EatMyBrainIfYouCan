@@ -4,8 +4,9 @@ const BULLET_RADIUS = 2;
 
 class Bullet extends MovingObject {
 
-    constructor(game, pos, vel, radius, color) {
-        super(game, pos, vel, radius, color)
+    constructor(game, pos, vel, color, radius) {
+        super(game, pos, vel, color, radius)
+        this.radius = BULLET_RADIUS
         this.isWrappable = false;
     }
 
