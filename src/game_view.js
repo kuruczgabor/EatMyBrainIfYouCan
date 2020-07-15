@@ -39,12 +39,30 @@ class GameView {
         //     hero.power(GAME_VIEW_MOVES["d"]); 
         // });
 
-        key("space", () => { hero.fireBullet(); });
+        // key("space", () => { hero.fireBullet(); });
 
-        onmousemove = findObjectCoords;
+        // onmousedown = findObjectCoords;
         // onmousemove = hero.showCoords(event)
         // debugger
 
+        // const mouseCoor = findObjectCoords(onmousedown)
+
+        // onmousedown = () => {
+        //     const coor = findObjectCoords()
+        //     debugger
+        // }
+
+        // onmousedown = () => {
+        //     const coor = findObjectCoords();
+        //     hero.fireBullet(coor)
+        // }
+
+        onmousedown = () => {
+            // const coor = findObjectCoords();
+            hero.fireBullet()
+        }
+
+        // debugger
     };
 
     start() {

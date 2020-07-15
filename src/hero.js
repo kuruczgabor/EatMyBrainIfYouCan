@@ -22,7 +22,7 @@ class Hero extends MovingObject {
     //     document.getElementById("game-canvas").innerHTML = coor;
     // }
 
-    fireBullet() {
+    fireBullet(coor) {
         const norm = Util.norm(this.vel);
 
         if (norm === 0) {
@@ -34,14 +34,22 @@ class Hero extends MovingObject {
             Util.dir(this.vel),
             BULLET_SPEED
         );
-
+        
+        // debugger
         
         // var x = event.clientX;
         // var y = event.clientY;
         // var coords = "X coords: " + x + ", Y coords: " + y;
         // // window.getElementById("game-canvas").innerHTML = coords;
         // debugger
+
+        // const cursorCoor = findObjectCoords(onmousemove);
+        // const cursorCoor = findObjectCoords();
+        // const cursorCoor = findObjectCoords;
+        // onmousemove = findObjectCoords();
+        // debugger
         
+
 
         const bulletVel = [
             relVel[0] + this.vel[0], relVel[1] + this.vel[1]
@@ -67,14 +75,14 @@ class Hero extends MovingObject {
         if (this.vel[1] + impulse[1] > -HERO_MAX_SPEED ||
             this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
         
-        // setTimeout(() => {
-        //     if (this.vel[0] > 0) this.vel[0] -= 1;
-        //     if (this.vel[0] < 0) this.vel[0] += 1;
-        //     if (this.vel[1] > 0) this.vel[1] -= 1;
-        //     if (this.vel[1] < 0) this.vel[1] += 1;
-        //     // this.vel[0] = 0;
-        //     // this.vel[1] = 0;
-        // }, 500);
+        setTimeout(() => {
+            if (this.vel[0] > 0) this.vel[0] -= 1;
+            if (this.vel[0] < 0) this.vel[0] += 1;
+            if (this.vel[1] > 0) this.vel[1] -= 1;
+            if (this.vel[1] < 0) this.vel[1] += 1;
+            // this.vel[0] = 0;
+            // this.vel[1] = 0;
+        }, 500);
     };
 
     relocate() {

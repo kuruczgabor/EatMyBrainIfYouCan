@@ -35,6 +35,8 @@ function findObjectCoords(mouseEvent) {
     
     document.getElementById("game-canvas").innerHTML = xpos + ", " + ypos;
     console.log(xpos + ", " + ypos)
+    // debugger
+    return [xpos, ypos]
 }
 
 // onmousemove = findObjectCoords;
