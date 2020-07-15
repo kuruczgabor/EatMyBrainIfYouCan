@@ -11,13 +11,14 @@ class Game {
     constructor() {
         this.heroes = [];
         this.bullets = [];
-        this.addHero = this.addHero()
+        this.addHero()
     }
 
     add(object) {
         if (object instanceof Bullet) {
             this.bullets.push(object);
         } else if (object instanceof Hero) {
+            debugger
             this.heroes.push(object);
         } else {
             throw new Error("unknown type of object");
@@ -26,8 +27,10 @@ class Game {
 
     addHero() {
         const hero = new Hero({
-            game: this
+            game: this,
+            pos: [150, 150]
         })
+        debugger
         this.add(hero);
         return hero;
     };
