@@ -3,6 +3,7 @@ import Bullet from "./bullet";
 import Util from "./util";
 
 const HERO_RADIUS = 15;
+const HERO_MAX_SPEED = 5
 const BULLET_SPEED = 15;
 
 class Hero extends MovingObject {
@@ -39,8 +40,11 @@ fireBullet() {
 };
 
 power(impulse) {
-    this.vel[0] += impulse[0];
-    this.vel[1] += impulse[1];
+    if (this.vel[0] + impulse[0] >= -HERO_MAX_SPEED && 
+        this.vel[0] + impulse[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
+    
+    if (this.vel[1] + impulse[1] >= -HERO_MAX_SPEED && 
+        this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
 };
 
 relocate() {
