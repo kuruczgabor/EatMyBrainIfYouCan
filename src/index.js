@@ -1,14 +1,16 @@
-import Game from "./game";
-import GameView from "./game_view"
+import Game from "./game.js";
+import GameView from "./game_view";
 
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", function () {
 
-    const cvs = document.getElementById("game-canvas");
-    const ctx = cvs.getContext("2d");
+  const cvs = document.getElementById("game-canvas");
+  cvs.width = 1000;
+  cvs.height = 600;
 
-    const game = new Game();
-    const gameView = new GameView(game, ctx);
+  const ctx = cvs.getContext("2d");
 
-    gameView.start();
+  const game = new Game();
+  const gameView = new GameView(game, ctx);
 
+  gameView.start();
 });

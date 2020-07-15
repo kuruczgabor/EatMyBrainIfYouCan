@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./src/bullet.js":
+/*!***********************!*\
+  !*** ./src/bullet.js ***!
+  \***********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\n\nconst BULLET_RADIUS = 2;\n\nclass Bullet extends _moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n\n    constructor(game, pos, vel, radius, color) {\n        super(game, pos, vel, radius, color)\n        this.isWrappable = false;\n    }\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Bullet);\n\n//# sourceURL=webpack:///./src/bullet.js?");
+
+/***/ }),
+
 /***/ "./src/game.js":
 /*!*********************!*\
   !*** ./src/game.js ***!
@@ -94,7 +106,7 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero */ \"./src/hero.js\");\n\n\nclass Game {\n    \n    constructor() {\n        this.hero = new _hero__WEBPACK_IMPORTED_MODULE_0__[\"default\"]\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./hero */ \"./src/hero.js\");\n/* harmony import */ var _bullet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bullet */ \"./src/bullet.js\");\n\n\n\nconst GAME_BG_COLOR = \"#000000\";\nconst GAME_DIM_X = 1000;\nconst GAME_DIM_Y = 600;\nconst GAME_FPS = 32;\n\nclass Game {\n\n    constructor() {\n        this.heroes = [];\n        this.bullets = [];\n        this.addHero = this.addHero()\n    }\n\n    add(object) {\n        if (object instanceof _bullet__WEBPACK_IMPORTED_MODULE_1__[\"default\"]) {\n            this.bullets.push(object);\n        } else if (object instanceof _hero__WEBPACK_IMPORTED_MODULE_0__[\"default\"]) {\n            this.heroes.push(object);\n        } else {\n            throw new Error(\"unknown type of object\");\n        }\n    };\n\n    addHero() {\n        const hero = new _hero__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n            game: this\n        })\n        this.add(hero);\n        return hero;\n    };\n\n    allObjects() {\n        return [].concat(this.heroes, this.bullets);\n    };\n\n    checkCollisions() {\n        const allObjects = this.allObjects();\n        for (let i = 0; i < allObjects.length; i++) {\n            for (let j = 0; j < allObjects.length; j++) {\n                const obj1 = allObjects[i];\n                const obj2 = allObjects[j];\n\n                if (obj1.isCollidedWith(obj2)) {\n                    const collision = obj1.collideWith(obj2);\n                    if (collision) return;\n                }\n            }\n        }\n    };\n\n    draw(ctx) {\n        ctx.clearRect(0, 0, GAME_DIM_X, GAME_DIM_Y);\n        ctx.fillStyle = GAME_BG_COLOR;\n        ctx.fillRect(0, 0, GAME_DIM_X, GAME_DIM_Y);\n\n        this.allObjects().forEach(function (object) {\n            object.draw(ctx);\n        });\n    };\n\n    isOutOfBounds(pos) {\n        return (pos[0] < 0) || (pos[1] < 0) ||\n            (pos[0] > GAME_DIM_X) || (pos[1] > GAME_DIM_Y);\n    };\n\n    moveObjects(delta) {\n        this.allObjects().forEach(function (object) {\n            object.move(delta);\n        });\n    };\n\n    randomPosition() {\n        return [\n            GAME_DIM_X * Math.random(),\n            GAME_DIM_Y * Math.random()\n        ];\n    };\n\n    remove(object) {\n        if (object instanceof _bullet__WEBPACK_IMPORTED_MODULE_1__[\"default\"]) {\n            this.bullets.splice(this.bullets.indexOf(object), 1);\n        } else if (object instanceof _hero__WEBPACK_IMPORTED_MODULE_0__[\"default\"]) {\n            this.heroes.splice(this.heroes.indexOf(object), 1);\n        } else {\n            throw new Error(\"unknown type of object\");\n        }\n    };\n\n    step(delta) {\n        this.moveObjects(delta);\n        this.checkCollisions();\n    };\n\n    wrap(pos) {\n        return [\n            Util.wrap(pos[0], GAME_DIM_X), Util.wrap(pos[1], GAME_DIM_Y)\n        ];\n    };\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Game);\n\n//# sourceURL=webpack:///./src/game.js?");
 
 /***/ }),
 
@@ -106,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _her
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nclass GameView {\n\n    constructor(game, ctx) {\n        this.game = game;\n        this.ctx = ctx;\n    }\n\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GameView);\n\n//# sourceURL=webpack:///./src/game_view.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst GAME_VIEW_MOVES = {\n    w: [0, -1],\n    a: [-1, 0],\n    s: [0, 1],\n    d: [1, 0],\n};\n\nclass GameView {\n\n    constructor(game, ctx) {\n        this.game = game;\n        this.ctx = ctx;        \n    }\n\n    bindKeyHandlers() {\n        const hero = this.hero;\n\n        Object.keys(GAME_VIEW_MOVES).forEach(function (k) {\n            const move = GAME_VIEW_MOVES[k];\n            key(k, function () { hero.power(move); });\n        });\n\n        key(\"space\", function () { hero.fireBullet(); });\n    };\n\n    start() {\n        this.bindKeyHandlers();\n        this.lastTime = 0;\n        requestAnimationFrame(this.animate.bind(this));\n    };\n\n    animate(time) {\n        const timeDelta = time - this.lastTime;\n\n        this.game.step(timeDelta);\n        this.game.draw(this.ctx);\n        this.lastTime = time;\n\n        requestAnimationFrame(this.animate.bind(this));\n    };\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (GameView);\n\n//# sourceURL=webpack:///./src/game_view.js?");
 
 /***/ }),
 
@@ -118,7 +130,7 @@ eval("__webpack_require__.r(__webpack_exports__);\nclass GameView {\n\n    const
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n\n\nconst HERO_RADIUS = 20;\n\nclass Hero extends _moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n\n    constructor(game, pos, vel, radius, color) {\n        super(game, pos);\n        this.vel = vel || [0,0];\n        this.radius = HERO_RADIUS \n        this.color = color\n    }\n\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Hero);\n\n//# sourceURL=webpack:///./src/hero.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _moving_object__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moving_object */ \"./src/moving_object.js\");\n/* harmony import */ var _bullet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./bullet */ \"./src/bullet.js\");\n\n\n\nconst Util = __webpack_require__(/*! ./util */ \"./src/util.js\");\nconst HERO_RADIUS = 15;\n\nfunction randomColor() {\n    const hexDigits = \"0123456789ABCDEF\";\n\n    let color = \"#\";\n    for (let i = 0; i < 3; i++) {\n        color += hexDigits[Math.floor((Math.random() * 16))];\n    }\n\n    return color;\n}\n\nclass Hero extends _moving_object__WEBPACK_IMPORTED_MODULE_0__[\"default\"] {\n\n    constructor(game, pos, vel, radius, color) {\n        super(game, pos)\n        this.radius = HERO_RADIUS;\n        this.vel = vel || [0, 0];\n        this.color = color || randomColor();\n        this.pos = pos || [200, 200];\n    }\n\n\n\nfireBullet() {\n    const norm = Util.norm(this.vel);\n\n    if (norm === 0) {\n        // Can't fire unless moving.\n        return;\n    }\n\n    const relVel = Util.scale(\n        Util.dir(this.vel),\n        _bullet__WEBPACK_IMPORTED_MODULE_1__[\"default\"].SPEED\n    );\n\n    const bulletVel = [\n        relVel[0] + this.vel[0], relVel[1] + this.vel[1]\n    ];\n\n    const bullet = new _bullet__WEBPACK_IMPORTED_MODULE_1__[\"default\"]({\n        pos: this.pos,\n        vel: bulletVel,\n        color: this.color,\n        game: this.game\n    });\n\n    this.game.add(bullet);\n};\n\npower(impulse) {\n    this.vel[0] += impulse[0];\n    this.vel[1] += impulse[1];\n};\n\nrelocate() {\n    this.pos = this.game.randomPosition();\n    this.vel = [0, 0];\n};\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Hero);\n\n\n//# sourceURL=webpack:///./src/hero.js?");
 
 /***/ }),
 
@@ -130,7 +142,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mov
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game */ \"./src/game.js\");\n/* harmony import */ var _game_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\n\n\n\nwindow.addEventListener(\"DOMContentLoaded\", () => {\n\n    const cvs = document.getElementById(\"game-canvas\");\n    const ctx = cvs.getContext(\"2d\");\n\n    const game = new _game__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n    const gameView = new _game_view__WEBPACK_IMPORTED_MODULE_1__[\"default\"](game, ctx);\n\n    gameView.start();\n\n});\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ \"./src/game.js\");\n/* harmony import */ var _game_view__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game_view */ \"./src/game_view.js\");\n\n\n\nwindow.addEventListener(\"DOMContentLoaded\", function () {\n\n  const cvs = document.getElementById(\"game-canvas\");\n  cvs.width = 1000;\n  cvs.height = 600;\n\n  const ctx = cvs.getContext(\"2d\");\n\n  const game = new _game_js__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();\n  const gameView = new _game_view__WEBPACK_IMPORTED_MODULE_1__[\"default\"](game, ctx);\n\n  gameView.start();\n});\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -142,7 +154,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _gam
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nconst NORMAL_FRAME_TIME_DELTA = 1000/60;\n\n\nclass MovingObject {\n\n    constructor(game, pos, vel, radius, color) {\n        this.game = game;\n        this.pos = pos;\n        this.vel = vel;\n        this.radius = radius;\n        this.color = color;\n    }\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n\n        ctx.beginPath();\n        ctx.arc(\n            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true\n        );\n        ctx.fill();\n    }\n\n    move() {\n        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,\n            offsetX = this.vel[0] * velocityScale,\n            offsetY = this.vel[1] * velocityScale;\n            \n        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];\n    }\n\n};\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (MovingObject);\n\n\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+eval("__webpack_require__.r(__webpack_exports__);\nconst NORMAL_FRAME_TIME_DELTA = 1000 / 60;\n\nclass MovingObject {\n\n    constructor(game, pos, vel, radius, color) {\n        this.game = game;\n        this.pos = pos;\n        this.vel = vel;\n        this.radius = radius;\n        this.color = color;\n        this.isWrappable = true;\n    }\n\n    collideWith(otherObject) {\n        // default do nothing\n    };\n\n    draw(ctx) {\n        ctx.fillStyle = this.color;\n\n        ctx.beginPath();\n        ctx.arc(\n            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true\n        );\n        ctx.fill();\n    };\n\n    isCollidedWith(otherObject) {\n        // const centerDist = Util.dist(this.pos, otherObject.pos);\n        // return centerDist < (this.radius + otherObject.radius);\n    };\n\n    move(timeDelta) {\n\n        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,\n            offsetX = this.vel[0] * velocityScale,\n            offsetY = this.vel[1] * velocityScale;\n\n        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];\n\n        // if (this.game.isOutOfBounds(this.pos)) {\n        //     if (this.isWrappable) {\n        //         this.pos = this.game.wrap(this.pos);\n        //     } else {\n        //         this.remove();\n        //     }\n        // }\n    };\n\n    remove() {\n        this.game.remove(this);\n    };\n\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (MovingObject);\n\n//# sourceURL=webpack:///./src/moving_object.js?");
+
+/***/ }),
+
+/***/ "./src/util.js":
+/*!*********************!*\
+  !*** ./src/util.js ***!
+  \*********************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const Util = {\n  // Normalize the length of the vector to 1, maintaining direction.\n  dir(vec) {\n    const norm = Util.norm(vec);\n    return Util.scale(vec, 1 / norm);\n  },\n  // Find distance between two points.\n  dist(pos1, pos2) {\n    return Math.sqrt(\n      Math.pow(pos1[0] - pos2[0], 2) + Math.pow(pos1[1] - pos2[1], 2)\n    );\n  },\n  // Find the length of the vector.\n  norm(vec) {\n    return Util.dist([0, 0], vec);\n  },\n  // Return a randomly oriented vector with the given length.\n  randomVec(length) {\n    const deg = 2 * Math.PI * Math.random();\n    return Util.scale([Math.sin(deg), Math.cos(deg)], length);\n  },\n  // Scale the length of a vector by the given amount.\n  scale(vec, m) {\n    return [vec[0] * m, vec[1] * m];\n  },\n  inherits(ChildClass, BaseClass) {\n    // ChildClass.prototype = Object.create(BaseClass.prototype);\n    // ChildClass.prototype.constructor = ChildClass;\n  },\n\n  wrap(coord, max) {\n    if (coord < 0) {\n      return max - (coord % max);\n    } else if (coord > max) {\n      return coord % max;\n    } else {\n      return coord;\n    }\n  }\n};\n\nmodule.exports = Util;\n\n\n//# sourceURL=webpack:///./src/util.js?");
 
 /***/ })
 
