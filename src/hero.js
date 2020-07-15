@@ -46,8 +46,15 @@ power(impulse) {
     if (this.vel[1] + impulse[1] >= -HERO_MAX_SPEED && 
         this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
 
-    setTimeout(function () { alert("Hello"); }, 3000);
-
+    
+    setTimeout(() => {
+        if (this.vel[0] > 0) this.vel[0] -= 1
+        if (this.vel[0] < 0) this.vel[0] += 1
+        if (this.vel[1] > 0) this.vel[1] -= 1
+        if (this.vel[1] < 0) this.vel[1] += 1
+        // this.vel[0] = 0;
+        // this.vel[1] = 0;
+    }, 500);
 };
 
 relocate() {
