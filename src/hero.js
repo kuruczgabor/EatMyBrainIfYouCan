@@ -3,7 +3,7 @@ import Bullet from "./bullet";
 import Util from "./util";
 
 const HERO_RADIUS = 15;
-const HERO_MAX_SPEED = 5
+const HERO_MAX_SPEED = 1
 const BULLET_SPEED = 15;
 
 class Hero extends MovingObject {
@@ -15,52 +15,72 @@ class Hero extends MovingObject {
         this.color = "#000000"
     }
 
-fireBullet() {
-    const norm = Util.norm(this.vel);
+    // showCoords(event) {
+    //     var x = event.clientX;
+    //     var y = event.clientY;
+    //     var coor = "X coords: " + x + ", Y coords: " + y;
+    //     document.getElementById("game-canvas").innerHTML = coor;
+    // }
 
-    if (norm === 0) {
-        // Can't fire unless moving.
-        return;
-    }
+    fireBullet() {
+        const norm = Util.norm(this.vel);
 
-    const relVel = Util.scale(
-        Util.dir(this.vel),
-        BULLET_SPEED
-    );
+        if (norm === 0) {
+            // Can't fire unless moving.
+            return;
+        }
 
-    const bulletVel = [
-        relVel[0] + this.vel[0], relVel[1] + this.vel[1]
-    ];
+        const relVel = Util.scale(
+            Util.dir(this.vel),
+            BULLET_SPEED
+        );
 
-    const bullet = new Bullet(
-        this.game, this.pos, bulletVel, this.radius, this.color
-    );
+        
+        // var x = event.clientX;
+        // var y = event.clientY;
+        // var coords = "X coords: " + x + ", Y coords: " + y;
+        // // window.getElementById("game-canvas").innerHTML = coords;
+        // debugger
+        
 
-    this.game.add(bullet);
-};
+        const bulletVel = [
+            relVel[0] + this.vel[0], relVel[1] + this.vel[1]
+        ];
 
-power(impulse) {
-    if (this.vel[0] + impulse[0] >= -HERO_MAX_SPEED && 
-        this.vel[0] + impulse[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
-    
-    if (this.vel[1] + impulse[1] >= -HERO_MAX_SPEED && 
-        this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
+        const bullet = new Bullet(
+            this.game, this.pos, bulletVel, this.radius, this.color
+        );
 
-    
-    setTimeout(() => {
-        if (this.vel[0] > 0) this.vel[0] -= 1
-        if (this.vel[0] < 0) this.vel[0] += 1
-        if (this.vel[1] > 0) this.vel[1] -= 1
-        if (this.vel[1] < 0) this.vel[1] += 1
-        // this.vel[0] = 0;
-        // this.vel[1] = 0;
-    }, 500);
-};
+        this.game.add(bullet);
+    };
 
-relocate() {
-    this.pos = this.game.randomPosition();
-    this.vel = [0, 0];
-};
+    power(impulse) {
+        // if (this.vel[0] + impulse[0] >= -HERO_MAX_SPEED && 
+        //     this.vel[0] + impulse[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
+        
+        // if (this.vel[1] + impulse[1] >= -HERO_MAX_SPEED && 
+        //     this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
+
+        if (this.vel[0] + impulse[0] > -HERO_MAX_SPEED ||
+            this.vel[0] + impulse[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
+
+        if (this.vel[1] + impulse[1] > -HERO_MAX_SPEED ||
+            this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
+        
+        // setTimeout(() => {
+        //     if (this.vel[0] > 0) this.vel[0] -= 1;
+        //     if (this.vel[0] < 0) this.vel[0] += 1;
+        //     if (this.vel[1] > 0) this.vel[1] -= 1;
+        //     if (this.vel[1] < 0) this.vel[1] += 1;
+        //     // this.vel[0] = 0;
+        //     // this.vel[1] = 0;
+        // }, 500);
+    };
+
+    relocate() {
+        this.pos = this.game.randomPosition();
+        this.vel = [0, 0];
+    };
 
 }
 
