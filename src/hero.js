@@ -3,7 +3,8 @@ import Bullet from "./bullet";
 import Util from "./util";
 
 const HERO_RADIUS = 15;
-const HERO_MAX_SPEED = 1
+const HERO_MAX_SPEED = 2;
+const HERO_MAX_IMPULSE = 2
 const BULLET_SPEED = 15;
 
 class Hero extends MovingObject {
@@ -11,7 +12,8 @@ class Hero extends MovingObject {
     constructor(game, pos, vel, radius, color) {
         super(game, pos)
         this.radius = HERO_RADIUS;
-        this.vel = vel || [0, 0];
+        // this.vel = vel || [0, 0];
+        this.vel = [0, 0];
         this.color = "#000000"
     }
 
@@ -33,26 +35,48 @@ class Hero extends MovingObject {
 
     power(impulse) {
 
-        if (this.vel[0] + impulse[0] > -HERO_MAX_SPEED ||
-            this.vel[0] + impulse[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
+        if (impulse[0] > 0 && this.vel[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0]
+        if (impulse[0] < 0 && this.vel[0] > -HERO_MAX_SPEED) this.vel[0] += impulse[0]
 
-        if (this.vel[1] + impulse[1] > -HERO_MAX_SPEED ||
-            this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
+        if (impulse[1] > 0 && this.vel[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1]
+        if (impulse[1] < 0 && this.vel[1] > -HERO_MAX_SPEED) this.vel[1] += impulse[1]
+
+        // if (Math.abs(this.vel[0]) <= HERO_MAX_IMPULSE) {
+        //     this.vel[0] += impulse[0];
+        // } 
+
+
+        // if (this.vel[0] > -HERO_MAX_SPEED &&
+        //     this.vel[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
+
+        // if (this.vel[1] > -HERO_MAX_SPEED &&
+        //     this.vel[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
+
+            // debugger
+
+
+        // if (this.vel[0] + impulse[0] > -HERO_MAX_SPEED ||
+        //     this.vel[0] + impulse[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0];
+
+        // if (this.vel[1] + impulse[1] > -HERO_MAX_SPEED ||
+        //     this.vel[1] + impulse[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1];
         
         setTimeout(() => {
-            if (this.vel[0] > 0) this.vel[0] -= 1;
-            if (this.vel[0] < 0) this.vel[0] += 1;
-            if (this.vel[1] > 0) this.vel[1] -= 1;
-            if (this.vel[1] < 0) this.vel[1] += 1;
+            // if (!key.isPressed("d")) this.vel[0] = 0;
+            // if (!key.isPressed("a")) this.vel[0] = 0;
+            // if (this.vel[0] > 0) this.vel[0] -= 1;
+            // if (this.vel[0] < 0) this.vel[0] += 1;
+            // if (this.vel[1] > 0) this.vel[1] -= 1;
+            // if (this.vel[1] < 0) this.vel[1] += 1;
             // this.vel[0] = 0;
             // this.vel[1] = 0;
         }, 500);
     };
 
-    relocate() {
-        this.pos = this.game.randomPosition();
-        this.vel = [0, 0];
-    };
+    // relocate() {
+    //     this.pos = this.game.randomPosition();
+    //     this.vel = [0, 0];
+    // };
 
 }
 
