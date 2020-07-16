@@ -3,10 +3,10 @@ const GAME_VIEW_MOVES = {
     a: [-1, 0],
     s: [0, 1],
     d: [1, 0],
-    // w: [0, -2],
-    // a: [-2, 0],
-    // s: [0, 2],
-    // d: [2, 0],
+    // wa: [-1, -1],
+    // as: [-1, 1],
+    // sd: [1, 1],
+    // dw: [1, -1]
 };
 
 class GameView {
@@ -14,55 +14,34 @@ class GameView {
     constructor(game, ctx) {
         this.game = game;
         this.ctx = ctx;       
-    }
+    };
 
     bindKeyHandlers() {
         const hero = this.game.heroes[0];
 
-        // Object.keys(GAME_VIEW_MOVES).forEach(function (k) {
-        //     const move = GAME_VIEW_MOVES[k];
-        //     key(k, () => { hero.power(move); });
-        // });
+        // key("w", () => { hero.power(GAME_VIEW_MOVES["w"]); });
+        // key("a", () => { hero.power(GAME_VIEW_MOVES["a"]); });
+        // key("s", () => { hero.power(GAME_VIEW_MOVES["s"]); });
+        // key("d", () => { hero.power(GAME_VIEW_MOVES["d"]); });
 
-        // key("w" && "a", () => { hero.power([-1, -1]); });
-        // key("w" && "d", () => { hero.power([1, -1]); });
-        // key("s" && "a", () => { hero.power([-1, 1]); });
-        // key("s" && "d", () => { hero.power([1, 1]); });
+        Object.keys(GAME_VIEW_MOVES).forEach(function (k) {
+            const move = GAME_VIEW_MOVES[k];
+            key(k, () => { hero.power(move); });
+        });
 
-        key("w", () => { hero.power(GAME_VIEW_MOVES["w"]); });
-        key("a", () => { hero.power(GAME_VIEW_MOVES["a"]); });
-        key("s", () => { hero.power(GAME_VIEW_MOVES["s"]); });
-        key("d", () => { hero.power(GAME_VIEW_MOVES["d"]); });
+        // key("w+a", () => { hero.power([-1, -1]); });
+        // key("a+s", () => { hero.power([-1, 1]); });
+        // key("s+d", () => { hero.power([1, 1]); });
+        // key("d+w", () => { hero.power([1, -1]); });
 
-        // key("d", () => {
-        //     debugger 
-        //     hero.power(GAME_VIEW_MOVES["d"]); 
-        // });
+        // if (key.isPressed("b")) console.log(hello);
 
-        // key("space", () => { hero.fireBullet(); });
-
-        // onmousedown = findObjectCoords;
-        // onmousemove = hero.showCoords(event)
-        // debugger
-
-        // const mouseCoor = findObjectCoords(onmousedown)
-
-        // onmousedown = () => {
-        //     const coor = findObjectCoords()
-        //     debugger
-        // }
-
-        // onmousedown = () => {
-        //     const coor = findObjectCoords();
-        //     hero.fireBullet(coor)
-        // }
+        // key("w+a", () => { hero.power([-1,-1]); });
 
         onmousedown = () => {
-            // const coor = findObjectCoords();
-            hero.fireBullet()
+            const mouseCoor = findCursorCoords();
+            hero.fireBullet(mouseCoor)
         }
-
-        // debugger
     };
 
     start() {

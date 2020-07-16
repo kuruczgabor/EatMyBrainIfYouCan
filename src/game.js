@@ -6,6 +6,7 @@ const GAME_BG_COLOR = "#FFFFFF";
 const GAME_DIM_X = 1000;
 const GAME_DIM_Y = 600;
 const GAME_FPS = 32;
+const HERO_RADIUS = 15;
 
 class Game {
 
@@ -66,8 +67,10 @@ class Game {
     };
 
     isOutOfBounds(pos) {
-        return (pos[0] < 0) || (pos[1] < 0) ||
-            (pos[0] > GAME_DIM_X) || (pos[1] > GAME_DIM_Y);
+        // return (pos[0] < 0) || (pos[1] < 0) ||
+        //     (pos[0] > GAME_DIM_X) || (pos[1] > GAME_DIM_Y);
+        return (pos[0] < HERO_RADIUS) || (pos[1] < HERO_RADIUS) ||
+            (pos[0] > GAME_DIM_X - HERO_RADIUS) || (pos[1] > GAME_DIM_Y - HERO_RADIUS);
     };
 
     moveObjects(delta) {

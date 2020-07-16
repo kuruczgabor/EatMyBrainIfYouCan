@@ -56,6 +56,9 @@ class MovingObject {
             }
         }
 
+        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+
+
 
     };
 
