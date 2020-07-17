@@ -1,8 +1,9 @@
 import Hero from "./hero";
 import Bullet from "./bullet";
+import Zombie from "./zombie";
 import Util from "./util"
 
-const GAME_BG_COLOR = "#FFFFFF";
+const GAME_BG_COLOR = "#7CFC00";
 const GAME_DIM_X = 1000;
 const GAME_DIM_Y = 600;
 const GAME_FPS = 32;
@@ -13,7 +14,8 @@ class Game {
     constructor() {
         this.heroes = [];
         this.bullets = [];
-        this.addHero()
+        this.addHero();
+        this.addZombie();
     }
 
     add(object) {
@@ -36,6 +38,17 @@ class Game {
         this.add(hero);
         return hero;
     };
+
+    addZombie() {
+        let that = this
+
+        const zombie = new Zombie(
+            that
+        )
+
+        this.add(zombie)
+        return zombie;
+    }
 
     allObjects() {
         return [].concat(this.heroes, this.bullets);
