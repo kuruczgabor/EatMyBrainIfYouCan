@@ -25,7 +25,6 @@ class Game {
         } else if (object instanceof Hero) {
             this.heroes.push(object);
         } else if (object instanceof Zombie) {
-            debugger
             this.zombies.push(object);
         } else {
             throw new Error("unknown type of object");
@@ -46,13 +45,13 @@ class Game {
     addZombie() {
         let that = this
 
-        debugger
+        // debugger
 
         const zombie = new Zombie(
             that
         )
 
-        debugger
+        // debugger
 
         this.add(zombie)
         return zombie;
@@ -118,7 +117,6 @@ class Game {
     };
 
     changeZombieVel() {
-        debugger
         this.zombies[0].vel = this.zombies[0].findAttackVel()
     }
 
@@ -128,11 +126,11 @@ class Game {
         this.checkCollisions();
     };
 
-    wrap(pos) {
-        return [
-            Util.wrap(pos[0], GAME_DIM_X), Util.wrap(pos[1], GAME_DIM_Y)
-        ];
-    };
+    // wrap(pos) {
+    //     return [
+    //         Util.wrap(pos[0], GAME_DIM_X), Util.wrap(pos[1], GAME_DIM_Y)
+    //     ];
+    // };
 
 }
 
