@@ -43,31 +43,20 @@ class GameView {
         })
 
         document.addEventListener("keydown", (e) => {
-            let keycode = e.which || window.event.keycode
+            let keyCode = e.which || window.event.keyCode
 
-            if (keycode === 65) {
-                hero.power(GAME_VIEW_MOVES["a"])
-            }
-            if (keycode === 68) {
-                hero.power(GAME_VIEW_MOVES["d"])
-            }
-            if (keycode === 87) {
-                hero.power(GAME_VIEW_MOVES["w"])
-            }
-            if (keycode === 83) {
-                hero.power(GAME_VIEW_MOVES["s"])
-            }
+            if (keyCode === 65) hero.power(GAME_VIEW_MOVES["a"])
+            if (keyCode === 68) hero.power(GAME_VIEW_MOVES["d"])           
+            if (keyCode === 87) hero.power(GAME_VIEW_MOVES["w"])     
+            if (keyCode === 83) hero.power(GAME_VIEW_MOVES["s"])
+            
         })
 
         document.addEventListener("keyup", function (e) {
-            let keycode = e.which || window.event.keycode;
+            let keyCode = e.which || window.event.keyCode;
 
-            if (keycode === 65 || keycode === 68) {
-                that.game.heroes[0].vel[0] = 0
-            }
-            if (keycode === 87 || keycode === 83) {
-                that.game.heroes[0].vel[1] = 0
-            }
+            if (keyCode === 65 || keyCode === 68) that.game.heroes[0].vel[0] = 0 
+            if (keyCode === 87 || keyCode === 83) that.game.heroes[0].vel[1] = 0
         })
 
     };

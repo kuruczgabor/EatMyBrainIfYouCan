@@ -14,6 +14,7 @@ class Game {
     constructor() {
         this.heroes = [];
         this.bullets = [];
+        this.zombies = [];
         this.addHero();
         this.addZombie();
     }
@@ -23,6 +24,9 @@ class Game {
             this.bullets.push(object);
         } else if (object instanceof Hero) {
             this.heroes.push(object);
+        } else if (object instanceof Zombie) {
+            debugger
+            this.zombies.push(object);
         } else {
             throw new Error("unknown type of object");
         }
@@ -42,16 +46,20 @@ class Game {
     addZombie() {
         let that = this
 
+        debugger
+
         const zombie = new Zombie(
             that
         )
+
+        debugger
 
         this.add(zombie)
         return zombie;
     }
 
     allObjects() {
-        return [].concat(this.heroes, this.bullets);
+        return [].concat(this.heroes, this.bullets, this.zombies);
     };
 
     checkCollisions() {
@@ -109,8 +117,14 @@ class Game {
         }
     };
 
+    changeZombieVel() {
+        debugger
+        this.zombies[0].vel = this.zombies[0].findAttackVel()
+    }
+
     step(delta) {
         this.moveObjects(delta);
+        this.changeZombieVel();
         this.checkCollisions();
     };
 
