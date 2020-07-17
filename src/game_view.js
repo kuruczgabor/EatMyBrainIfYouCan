@@ -12,13 +12,33 @@ class GameView {
         this.ctx = ctx;       
     };
 
+    findCursorCoords(event) {
+
+        let canvas = document.getElementById("game-canvas");
+        let canvasLeft = 0;
+        let canvasTop = 0;
+        let xPos;
+        let yPos;
+
+        while (canvas.offsetParent) {
+            canvasLeft += canvas.offsetLeft;
+            canvasTop += canvas.offsetTop;
+            canvas = canvas.offsetParent;
+        }
+
+        xPos = window.event.x - canvasLeft
+        yPos = window.event.y - canvasTop
+
+        return [xPos, yPos]
+    }
+
     bindKeyHandlers() {
 
         const hero = this.game.heroes[0];
         let that = this;
 
         document.addEventListener("mousedown", (e) => {
-            const mouseCoor = findCursorCoords();
+            const mouseCoor = this.findCursorCoords();
             hero.fireBullet(mouseCoor)
         })
 
@@ -49,7 +69,7 @@ class GameView {
                 that.game.heroes[0].vel[1] = 0
             }
         })
-        
+
     };
 
     start() {
