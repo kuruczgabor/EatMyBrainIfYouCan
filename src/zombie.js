@@ -13,7 +13,7 @@ class Zombie extends MovingObject {
         this.radius = ZOMBIE_RADIUS;
         this.color = "#15552D";
         this.vel = vel || [0,0]
-
+        // this.image = Image new
     }
 
     findAttackVel() {
