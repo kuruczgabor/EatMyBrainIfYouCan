@@ -3,7 +3,7 @@ import Bullet from "./bullet";
 import Zombie from "./zombie";
 import Util from "./util"
 
-const GAME_BG_COLOR = "#7CFC00";
+const GAME_BG_COLOR = "#FFFFFF";
 const GAME_DIM_X = 1000;
 const GAME_DIM_Y = 600;
 const GAME_FPS = 32;
@@ -21,6 +21,7 @@ class Game {
 
     add(object) {
         if (object instanceof Bullet) {
+            debugger
             this.bullets.push(object);
         } else if (object instanceof Hero) {
             this.heroes.push(object);

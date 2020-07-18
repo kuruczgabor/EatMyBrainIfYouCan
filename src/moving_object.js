@@ -2,7 +2,7 @@ const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
 class MovingObject {
 
-    constructor(game, pos, vel, radius, color) {
+    constructor(game, pos, vel, radius, color, image) {
         this.game = game;
         this.pos = pos;
         this.vel = vel;
@@ -10,6 +10,7 @@ class MovingObject {
         this.radius = radius;
         // this.color = color;
         this.isWrappable = true;
+        this.image = image
     }
 
     collideWith(otherObject) {
@@ -17,13 +18,16 @@ class MovingObject {
     };
 
     draw(ctx) {
-        ctx.fillStyle = this.color;
+        // ctx.fillStyle = this.color;
 
-        ctx.beginPath();
-        ctx.arc(
-            this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-        );
-        ctx.fill();
+        // ctx.beginPath();
+        // ctx.arc(
+        //     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
+        // );
+        // ctx.fill();
+        ctx.drawImage(this.image, this.pos[0], this.pos[1], this.width, this.height);
+        // debugger
+        // console.log('hello')
     };
 
     isCollidedWith(otherObject) {
