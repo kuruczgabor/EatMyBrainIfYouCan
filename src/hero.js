@@ -20,7 +20,10 @@ class Hero extends MovingObject {
         this.image = HERO_IMAGE;
         this.height = 50;
         this.width = 50;
+        
     }
+
+    
 
     fireBullet(mousePos) {
 

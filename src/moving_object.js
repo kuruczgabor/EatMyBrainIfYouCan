@@ -27,7 +27,9 @@ class MovingObject {
         // ctx.fill();
 
 
-        ctx.drawImage(this.image, this.pos[0], this.pos[1], this.width, this.height);
+        
+
+        let test = ctx.drawImage(this.image, this.pos[0], this.pos[1], this.width, this.height);
         // debugger
         // console.log('hello')
     };
