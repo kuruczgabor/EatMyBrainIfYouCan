@@ -1,14 +1,15 @@
 import MovingObject from "./moving_object";
 import Bullet from "./bullet";
 import Util from "./util";
+import GameView from "./game_view";
 
 const HERO_RADIUS = 15;
 const HERO_MAX_SPEED = 2;
 // const HERO_MAX_IMPULSE = 2
 const BULLET_SPEED = 15;
 
-const HERO_IMAGE = new Image();
-HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+// const HERO_IMAGE = new Image();
+// HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
 
 class Hero extends MovingObject {
 
@@ -17,13 +18,28 @@ class Hero extends MovingObject {
         this.radius = HERO_RADIUS;
         this.vel = vel || [0, 0];
         this.color = "#000000";
-        this.image = HERO_IMAGE;
+        // this.image = HERO_IMAGE;
+        this.image = this.getImageWithAngle();
         this.height = 50;
         this.width = 50;
         
     }
 
-    
+    getImageWithAngle(mousePos = [0,0]) {
+
+        const heroImage = new Image();
+        heroImage.src = './assets/soldier/idle/Idle_gun_000.png'
+
+        // debugger
+
+        
+
+        // debugger
+
+
+        return heroImage
+
+    }
 
     fireBullet(mousePos) {
 

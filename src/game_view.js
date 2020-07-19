@@ -42,6 +42,11 @@ class GameView {
             hero.fireBullet(mouseCoor)
         })
 
+        document.addEventListener("mousemove", (e) => {
+            const mouseCoor = this.findCursorCoords();
+            hero.getImageWithAngle(mouseCoor)
+        })
+
         document.addEventListener("keydown", (e) => {
             let keyCode = e.which || window.event.keyCode
 
