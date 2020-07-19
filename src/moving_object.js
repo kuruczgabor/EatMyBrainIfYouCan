@@ -25,6 +25,8 @@ class MovingObject {
         //     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
         // );
         // ctx.fill();
+
+
         ctx.drawImage(this.image, this.pos[0], this.pos[1], this.width, this.height);
         // debugger
         // console.log('hello')

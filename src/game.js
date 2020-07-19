@@ -21,7 +21,7 @@ class Game {
 
     add(object) {
         if (object instanceof Bullet) {
-            debugger
+            // debugger
             this.bullets.push(object);
         } else if (object instanceof Hero) {
             this.heroes.push(object);
