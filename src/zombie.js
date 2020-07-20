@@ -23,6 +23,7 @@ class Zombie extends MovingObject {
         // this.color = "#15552D";
         this.vel = vel || [0,0];
         // this.getZombieImage();
+        // this.angle = angle;
         
     }
 

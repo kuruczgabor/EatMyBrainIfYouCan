@@ -37,6 +37,26 @@ const Util = {
     } else {
       return coord;
     }
+  },
+
+  findCursorCoords(event) {
+
+    let canvas = document.getElementById("game-canvas");
+    let canvasLeft = 0;
+    let canvasTop = 0;
+    let xPos;
+    let yPos;
+
+    while (canvas.offsetParent) {
+      canvasLeft += canvas.offsetLeft;
+      canvasTop += canvas.offsetTop;
+      canvas = canvas.offsetParent;
+    }
+
+    xPos = window.event.x - canvasLeft
+    yPos = window.event.y - canvasTop
+
+    return [xPos, yPos]
   }
 };
 
