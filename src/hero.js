@@ -24,24 +24,13 @@ class Hero extends MovingObject {
         this.width = 50;
         this.angle = angle;
         // this.angle = angle;
-        
     }
 
-    getImageWithAngle(mousePos = [0,0]) {
-
-        const heroImage = new Image();
-        heroImage.src = './assets/soldier/idle/Idle_gun_000.png'
-
-        debugger
-
-        
-
-        // debugger
-
-
-        return heroImage
-
-    }
+    // getImageWithAngle(mousePos = [0,0]) {
+    //     const heroImage = new Image();
+    //     heroImage.src = './assets/soldier/idle/Idle_gun_000.png'
+    //     return heroImage
+    // }
 
     fireBullet(mousePos) {
 

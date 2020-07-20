@@ -15,26 +15,6 @@ class GameView {
         this.ctx = ctx;       
     };
 
-    // findCursorCoords(event) {
-
-    //     let canvas = document.getElementById("game-canvas");
-    //     let canvasLeft = 0;
-    //     let canvasTop = 0;
-    //     let xPos;
-    //     let yPos;
-
-    //     while (canvas.offsetParent) {
-    //         canvasLeft += canvas.offsetLeft;
-    //         canvasTop += canvas.offsetTop;
-    //         canvas = canvas.offsetParent;
-    //     }
-
-    //     xPos = window.event.x - canvasLeft
-    //     yPos = window.event.y - canvasTop
-
-    //     return [xPos, yPos]
-    // }
-
     bindKeyHandlers() {
 
         const hero = this.game.heroes[0];
@@ -45,15 +25,9 @@ class GameView {
             hero.fireBullet(mouseCoor)
         })
 
-        document.addEventListener("mousemove", (e) => {
-            const mouseCoor = Util.findCursorCoords();
-            // hero.getImageWithAngle(mouseCoor)
-            // hero.getCursorCoords(mouseCoor)
-            // MovingObject.HERO_SHOOTING_ANGLE = mouseCoor
-            // debugger
-            // console.log('hello')
-
-        })
+        // document.addEventListener("mousemove", (e) => {
+        //     const mouseCoor = Util.findCursorCoords();
+        // })
 
         document.addEventListener("keydown", (e) => {
             let keyCode = e.which || window.event.keyCode

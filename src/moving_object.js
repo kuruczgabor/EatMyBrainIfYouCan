@@ -1,55 +1,24 @@
 import Hero from "./hero";
 // import Zombie from "./zombie";
-import GameView from "./game_view";
+// import GameView from "./game_view";
 import Util from "./util";
-// import Zombie from "./zombie";
-
-// const HERO_SHOOTING_ANGLE;
-// debugger
 
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
-// const ANGLE = GameView.findCursorCoords();
-// debugger
 
 class MovingObject {
 
-    constructor(game, pos, vel, radius, color, image, angle) {
+    constructor(game, pos, vel, color, radius, image, angle) {
         this.game = game;
         this.pos = pos;
         this.vel = vel;
-        this.color = color;
-        this.radius = radius;
         // this.color = color;
-        this.isWrappable = true;
+        this.radius = radius;
         this.image = image;
-        this.angle = angle || 0
+        this.angle = angle || 0;
+        this.isWrappable = true;
     }
 
-    collideWith(otherObject) {
-        // default do nothing
-    };
-
-    draw(ctx, mouseCoor) {
-        // ctx.fillStyle = this.color;
-
-        // ctx.beginPath();
-        // ctx.arc(
-        //     this.pos[0], this.pos[1], this.radius, 0, 2 * Math.PI, true
-        // );
-        // ctx.fill();
-
-        // debugger
-
-        // debugger
-
-
-
-        
-        // debugger
-
-        // console.log(angle)
-
-        // debugger
+    draw(ctx) {
 
         if (this instanceof Hero) {
 
@@ -70,31 +39,6 @@ class MovingObject {
             ctx.drawImage(this.image, this.pos[0], this.pos[1], this.width, this.height);
         }
         
-        // if (this instanceof Zombie) {
-            
-        //     debugger
-
-        //     console.log('hello')
-        // }
-
-
-
-   
-
-
-
-
-
-        
-
-        // let test = ctx.drawImage(this.image, this.pos[0], this.pos[1], this.width, this.height);
-        // debugger
-        // console.log('hello')
-    };
-
-    isCollidedWith(otherObject) {
-        // const centerDist = Util.dist(this.pos, otherObject.pos);
-        // return centerDist < (this.radius + otherObject.radius);
     };
 
     move(timeDelta) {
@@ -107,7 +51,6 @@ class MovingObject {
 
         if (this.game.isOutOfBounds(this.pos)) {
             if (this.isWrappable) {
-                // this.pos = this.game.wrap(this.pos);
                 this.vel = [0,0]
             } else {
                 this.remove();

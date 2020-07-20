@@ -24,21 +24,7 @@ const Util = {
   scale(vec, m) {
     return [vec[0] * m, vec[1] * m];
   },
-  inherits(ChildClass, BaseClass) {
-    // ChildClass.prototype = Object.create(BaseClass.prototype);
-    // ChildClass.prototype.constructor = ChildClass;
-  },
-
-  wrap(coord, max) {
-    if (coord < 0) {
-      return max - (coord % max);
-    } else if (coord > max) {
-      return coord % max;
-    } else {
-      return coord;
-    }
-  },
-
+  // Find the position of the cursor
   findCursorCoords(event) {
 
     let canvas = document.getElementById("game-canvas");
@@ -60,5 +46,4 @@ const Util = {
   }
 };
 
-// module.exports = Util;
 export default Util;

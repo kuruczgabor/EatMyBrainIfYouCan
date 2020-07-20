@@ -12,11 +12,9 @@ class Bullet extends MovingObject {
         this.image = BULLET_IMAGE;
         this.height = 20;
         this.width = 20;
-        this.color = "#000000";
+        // this.color = "#000000";
         this.radius = BULLET_RADIUS;
         this.isWrappable = false;
-        // debugger
-
     }
 
 }
