@@ -3,7 +3,7 @@ import Bullet from "./bullet";
 import Util from "./util";
 import GameView from "./game_view";
 
-const HERO_RADIUS = 1;
+// const HERO_RADIUS = 1;
 const HERO_MAX_SPEED = 2;
 // const HERO_MAX_IMPULSE = 2
 const BULLET_SPEED = 15;
@@ -13,16 +13,17 @@ HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
 
 class Hero extends MovingObject {
 
-    constructor(game, pos, vel, radius, color, height, width, angle) {
-        super(game, pos, angle)
-        this.radius = HERO_RADIUS;
+    // constructor(game, pos, vel, radius, color, height, width, angle) {
+    constructor(game, pos, vel, height, width, angle) {
+        super(game, pos)
+        // this.radius = HERO_RADIUS;
         this.vel = vel || [0, 0];
-        this.color = "#000000";
+        // this.color = "#000000";
         this.image = HERO_IMAGE;
         // this.image = this.getImageWithAngle();
         this.height = 50;
         this.width = 50;
-        this.angle = angle;
+        this.angle = angle || 0;
         // this.angle = angle;
     }
 
@@ -31,6 +32,24 @@ class Hero extends MovingObject {
     //     heroImage.src = './assets/soldier/idle/Idle_gun_000.png'
     //     return heroImage
     // }
+
+    draw(ctx) {
+
+            document.addEventListener("mousemove", (e) => {
+                // document.addEventListener("mousedown", (e) => {
+                const mousePos = Util.findCursorCoords();
+                const angleDeg = -Math.atan2(mousePos[0] - this.pos[0], mousePos[1] - this.pos[1]) * 180 / Math.PI;
+                this.angle = angleDeg
+            })
+
+            ctx.clearRect(0, 0, ctx.width, ctx.height);
+            ctx.save();
+            ctx.translate(this.pos[0] + this.width / 2, this.pos[1] + this.height / 2);
+            ctx.rotate((Math.PI / 180) * this.angle)
+            ctx.drawImage(this.image, -(this.width / 2), -(this.height / 2), this.width, this.height);
+            ctx.restore();
+
+    };
 
     fireBullet(mousePos) {
 
@@ -60,4 +79,4 @@ class Hero extends MovingObject {
 
 }
 
-export default Hero
+export default Hero;
