@@ -23,16 +23,19 @@ class MovingObject {
         if (this instanceof Hero) {
 
             document.addEventListener("mousemove", (e) => {
+            // document.addEventListener("mousedown", (e) => {
                 const mousePos = Util.findCursorCoords();
                 const angleDeg = -Math.atan2(mousePos[0] - this.pos[0], mousePos[1] - this.pos[1]) * 180 / Math.PI;
                 this.angle = angleDeg
             })
         
-            // ctx.clearRect(0, 0, ctx.width, ctx.height);
+            ctx.clearRect(0, 0, ctx.width, ctx.height);
             ctx.save();
-            ctx.translate(this.pos[0], this.pos[1]);
+            // ctx.translate(this.pos[0], this.pos[1]);
+            ctx.translate(this.pos[0] + this.width / 2, this.pos[1] + this.height / 2);
             ctx.rotate((Math.PI / 180) * this.angle)
-            ctx.drawImage(this.image, -(this.image.width / 30), -(this.image.height / 30), this.width, this.height);
+            // ctx.drawImage(this.image, -(this.image.width / 30), -(this.image.height / 30), this.width, this.height);
+            ctx.drawImage(this.image, -(this.width / 2), -(this.height / 2), this.width, this.height);
             ctx.restore();  
 
         } else {
