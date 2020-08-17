@@ -9,7 +9,7 @@ const HERO_MAX_SPEED = 2;
 const BULLET_SPEED = 15;
 
 const HERO_IMAGE = new Image();
-HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
 
 class Hero extends MovingObject {
 
@@ -25,7 +25,29 @@ class Hero extends MovingObject {
         this.width = 50;
         this.angle = angle || 0;
         // this.angle = angle;
+        // this.heroIdleAnimation.bind(this);
+        this.heroIdleAnimation();
+        // this.animateHero();
     }
+
+    heroIdleAnimation() {
+        setInterval(() => {
+            let curFrameSrc = HERO_IMAGE.src;
+            let curFrameNum = parseInt(curFrameSrc.slice(-7,-4))
+            curFrameNum += 1
+            if (curFrameNum === 8) curFrameNum = 0
+            HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+        }, 100);
+    }
+
+    // animateHero() {
+    //     let that = this;
+    //     debugger
+    //     setInterval(function () {
+    //         debugger
+    //         heroIdleAnimation()
+    //     }, 1000);
+    // }
 
     // getImageWithAngle(mousePos = [0,0]) {
     //     const heroImage = new Image();

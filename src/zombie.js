@@ -19,6 +19,17 @@ class Zombie extends MovingObject {
         // this.radius = ZOMBIE_RADIUS;
         this.vel = vel || [0,0];
         this.angle = angle || 0;
+        this.zombieWalkAnimation();
+    }
+
+    zombieWalkAnimation() {
+        setInterval(() => {
+            let curFrameSrc = ZOMBIE_IMAGE.src;
+            let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+            curFrameNum += 1
+            if (curFrameNum === 9) curFrameNum = 0
+            ZOMBIE_IMAGE.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
+        }, 100);
     }
 
     draw(ctx) {
