@@ -25,6 +25,26 @@ const Util = {
     return [vec[0] * m, vec[1] * m];
   },
   // Find the position of the cursor
+  // findCursorCoords(event) {
+
+  //   let canvas = document.getElementById("game-canvas");
+  //   let canvasLeft = 0;
+  //   let canvasTop = 0;
+  //   let xPos;
+  //   let yPos;
+
+  //   while (canvas.offsetParent) {
+  //     canvasLeft += canvas.offsetLeft;
+  //     canvasTop += canvas.offsetTop;
+  //     canvas = canvas.offsetParent;
+  //   }
+
+  //   xPos = window.event.x - canvasLeft
+  //   yPos = window.event.y - canvasTop
+
+  //   return [xPos, yPos]
+  // }
+
   findCursorCoords(event) {
 
     let canvas = document.getElementById("game-canvas");
@@ -33,14 +53,21 @@ const Util = {
     let xPos;
     let yPos;
 
+    // debugger
+
     while (canvas.offsetParent) {
+      // debugger 
       canvasLeft += canvas.offsetLeft;
       canvasTop += canvas.offsetTop;
+      // debugger
       canvas = canvas.offsetParent;
     }
+    // debugger
 
     xPos = window.event.x - canvasLeft
     yPos = window.event.y - canvasTop
+    // xPos = window.event.x 
+    // yPos = window.event.y
 
     return [xPos, yPos]
   }

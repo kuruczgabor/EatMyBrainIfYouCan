@@ -17,7 +17,7 @@ class Game {
         this.bullets = [];
         this.zombies = [];
         this.addHero();
-        this.addZombie();
+        // this.addZombie();
     }
 
     add(object) {
@@ -84,7 +84,7 @@ class Game {
     };
 
     changeZombieVel() {
-        this.zombies[0].vel = this.zombies[0].findAttackVel()
+        // this.zombies[0].vel = this.zombies[0].findAttackVel()
     }
 
     step(delta) {

@@ -25,9 +25,9 @@ class Hero extends MovingObject {
         // this.color = "#000000";
         this.image = HERO_IMAGE;
         // this.image = this.getImageWithAngle();
-        this.height = 50;
+        this.height = 5;
         // this.heroAnim === 'shoot' ? this.height = 100 : this.height = 50
-        this.width = 50;
+        this.width = 5;
         this.angle = angle || 0;
         // this.angle = angle;
         // this.heroIdleAnimation.bind(this);
@@ -198,14 +198,19 @@ class Hero extends MovingObject {
 
         const bulletDir = [mousePos[0] - this.pos[0], mousePos[1] - this.pos[1]];
 
+        console.log(mousePos)
+        console.log(this.pos)
+        // debugger
         const bulletVel = Util.scale(
             Util.dir(bulletDir),
             BULLET_SPEED
         );
+        // debugger
 
         const bullet = new Bullet(
             this.game, this.pos, bulletVel, this.radius
         );
+        // debugger
 
         this.game.add(bullet);
     };
