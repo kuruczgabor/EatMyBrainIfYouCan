@@ -72,6 +72,6 @@ const cursorPos = [350, 300]
 const BULLET_SPEED = 15
 
 const bulletDir = [150, 100]
-
-![bulletVel calculation](/assets/github/vector_calc_graph.png)
+```
+![bulletVel calculation](/assets/github/vector_calc_graph.png) | width=100
 
