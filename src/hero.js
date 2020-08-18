@@ -10,11 +10,14 @@ const BULLET_SPEED = 15;
 
 const HERO_IMAGE = new Image();
 HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
+// HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png';
+const HERO_WALK_INTERVALS = [];
+const HERO_IDLE_INTERVALS = [];
 
 class Hero extends MovingObject {
 
     // constructor(game, pos, vel, radius, color, height, width, angle) {
-    constructor(game, pos, vel, height, width, angle) {
+    constructor(game, pos, vel, height, width, angle, image) {
         super(game, pos)
         // this.radius = HERO_RADIUS;
         this.vel = vel || [0, 0];
@@ -26,19 +29,92 @@ class Hero extends MovingObject {
         this.angle = angle || 0;
         // this.angle = angle;
         // this.heroIdleAnimation.bind(this);
-        this.heroIdleAnimation();
+        // this.heroIdleAnimation();
+        // this.heroAnimate.bind(this);
+        this.heroAnim = 'idle';
+        this.heroAnimate();
         // this.animateHero();
     }
 
-    heroIdleAnimation() {
-        setInterval(() => {
-            let curFrameSrc = HERO_IMAGE.src;
-            let curFrameNum = parseInt(curFrameSrc.slice(-7,-4))
-            curFrameNum += 1
-            if (curFrameNum === 8) curFrameNum = 0
-            HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
-        }, 100);
+    heroAnimate(command = 'idle') {
+     
+        const heroIdle = setInterval(() => {
+            if (command === "idle") {
+                this.heroIdle();
+                HERO_IDLE_INTERVALS.push(heroIdle);
+            }
+        }, 100)
+
+        if (command !== "idle") HERO_IDLE_INTERVALS.forEach(clearInterval);
+
+        const heroWalk = setInterval(() => {
+            if (command === "walk") {
+                this.heroWalk();
+                HERO_WALK_INTERVALS.push(heroWalk);
+            }
+        }, 200);
+
+        if (this.heroAnim !== "walk") HERO_WALK_INTERVALS.forEach(clearInterval);
+        
     }
+
+    heroIdle() {
+        if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+        let curFrameSrc = HERO_IMAGE.src;
+        let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        curFrameNum += 1
+        if (curFrameNum === 8) curFrameNum = 0
+        HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+    }
+
+    heroWalk() {
+        if (HERO_IMAGE.src.split('/')[9] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
+        let curFrameSrc = HERO_IMAGE.src;
+        let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        curFrameNum += 1
+        if (curFrameNum === 6) curFrameNum = 0
+        HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_00' + curFrameNum.toString() + '.png'
+    }
+            
+            
+        //     else if (command === "walk") {
+        //         if (HERO_IMAGE.src.split('/')[9] !== 'walk') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+        //         // HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
+        //         let curFrameSrc = HERO_IMAGE.src;
+        //         let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        //         curFrameNum += 1
+        //         if (curFrameNum === 6) curFrameNum = 0
+        //         HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_00' + curFrameNum.toString() + '.png'
+        //         console.log(HERO_IMAGE.src)
+        //     } else if (command === 'stop') {
+        //         clearInterval(animate)
+        //     }
+        // }, 100);
+        // if (command === 'stop') {
+        //     debugger
+        //     clearInterval(animate)
+        // }
+    // }
+
+
+        // let heroAnim = "";
+        // if (command === "idle") {
+        //     heroAnim = setInterval(() => {
+        //         let curFrameSrc = HERO_IMAGE.src;
+        //         let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        //         curFrameNum += 1
+        //         if (curFrameNum === 8) curFrameNum = 0
+        //         HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+        //     }, 100);
+        // } else if (command === "stop") {
+        //     debugger
+        //     clearInterval(heroAnim)
+        // }
+    // }
+
+    // heroStopAnimation() {
+
+    // }
 
     // animateHero() {
     //     let that = this;
@@ -90,6 +166,15 @@ class Hero extends MovingObject {
     };
 
     power(impulse) {
+
+        // setInterval(() => {
+        //     HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000'
+        //     let curFrameSrc = HERO_IMAGE.src;
+        //     let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        //     curFrameNum += 1
+        //     if (curFrameNum === 9) curFrameNum = 0
+        //     HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+        // }, 100);
 
         if (impulse[0] > 0 && this.vel[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0]
         if (impulse[0] < 0 && this.vel[0] > -HERO_MAX_SPEED) this.vel[0] += impulse[0]

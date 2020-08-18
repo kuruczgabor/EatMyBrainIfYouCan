@@ -12,7 +12,8 @@ class GameView {
 
     constructor(game, ctx) {
         this.game = game;
-        this.ctx = ctx;       
+        this.ctx = ctx;
+        // this.heroMove = "idle";       
     };
 
     bindKeyHandlers() {
@@ -32,6 +33,12 @@ class GameView {
         document.addEventListener("keydown", (e) => {
             let keyCode = e.which || window.event.keyCode
 
+            
+            if (hero.heroAnim !== 'walk') {
+                hero.heroAnim = 'walk'
+                hero.heroAnimate('walk')
+            }
+
             if (keyCode === 65) hero.power(GAME_VIEW_MOVES["a"])
             if (keyCode === 68) hero.power(GAME_VIEW_MOVES["d"])           
             if (keyCode === 87) hero.power(GAME_VIEW_MOVES["w"])     
@@ -41,6 +48,17 @@ class GameView {
 
         document.addEventListener("keyup", function (e) {
             let keyCode = e.which || window.event.keyCode;
+
+            // hero.heroAnimate('stop')
+            // hero.heroAnim = 'idle'
+            // hero.heroAnimate()
+            // debugger
+
+            // debugger
+            if (hero.heroAnim !== 'idle') {
+                hero.heroAnim = 'idle'
+                hero.heroAnimate()
+            }
 
             if (keyCode === 65 || keyCode === 68) that.game.heroes[0].vel[0] = 0 
             if (keyCode === 87 || keyCode === 83) that.game.heroes[0].vel[1] = 0

@@ -29,7 +29,7 @@ class Zombie extends MovingObject {
             curFrameNum += 1
             if (curFrameNum === 9) curFrameNum = 0
             ZOMBIE_IMAGE.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
-        }, 100);
+        }, 150);
     }
 
     draw(ctx) {
