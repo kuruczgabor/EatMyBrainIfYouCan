@@ -71,7 +71,13 @@ const heroPos = [200, 200]
 const cursorPos = [350, 300]
 const BULLET_SPEED = 15
 
-const bulletDir = [150, 100]
+const bulletVel = [12.48, 8.32]
 ```
-![bulletVel calculation](/assets/github/vector_calc_graph.png) | width=100
 
+<img src="/assets/readme/vector_calc_graph.png" width="600" height="357" />
+
+Once I have the bulletVel I just need to initialize a new Bullet object intance every time the user clicks on the mouse:
+
+```
+const bullet = new Bullet(this.game, this.pos, bulletVel);
+```
