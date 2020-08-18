@@ -25,9 +25,9 @@ class Hero extends MovingObject {
         // this.color = "#000000";
         this.image = HERO_IMAGE;
         // this.image = this.getImageWithAngle();
-        this.height = 5;
+        this.height = 50;
         // this.heroAnim === 'shoot' ? this.height = 100 : this.height = 50
-        this.width = 5;
+        this.width = 50;
         this.angle = angle || 0;
         // this.angle = angle;
         // this.heroIdleAnimation.bind(this);
@@ -47,16 +47,13 @@ class Hero extends MovingObject {
         }
 
         const heroShoot = setInterval(() => {
-            // debugger
             if (command === "shoot") {
-                // debugger
                 this.heroShoot()
                 HERO_SHOOT_INTERVALS.push(heroShoot);
             }
         }, 50)
 
         if (this.heroAnim !== "shoot") {
-            // debugger
             HERO_SHOOT_INTERVALS.forEach(clearInterval);
         }
      
@@ -185,18 +182,23 @@ class Hero extends MovingObject {
                 this.angle = angleDeg
             })
 
-            ctx.clearRect(0, 0, ctx.width, ctx.height);
-            ctx.save();
-            ctx.translate(this.pos[0] + this.width / 2, this.pos[1] + this.height / 2);
-            ctx.rotate((Math.PI / 180) * this.angle)
-            ctx.drawImage(this.image, -(this.width / 2), -(this.height / 2), this.width, this.height);
-            ctx.restore();
+        ctx.clearRect(0, 0, ctx.width, ctx.height);
+        // save the unrotated context of the canvas so we can restore it later
+        ctx.save();
+        // move to the center of the canvas
+        ctx.translate(this.pos[0] - this.width, this.pos[1] - this.height);
+        // rotate the canvas to the specified degrees
+        ctx.rotate((Math.PI / 180) * this.angle)
+        // draw the image; since the context is rotated, the image will be rotated also
+        ctx.drawImage(this.image, -(this.width / 2), -(this.height / 2), this.width, this.height);
+        // we’re done with the rotating so restore the unrotated context
+        ctx.restore();
 
     };
 
     fireBullet(mousePos) {
 
-        const bulletDir = [mousePos[0] - this.pos[0], mousePos[1] - this.pos[1]];
+        const bulletDir = [mousePos[0] - this.pos[0] - 15, mousePos[1] - this.pos[1] -15];
 
         console.log(mousePos)
         console.log(this.pos)
