@@ -55,6 +55,15 @@ class MovingObject {
         
     // };
 
+    collideWith() {
+
+    }
+
+    isCollidedWith(otherObject) {
+        const centerDistance = Util.dist(this.pos, otherObject.pos);
+        return centerDistance < (this.width / 2 + otherObject.width / 2);
+    }
+
     move(timeDelta) {
 
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,

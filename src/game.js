@@ -78,17 +78,38 @@ class Game {
             this.bullets.splice(this.bullets.indexOf(object), 1);
         } else if (object instanceof Hero) {
             this.heroes.splice(this.heroes.indexOf(object), 1);
+        } else if (object instanceof Zombie) {
+            this.zombies.splice(this.zombies.indexOf(object), 1);
         } else {
             throw new Error("unknown type of object");
         }
     };
 
+    checkCollisions() {
+        const allObjects = [].concat(this.heroes, this.bullets, this.zombies);
+        for (let i = 0; i < allObjects.length; i++) {
+            for (let j = 0; j < allObjects.length; j++) {
+                const object1 = allObjects[i];
+                const object2 = allObjects[j];
+
+                if (object1.isCollidedWith(object2)) {
+                    // debugger
+                    const collision = object1.collideWith(object2);
+                    if (collision) return;
+                }
+            }
+        }
+    }
+
     changeZombieVel() {
-        this.zombies[0].vel = this.zombies[0].findAttackVel()
+        if (this.zombies.length > 0) {
+            this.zombies[0].vel = this.zombies[0].findAttackVel()
+        }
     }
 
     step(delta) {
         this.moveObjects(delta);
+        this.checkCollisions();
         this.changeZombieVel();
     };
 

@@ -115,7 +115,7 @@ class Hero extends MovingObject {
         }
         // debugger
         // HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
-        console.log(HERO_IMAGE.src)        
+        // console.log(HERO_IMAGE.src)        
     }
             
             
@@ -186,7 +186,7 @@ class Hero extends MovingObject {
         // save the unrotated context of the canvas so we can restore it later
         ctx.save();
         // move to the center of the canvas
-        ctx.translate(this.pos[0] - this.width, this.pos[1] - this.height);
+        ctx.translate(this.pos[0] + this.height / 10, this.pos[1] + this.width / 10);
         // rotate the canvas to the specified degrees
         ctx.rotate((Math.PI / 180) * this.angle)
         // draw the image; since the context is rotated, the image will be rotated also
@@ -200,8 +200,8 @@ class Hero extends MovingObject {
 
         const bulletDir = [mousePos[0] - this.pos[0] - 15, mousePos[1] - this.pos[1] -15];
 
-        console.log(mousePos)
-        console.log(this.pos)
+        // console.log(mousePos)
+        // console.log(this.pos)
         // debugger
         const bulletVel = Util.scale(
             Util.dir(bulletDir),

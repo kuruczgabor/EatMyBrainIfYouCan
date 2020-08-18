@@ -1,5 +1,6 @@
 import MovingObject from "./moving_object";
 import Util from "./util";
+import Bullet from "./bullet"
 
 const ZOMBIE_ATTACK_SPEED = 1;
 // const ZOMBIE_RADIUS = 20;
@@ -54,6 +55,20 @@ class Zombie extends MovingObject {
     //     this.image = zombieImage
     //     console.log("hello")
     // }
+
+    eliminate(otherObject) {
+        console.log('die');
+
+        // this.remove();
+        otherObject.remove();
+    }
+
+    collideWith(otherObject) {
+        if (otherObject instanceof Bullet) {
+            this.eliminate(otherObject);
+            return true
+        }
+    }
 
     findAttackVel() {
 
