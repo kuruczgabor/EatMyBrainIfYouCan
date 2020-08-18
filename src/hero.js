@@ -13,6 +13,7 @@ HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
 // HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png';
 const HERO_WALK_INTERVALS = [];
 const HERO_IDLE_INTERVALS = [];
+const HERO_SHOOT_INTERVALS = [];
 
 class Hero extends MovingObject {
 
@@ -25,6 +26,7 @@ class Hero extends MovingObject {
         this.image = HERO_IMAGE;
         // this.image = this.getImageWithAngle();
         this.height = 50;
+        // this.heroAnim === 'shoot' ? this.height = 100 : this.height = 50
         this.width = 50;
         this.angle = angle || 0;
         // this.angle = angle;
@@ -37,6 +39,26 @@ class Hero extends MovingObject {
     }
 
     heroAnimate(command = 'idle') {
+
+        if (this.heroAnim === 'shoot') {
+            this.height = 70
+        } else {
+            this.height = 50
+        }
+
+        const heroShoot = setInterval(() => {
+            // debugger
+            if (command === "shoot") {
+                // debugger
+                this.heroShoot()
+                HERO_SHOOT_INTERVALS.push(heroShoot);
+            }
+        }, 50)
+
+        if (this.heroAnim !== "shoot") {
+            // debugger
+            HERO_SHOOT_INTERVALS.forEach(clearInterval);
+        }
      
         const heroIdle = setInterval(() => {
             if (command === "idle") {
@@ -74,6 +96,29 @@ class Hero extends MovingObject {
         curFrameNum += 1
         if (curFrameNum === 6) curFrameNum = 0
         HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_00' + curFrameNum.toString() + '.png'
+        // console.log(HERO_IMAGE.src)
+    }
+
+    heroShoot() {
+        // debugger
+        if (HERO_IMAGE.src.split('/')[9] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
+        let curFrameSrc = HERO_IMAGE.src;
+        let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        curFrameNum += 1
+        if (curFrameNum < 5) {
+            // debugger
+            // this.height = 100
+            HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
+            // this.heroAnim = 'idle'
+            return
+        }
+        if (curFrameNum === 5) {
+            this.heroAnim = 'idle';
+            this.heroAnimate('idle')
+        }
+        // debugger
+        // HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
+        console.log(HERO_IMAGE.src)        
     }
             
             

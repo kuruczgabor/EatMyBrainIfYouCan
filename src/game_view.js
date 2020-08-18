@@ -23,6 +23,12 @@ class GameView {
 
         document.addEventListener("mousedown", (e) => {
             const mouseCoor = Util.findCursorCoords();
+            // debugger
+            if (hero.heroAnim !== 'shoot') {
+                hero.heroAnim = 'shoot'
+                hero.heroAnimate('shoot')
+            }
+
             hero.fireBullet(mouseCoor)
         })
 
