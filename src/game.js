@@ -34,7 +34,7 @@ class Game {
 
     addHero() {
         let that = this
-        const hero = new Hero(that, [200, 200])
+        const hero = new Hero(that, [100, 100])
         this.add(hero);
         return hero;
     };
@@ -103,7 +103,9 @@ class Game {
 
     changeZombieVel() {
         if (this.zombies.length > 0) {
-            this.zombies[0].vel = this.zombies[0].findAttackVel()
+            if (this.zombies[0].zombieAnim !== 'die') {
+                this.zombies[0].vel = this.zombies[0].findAttackVel()
+            }
         }
     }
 

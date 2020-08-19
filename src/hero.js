@@ -45,7 +45,7 @@ class Hero extends MovingObject {
         } else {
             this.height = 50
         }
-
+        //we should also add one more condition before adding to the array: to check if it is there
         const heroShoot = setInterval(() => {
             if (command === "shoot") {
                 this.heroShoot()
@@ -58,7 +58,7 @@ class Hero extends MovingObject {
         }
      
         const heroIdle = setInterval(() => {
-            if (command === "idle") {
+            if (command === "idle" ) {
                 this.heroIdle();
                 HERO_IDLE_INTERVALS.push(heroIdle);
             }
@@ -107,7 +107,6 @@ class Hero extends MovingObject {
             // this.height = 100
             HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
             // this.heroAnim = 'idle'
-            return
         }
         if (curFrameNum === 5) {
             this.heroAnim = 'idle';
