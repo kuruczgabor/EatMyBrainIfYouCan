@@ -26,7 +26,7 @@ class GameView {
             // console.log(mouseCoor)
             if (hero.heroAnim !== 'shoot') {
                 hero.heroAnim = 'shoot'
-                hero.heroAnimate('shoot')
+                hero.heroAnimate()
             }
 
             hero.fireBullet(mouseCoor)

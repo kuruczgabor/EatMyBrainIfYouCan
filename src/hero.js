@@ -2,6 +2,7 @@ import MovingObject from "./moving_object";
 import Bullet from "./bullet";
 import Util from "./util";
 import GameView from "./game_view";
+import Zombie from "./zombie";
 
 // const HERO_RADIUS = 1;
 const HERO_MAX_SPEED = 2;
@@ -14,6 +15,7 @@ HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
 const HERO_WALK_INTERVALS = [];
 const HERO_IDLE_INTERVALS = [];
 const HERO_SHOOT_INTERVALS = [];
+const HERO_DIE_INTERVALS = [];
 
 class Hero extends MovingObject {
 
@@ -38,36 +40,43 @@ class Hero extends MovingObject {
         // this.animateHero();
     }
 
-    heroAnimate(command = 'idle') {
+    heroAnimate() {
+        // debugger
+        // console.log(HERO_WALK_INTERVALS)
+        // console.log(HERO_IDLE_INTERVALS)
+        // console.log(HERO_SHOOT_INTERVALS)
 
         if (this.heroAnim === 'shoot') {
             this.height = 70
+        } else if (this.heroAnim === 'die') {
+            this.width = 100
         } else {
             this.height = 50
+            this.width = 50
         }
         //we should also add one more condition before adding to the array: to check if it is there
         const heroShoot = setInterval(() => {
-            if (command === "shoot") {
+            if (this.heroAnim === "shoot") {
                 this.heroShoot()
                 HERO_SHOOT_INTERVALS.push(heroShoot);
             }
-        }, 50)
+        }, 200)
 
         if (this.heroAnim !== "shoot") {
             HERO_SHOOT_INTERVALS.forEach(clearInterval);
         }
      
         const heroIdle = setInterval(() => {
-            if (command === "idle" ) {
+            if (this.heroAnim === "idle") {
                 this.heroIdle();
                 HERO_IDLE_INTERVALS.push(heroIdle);
             }
         }, 100)
 
-        if (command !== "idle") HERO_IDLE_INTERVALS.forEach(clearInterval);
+        if (this.heroAnim !== "idle") HERO_IDLE_INTERVALS.forEach(clearInterval);
 
         const heroWalk = setInterval(() => {
-            if (command === "walk") {
+            if (this.heroAnim === "walk") {
                 this.heroWalk();
                 HERO_WALK_INTERVALS.push(heroWalk);
             }
@@ -75,6 +84,14 @@ class Hero extends MovingObject {
 
         if (this.heroAnim !== "walk") HERO_WALK_INTERVALS.forEach(clearInterval);
         
+        const heroDie = setInterval(() => {
+            if (this.heroAnim === "die") {
+                this.heroDie();
+                HERO_DIE_INTERVALS.push(heroDie);
+            }
+        }, 400);
+
+        if (this.heroAnim !== "die") HERO_DIE_INTERVALS.forEach(clearInterval);
     }
 
     heroIdle() {
@@ -102,19 +119,39 @@ class Hero extends MovingObject {
         let curFrameSrc = HERO_IMAGE.src;
         let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
         curFrameNum += 1
+        // debugger
         if (curFrameNum < 5) {
             // debugger
             // this.height = 100
             HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
+            this.heroAnimate()
             // this.heroAnim = 'idle'
         }
+        console.log(HERO_IMAGE.src)
         if (curFrameNum === 5) {
+            // debugger
             this.heroAnim = 'idle';
-            this.heroAnimate('idle')
+            this.heroAnimate()
         }
         // debugger
         // HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
         // console.log(HERO_IMAGE.src)        
+    }
+
+    heroDie() {
+        // debugger
+        if (HERO_IMAGE.src.split('/')[9] !== 'death') HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
+        let curFrameSrc = HERO_IMAGE.src;
+        let curFrameNum = parseInt(curFrameSrc.slice(-11, -8))
+        curFrameNum += 1
+        if (curFrameNum < 6) {
+            // debugger
+            HERO_IMAGE.src = './assets/soldier/death/death_000' + curFrameNum.toString() + '_Man.png'
+        }
+        if (curFrameNum === 6) {
+            // debugger
+            // this.remove()
+        }
     }
             
             
@@ -215,6 +252,23 @@ class Hero extends MovingObject {
 
         this.game.add(bullet);
     };
+
+    heroEliminate(otherObject) {
+        // debugger
+        console.log('die');
+        this.heroAnim = 'die'
+        this.vel = [0, 0]
+        this.heroAnimate('die')
+        // this.remove();
+        otherObject.remove();
+    }
+
+    collideWith(otherObject) {
+        if (otherObject instanceof Zombie) {
+            this.heroEliminate(otherObject);
+            return true
+        }
+    }
 
     power(impulse) {
 
