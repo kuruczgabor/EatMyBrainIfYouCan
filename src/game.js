@@ -37,7 +37,7 @@ class Game {
 
     addZombie() {
         let that = this
-        const zombie = new Zombie(that)
+        const zombie = new Zombie(that, [800, 300])
         this.add(zombie)
         return zombie;
     }

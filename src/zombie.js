@@ -8,9 +8,9 @@ ZOMBIE_IMAGE.src = "./assets/zombie/walk/Walk_000.png";
 
 class Zombie extends MovingObject {
 
-    constructor(game) {
+    constructor(game, pos) {
         super(game)
-        this.pos = [800, 400];
+        this.pos = pos || [800, 400];
         this.height = 50;
         this.width = 50;
         this.angle = 0;
