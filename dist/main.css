@@ -1,4 +1,73 @@
+body {
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 #game-canvas {
-    border: solid black 5px;
+    position: fixed;
     cursor: crosshair;
+    padding-top: 120px;
+}
+
+.game-title {
+    font-family: 'Bangers', cursive;
+    font-size: 50px;
+    color: rgb(80, 6, 6);
+    text-align: center;
+    padding-top: 40px;
+}
+
+.box-under-canvas {
+    position: absolute;
+    margin-top: 730px;
+    height: 150px;
+    /* background-color: red; */
+    width: 1000px;
+}
+
+.game-controls {
+    position: relative;
+    display: flex;
+    text-justify: space-around;
+    height: 150px;
+    width: 500px;
+    /* background-color: royalblue; */
+}
+
+.game-controls h6 {
+    position: relative;
+    top: 10px;
+    font-family: 'Bangers', cursive;
+    font-size: 30px;
+    color: rgb(80, 6, 6);
+}
+
+.box-under-canvas img {
+    position: relative;
+    top: 35px;
+    height: 100px;
+    width: auto;
+    padding-left: 10px;
+}
+
+#controls-left-click {
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    top: 50px;
+    height: 70px;
+    width: auto
+}
+
+.game-controls-movement {
+    text-align: center;
+    /* background-color: seagreen; */
+}
+
+.game-controls-shoot {
+    text-align: center;
+    padding-left: 20px;
+    /* background-color: skyblue; */
 }

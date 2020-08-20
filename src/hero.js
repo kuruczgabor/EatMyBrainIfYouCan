@@ -234,10 +234,10 @@ class Hero extends MovingObject {
 
     fireBullet(mousePos) {
 
-        const bulletDir = [mousePos[0] - this.pos[0] - 15, mousePos[1] - this.pos[1] -15];
+        const bulletDir = [mousePos[0] - this.pos[0] - 10, mousePos[1] - this.pos[1] - 10];
 
-        // console.log(mousePos)
-        // console.log(this.pos)
+        console.log(mousePos)
+        console.log(this.pos)
         // debugger
         const bulletVel = Util.scale(
             Util.dir(bulletDir),
