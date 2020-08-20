@@ -16,6 +16,9 @@ class Game {
         this.zombies = [];
         this.addHero();
         this.addZombie();
+
+        this.gameDimX = GAME_DIM_X;
+        this.gameDimY = GAME_DIM_Y;
     }
 
     add(object) {
@@ -67,6 +70,18 @@ class Game {
         this.allObjects().forEach((object) => {
             object.move(delta);
         });
+        // this.heroes[0].moveHero()
+
+        // this.zombies.forEach((zombie) => {
+        //     zombie.move(delta)
+        // })
+
+        // this.bullets.forEach((bullet) => {
+        //     bullet.move(delta)
+        // })
+
+        // this.heroes[0].move()
+
     };
 
     animateObjects() {

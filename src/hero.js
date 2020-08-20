@@ -2,6 +2,7 @@ import MovingObject from "./moving_object";
 import Bullet from "./bullet";
 import Util from "./util";
 import Zombie from "./zombie";
+import Game from "./game";
 
 const HERO_MAX_SPEED = 2;
 const BULLET_SPEED = 15;
@@ -17,6 +18,13 @@ class Hero extends MovingObject {
         this.width = 50;
         this.angle = 0;
         this.vel = [0, 0];
+
+        this.heroSpeed = 2;
+
+        this.moveUp = false;
+        this.moveDown = false;
+        this.moveRight = false;
+        this.moveLeft = false;
 
         this.image = HERO_IMAGE;
         this.heroAnim = 'idle';
@@ -39,6 +47,8 @@ class Hero extends MovingObject {
         }
         this.frameCounter++
         if (this.frameCounter > 10) this.frameCounter = 0
+
+        // console.log(this.vel)
     }
 
     heroIdleAnim() {
@@ -123,12 +133,19 @@ class Hero extends MovingObject {
         }
     }
 
-    power(impulse) {
-        if (impulse[0] > 0 && this.vel[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0]
-        if (impulse[0] < 0 && this.vel[0] > -HERO_MAX_SPEED) this.vel[0] += impulse[0]
-        if (impulse[1] > 0 && this.vel[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1]
-        if (impulse[1] < 0 && this.vel[1] > -HERO_MAX_SPEED) this.vel[1] += impulse[1]
-    };
+    move() {
+        if ((this.pos[0] + this.heroSpeed < this.game.gameDimX - this.width / 2) && this.moveRight) this.pos[0] += this.heroSpeed;
+        if ((this.pos[0] - this.heroSpeed > 0 + this.width / 2) && this.moveLeft) this.pos[0] -= this.heroSpeed;
+        if ((this.pos[1] + this.heroSpeed < this.game.gameDimY - this.height / 2) && this.moveDown) this.pos[1] += this.heroSpeed;
+        if ((this.pos[1] - this.heroSpeed > 0 + this.height / 2) && this.moveUp) this.pos[1] -= this.heroSpeed;
+    }
+
+    // power(impulse) {
+    //     if (impulse[0] > 0 && this.vel[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0]
+    //     if (impulse[0] < 0 && this.vel[0] > -HERO_MAX_SPEED) this.vel[0] += impulse[0]
+    //     if (impulse[1] > 0 && this.vel[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1]
+    //     if (impulse[1] < 0 && this.vel[1] > -HERO_MAX_SPEED) this.vel[1] += impulse[1]
+    // };
 
 }
 

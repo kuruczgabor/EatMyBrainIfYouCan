@@ -37,10 +37,15 @@ class GameView {
 
             if (hero.heroAnim !== 'walk') hero.heroAnim = 'walk'
         
-            if (keyCode === 65) hero.power(GAME_VIEW_MOVES["a"])
-            if (keyCode === 68) hero.power(GAME_VIEW_MOVES["d"])           
-            if (keyCode === 87) hero.power(GAME_VIEW_MOVES["w"])     
-            if (keyCode === 83) hero.power(GAME_VIEW_MOVES["s"])
+            // if (keyCode === 65) hero.power(GAME_VIEW_MOVES["a"])
+            // if (keyCode === 68) hero.power(GAME_VIEW_MOVES["d"])           
+            // if (keyCode === 87) hero.power(GAME_VIEW_MOVES["w"])     
+            // if (keyCode === 83) hero.power(GAME_VIEW_MOVES["s"])
+
+            if (keyCode === 65) hero.moveLeft = true;
+            if (keyCode === 68) hero.moveRight = true;
+            if (keyCode === 87) hero.moveUp = true;
+            if (keyCode === 83) hero.moveDown = true;
         })
 
         document.addEventListener("keyup", function (e) {
@@ -48,8 +53,13 @@ class GameView {
 
             if (hero.heroAnim !== 'idle') hero.heroAnim = 'idle'
 
-            if (keyCode === 65 || keyCode === 68) that.game.heroes[0].vel[0] = 0 
-            if (keyCode === 87 || keyCode === 83) that.game.heroes[0].vel[1] = 0
+            // if (keyCode === 65 || keyCode === 68) that.game.heroes[0].vel[0] = 0 
+            // if (keyCode === 87 || keyCode === 83) that.game.heroes[0].vel[1] = 0
+
+            if (keyCode === 65) hero.moveLeft = false;
+            if (keyCode === 68) hero.moveRight = false;
+            if (keyCode === 87) hero.moveUp = false;
+            if (keyCode === 83) hero.moveDown = false;
         })
 
     };

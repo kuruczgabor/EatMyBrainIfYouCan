@@ -5,6 +5,7 @@ import Bullet from "./bullet"
 const ZOMBIE_ATTACK_SPEED = 1;
 const ZOMBIE_IMAGE = new Image();
 ZOMBIE_IMAGE.src = "./assets/zombie/walk/Walk_000.png";
+const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
 class Zombie extends MovingObject {
 
@@ -97,6 +98,23 @@ class Zombie extends MovingObject {
         const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
         return attackVel;
     }
+
+    // move(timeDelta) {
+
+    //     const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+    //         offsetX = this.vel[0] * velocityScale,
+    //         offsetY = this.vel[1] * velocityScale;
+
+    //     this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+
+    //     if (this.game.isOutOfBounds(this.pos)) {
+    //         if (this.isWrappable) {
+    //             this.vel = [0, 0]
+    //         } else {
+    //             this.remove();
+    //         }
+    //     }
+    // };
 
 }
 
