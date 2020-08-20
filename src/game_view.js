@@ -26,7 +26,7 @@ class GameView {
             // console.log(mouseCoor)
             if (hero.heroAnim !== 'shoot') {
                 hero.heroAnim = 'shoot'
-                hero.heroAnimate()
+                // hero.heroAnimate()
             }
 
             hero.fireBullet(mouseCoor)
@@ -42,7 +42,7 @@ class GameView {
             
             if (hero.heroAnim !== 'walk') {
                 hero.heroAnim = 'walk'
-                hero.heroAnimate('walk')
+                // hero.heroAnimate('walk')
             }
 
             if (keyCode === 65) hero.power(GAME_VIEW_MOVES["a"])
@@ -63,7 +63,7 @@ class GameView {
             // debugger
             if (hero.heroAnim !== 'idle') {
                 hero.heroAnim = 'idle'
-                hero.heroAnimate()
+                // hero.heroAnimate()
             }
 
             if (keyCode === 65 || keyCode === 68) that.game.heroes[0].vel[0] = 0 

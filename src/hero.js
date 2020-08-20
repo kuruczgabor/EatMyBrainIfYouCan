@@ -36,122 +36,170 @@ class Hero extends MovingObject {
         // this.heroIdleAnimation();
         // this.heroAnimate.bind(this);
         this.heroAnim = 'idle';
-        this.heroAnimate();
+        this.frameCounter = 0;
+
+        this.idleFrameChanger = 8;
+        this.walkFrameChanger = 8;
+        this.shootFrameChanger = 8;
+        // this.heroAnimate();
         // this.animateHero();
     }
 
     heroAnimate() {
-        // debugger
-        // console.log(HERO_WALK_INTERVALS)
-        // console.log(HERO_IDLE_INTERVALS)
-        // console.log(HERO_SHOOT_INTERVALS)
+        // // debugger
+        // // console.log(HERO_WALK_INTERVALS)
+        // // console.log(HERO_IDLE_INTERVALS)
+        // // console.log(HERO_SHOOT_INTERVALS)
 
-        if (this.heroAnim === 'shoot') {
-            this.height = 70
-        } else if (this.heroAnim === 'die') {
-            this.width = 100
-        } else {
-            this.height = 50
-            this.width = 50
-        }
-        //we should also add one more condition before adding to the array: to check if it is there
-        const heroShoot = setInterval(() => {
-            if (this.heroAnim === "shoot") {
-                this.heroShoot()
-                HERO_SHOOT_INTERVALS.push(heroShoot);
-            }
-        }, 200)
+        // if (this.heroAnim === 'shoot') {
+        //     this.height = 70
+        // } else if (this.heroAnim === 'die') {
+        //     this.width = 100
+        // } else {
+        //     this.height = 50
+        //     this.width = 50
+        // }
+        // //we should also add one more condition before adding to the array: to check if it is there
+        // const heroShoot = setInterval(() => {
+        //     if (this.heroAnim === "shoot") {
+        //         this.heroShoot()
+        //         HERO_SHOOT_INTERVALS.push(heroShoot);
+        //     }
+        // }, 200)
 
-        if (this.heroAnim !== "shoot") {
-            HERO_SHOOT_INTERVALS.forEach(clearInterval);
-        }
+        // if (this.heroAnim !== "shoot") {
+        //     HERO_SHOOT_INTERVALS.forEach(clearInterval);
+        // }
      
-        const heroIdle = setInterval(() => {
-            if (this.heroAnim === "idle") {
-                this.heroIdle();
-                HERO_IDLE_INTERVALS.push(heroIdle);
-            }
-        }, 100)
+        // const heroIdle = setInterval(() => {
+        //     if (this.heroAnim === "idle") {
+        //         this.heroIdle();
+        //         HERO_IDLE_INTERVALS.push(heroIdle);
+        //     }
+        // }, 100)
 
-        if (this.heroAnim !== "idle") HERO_IDLE_INTERVALS.forEach(clearInterval);
+        // if (this.heroAnim !== "idle") HERO_IDLE_INTERVALS.forEach(clearInterval);
 
-        const heroWalk = setInterval(() => {
-            if (this.heroAnim === "walk") {
-                this.heroWalk();
-                HERO_WALK_INTERVALS.push(heroWalk);
-            }
-        }, 200);
+        // const heroWalk = setInterval(() => {
+        //     if (this.heroAnim === "walk") {
+        //         this.heroWalk();
+        //         HERO_WALK_INTERVALS.push(heroWalk);
+        //     }
+        // }, 200);
 
-        if (this.heroAnim !== "walk") HERO_WALK_INTERVALS.forEach(clearInterval);
+        // if (this.heroAnim !== "walk") HERO_WALK_INTERVALS.forEach(clearInterval);
         
-        const heroDie = setInterval(() => {
-            if (this.heroAnim === "die") {
-                this.heroDie();
-                HERO_DIE_INTERVALS.push(heroDie);
-            }
-        }, 400);
+        // const heroDie = setInterval(() => {
+        //     if (this.heroAnim === "die") {
+        //         this.heroDie();
+        //         HERO_DIE_INTERVALS.push(heroDie);
+        //     }
+        // }, 400);
 
-        if (this.heroAnim !== "die") HERO_DIE_INTERVALS.forEach(clearInterval);
+        // if (this.heroAnim !== "die") HERO_DIE_INTERVALS.forEach(clearInterval);
+        // debugger
+
+        if (this.heroAnim === "idle") {
+            this.heroIdle()
+            this.frameCounter ++
+        } else if (this.heroAnim === "walk") {
+            this.heroWalk()
+            this.frameCounter ++
+        } else if (this.heroAnim === "shoot") {
+            this.heroShoot()
+            this.frameCounter ++
+        }
+
     }
 
     heroIdle() {
-        if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
-        let curFrameSrc = HERO_IMAGE.src;
-        let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
-        curFrameNum += 1
-        if (curFrameNum === 8) curFrameNum = 0
-        HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+        // if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+        // let curFrameSrc = HERO_IMAGE.src;
+        // let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        // curFrameNum += 1
+        // if (curFrameNum === 8) curFrameNum = 0
+        // HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+        if (this.frameCounter === this.idleFrameChanger) {
+            if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+            let curFrameSrc = HERO_IMAGE.src;
+            let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+            curFrameNum += 1
+            if (curFrameNum === 8) curFrameNum = 0
+            HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_00' + curFrameNum.toString() + '.png'
+            this.frameCounter = 0
+
+            // console.log(HERO_IMAGE.src)
+        }
+
     }
 
     heroWalk() {
-        if (HERO_IMAGE.src.split('/')[9] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
-        let curFrameSrc = HERO_IMAGE.src;
-        let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
-        curFrameNum += 1
-        if (curFrameNum === 6) curFrameNum = 0
-        HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_00' + curFrameNum.toString() + '.png'
-        // console.log(HERO_IMAGE.src)
+        // debugger
+        
+        if (this.frameCounter === this.walkFrameChanger) {
+            // debugger
+            if (HERO_IMAGE.src.split('/')[9] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
+            let curFrameSrc = HERO_IMAGE.src;
+            let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+            curFrameNum += 1
+            if (curFrameNum === 6) curFrameNum = 0
+            HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_00' + curFrameNum.toString() + '.png'
+            this.frameCounter = 0
+            console.log(HERO_IMAGE.src)
+        }
     }
 
     heroShoot() {
-        // debugger
-        if (HERO_IMAGE.src.split('/')[9] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
-        let curFrameSrc = HERO_IMAGE.src;
-        let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
-        curFrameNum += 1
-        // debugger
-        if (curFrameNum < 5) {
-            // debugger
-            // this.height = 100
-            HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
-            this.heroAnimate()
-            // this.heroAnim = 'idle'
+        // // debugger
+        // if (HERO_IMAGE.src.split('/')[9] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
+        // let curFrameSrc = HERO_IMAGE.src;
+        // let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        // curFrameNum += 1
+        // // debugger
+        // if (curFrameNum < 5) {
+        //     // debugger
+        //     // this.height = 100
+        //     HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
+        //     this.heroAnimate()
+        //     // this.heroAnim = 'idle'
+        // }
+        // console.log(HERO_IMAGE.src)
+        // if (curFrameNum === 5) {
+        //     // debugger
+        //     this.heroAnim = 'idle';
+        //     this.heroAnimate()
+        // }
+        // // debugger
+        // // HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
+        // // console.log(HERO_IMAGE.src)
+        if (this.frameCounter === this.shootFrameChanger) {
+            if (HERO_IMAGE.src.split('/')[9] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
+            let curFrameSrc = HERO_IMAGE.src;
+            let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+            curFrameNum += 1
+            if (curFrameNum < 5) {
+                HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
+            } else {
+                this.heroAnim = 'idle'
+            }
+            this.frameCounter = 0
         }
-        console.log(HERO_IMAGE.src)
-        if (curFrameNum === 5) {
-            // debugger
-            this.heroAnim = 'idle';
-            this.heroAnimate()
-        }
-        // debugger
-        // HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_00' + curFrameNum.toString() + '.png'
-        // console.log(HERO_IMAGE.src)        
     }
 
     heroDie() {
-        // debugger
-        if (HERO_IMAGE.src.split('/')[9] !== 'death') HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
-        let curFrameSrc = HERO_IMAGE.src;
-        let curFrameNum = parseInt(curFrameSrc.slice(-11, -8))
-        curFrameNum += 1
-        if (curFrameNum < 6) {
-            // debugger
-            HERO_IMAGE.src = './assets/soldier/death/death_000' + curFrameNum.toString() + '_Man.png'
-        }
-        if (curFrameNum === 6) {
-            // debugger
-            // this.remove()
-        }
+        // // debugger
+        // if (HERO_IMAGE.src.split('/')[9] !== 'death') HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
+        // let curFrameSrc = HERO_IMAGE.src;
+        // let curFrameNum = parseInt(curFrameSrc.slice(-11, -8))
+        // curFrameNum += 1
+        // if (curFrameNum < 6) {
+        //     // debugger
+        //     HERO_IMAGE.src = './assets/soldier/death/death_000' + curFrameNum.toString() + '_Man.png'
+        // }
+        // if (curFrameNum === 6) {
+        //     // debugger
+        //     // this.remove()
+        // }
     }
             
             

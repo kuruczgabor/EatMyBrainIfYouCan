@@ -73,6 +73,10 @@ class Game {
         });
     };
 
+    animateObjects() {
+        this.heroes[0].heroAnimate()
+    }
+
     remove(object) {
         if (object instanceof Bullet) {
             this.bullets.splice(this.bullets.indexOf(object), 1);
@@ -111,6 +115,7 @@ class Game {
 
     step(delta) {
         this.moveObjects(delta);
+        this.animateObjects();
         this.checkCollisions();
         this.changeZombieVel();
     };

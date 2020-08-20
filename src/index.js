@@ -14,3 +14,5 @@ window.addEventListener("DOMContentLoaded", function () {
 
   gameView.start();
 });
+
+// webpack --watch --mode=development
