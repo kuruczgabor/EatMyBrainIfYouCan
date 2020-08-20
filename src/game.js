@@ -1,13 +1,11 @@
 import Hero from "./hero";
 import Bullet from "./bullet";
 import Zombie from "./zombie";
-import Util from "./util"
 	
-// const GAME_BG_COLOR = "#FFFFFF";
 const GAME_BG_COLOR = "#363636";
 const GAME_DIM_X = 1000;
 const GAME_DIM_Y = 600;
-const GAME_FPS = 32;
+// const GAME_FPS = 32;
 const HERO_RADIUS = 15;
 
 class Game {
@@ -27,14 +25,12 @@ class Game {
             this.heroes.push(object);
         } else if (object instanceof Zombie) {
             this.zombies.push(object);
-        } else {
-            throw new Error("unknown type of object");
         }
     };
 
     addHero() {
         let that = this
-        const hero = new Hero(that, [100, 100])
+        const hero = new Hero(that)
         this.add(hero);
         return hero;
     };
@@ -68,13 +64,14 @@ class Game {
     };
 
     moveObjects(delta) {
-        this.allObjects().forEach(function (object) {
+        this.allObjects().forEach((object) => {
             object.move(delta);
         });
     };
 
     animateObjects() {
         this.heroes[0].heroAnimate()
+        this.zombies[0].zombieAnimate()
     }
 
     remove(object) {
@@ -84,9 +81,7 @@ class Game {
             this.heroes.splice(this.heroes.indexOf(object), 1);
         } else if (object instanceof Zombie) {
             this.zombies.splice(this.zombies.indexOf(object), 1);
-        } else {
-            throw new Error("unknown type of object");
-        }
+        } 
     };
 
     checkCollisions() {
@@ -97,7 +92,6 @@ class Game {
                 const object2 = allObjects[j];
 
                 if (object1.isCollidedWith(object2)) {
-                    // debugger
                     const collision = object1.collideWith(object2);
                     if (collision) return;
                 }
