@@ -9,7 +9,7 @@ body {
 #game-canvas {
     position: fixed;
     cursor: crosshair;
-    margin-top: 120px;
+    margin-top: 50px;
 }
 
 .game-title {
@@ -21,7 +21,7 @@ body {
 }
 
 .game-menu {
-    margin-top: 30px;
+    margin-top: 50px;
     width: 1200px;
     height: 600px;
     background-color: rgb(18, 46, 22);
@@ -146,4 +146,14 @@ body {
     background-color: tomato;
     margin-top: 20px;
     margin-right: 40px;
+}
+
+.game-footer-title {
+    position: fixed;
+    bottom: 20;
+    font-family: 'Bangers', cursive;
+    font-size: 50px;
+    color: rgb(80, 6, 6);
+    text-align: center;
+    z-index: 3;
 }
