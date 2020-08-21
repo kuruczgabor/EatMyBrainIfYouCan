@@ -3,7 +3,7 @@ import Bullet from "./bullet";
 import Zombie from "./zombie";
 	
 const GAME_BG_COLOR = "#363636";
-const GAME_DIM_X = 1000;
+const GAME_DIM_X = 1200;
 const GAME_DIM_Y = 600;
 // const GAME_FPS = 32;
 const HERO_RADIUS = 15;

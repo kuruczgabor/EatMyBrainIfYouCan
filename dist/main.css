@@ -1,4 +1,5 @@
 body {
+    font-family: 'Bangers', cursive;
     background-color: black;
     display: flex;
     flex-direction: column;
@@ -8,7 +9,7 @@ body {
 #game-canvas {
     position: fixed;
     cursor: crosshair;
-    padding-top: 120px;
+    margin-top: 120px;
 }
 
 .game-title {
@@ -19,55 +20,130 @@ body {
     padding-top: 40px;
 }
 
-.box-under-canvas {
-    position: absolute;
-    margin-top: 730px;
-    height: 150px;
-    /* background-color: red; */
-    width: 1000px;
+.game-menu {
+    margin-top: 30px;
+    width: 1200px;
+    height: 600px;
+    background-color: rgb(18, 46, 22);
+    z-index: 2;
 }
 
-.game-controls {
-    position: relative;
+.game-menu-title {
+    height: 150px;
+    background-color: slateblue;
+    font-family: 'Bangers', cursive;
+    font-size: 80px;
+    color: rgb(80, 6, 6);
+    text-align: center;
+}
+
+.game-menu-title h5 {
+    padding-top: 20px;
+}
+
+.game-menu-newgame {
+    height: 150px;
+    background-color: springgreen;
+    font-family: 'Bangers', cursive;
+    font-size: 50px;
+    color: rgb(63, 63, 63);
+    text-align: center;
+}
+
+.game-menu-newgame h5 {
+    padding-top: 30px;
+}
+
+.game-menu-controls {
+    height: 300px;
+    background-color: teal;
     display: flex;
-    text-justify: space-around;
-    height: 150px;
-    width: 500px;
-    /* background-color: royalblue; */
+    justify-content: space-around;
 }
 
-.game-controls h6 {
-    position: relative;
-    top: 10px;
+.game-menu-controls img {
+    height: 150px;
+    width: auto;
+    background-color: tomato;
+}
+
+.game-menu-controls-movement {
+    background-color: violet;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: center;
+    padding: 10px 20px;
+}
+
+.game-menu-controls-movement-title {
     font-family: 'Bangers', cursive;
     font-size: 30px;
     color: rgb(80, 6, 6);
 }
 
-.box-under-canvas img {
-    position: relative;
-    top: 35px;
+.game-menu-controls-movement-images {
+    display: flex;
+    flex-direction: row;
+    background-color: teal;
+}
+
+.game-menu-controls-movement-images h6 {
+    font-family: 'Bangers', cursive;
+    font-size: 30px;
+    color: rgb(80, 6, 6);
+    padding: 50px 10px;
+}
+
+.game-menu-controls-shooting {
+    background-color: rgb(191, 212, 97);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 20px;
+}
+
+.game-menu-controls-xxx {
+    background-color: wheat;
+    width: 200px;
+}
+
+.game-menu-social {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     height: 100px;
+    background-color: yellowgreen;
+    display: flex;
+    justify-content: space-between;
+}
+
+.game-menu-social img {
+    height: 60px;
     width: auto;
-    padding-left: 10px;
+    padding: 0px 10px;
 }
 
-#controls-left-click {
-    position: relative;
-    padding-left: 20px;
-    padding-right: 20px;
-    top: 50px;
-    height: 70px;
-    width: auto
+.game-menu-social-developer {
+    background-color: turquoise;
+    margin-left: 40px;
 }
 
-.game-controls-movement {
-    text-align: center;
-    /* background-color: seagreen; */
+.game-menu-social-developer h6 {
+    padding-top: 40px;
+    font-family: 'Bangers', cursive;
+    font-size: 20px;
+    color: rgb(80, 6, 6);
 }
 
-.game-controls-shoot {
-    text-align: center;
-    padding-left: 20px;
-    /* background-color: skyblue; */
+.game-menu-social-links {
+    
+}
+
+.game-menu-social-links-list {
+    display: flex;
+    background-color: tomato;
+    margin-top: 20px;
+    margin-right: 40px;
 }

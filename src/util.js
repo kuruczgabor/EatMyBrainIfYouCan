@@ -35,7 +35,7 @@ const Util = {
     let canvas = document.getElementById("game-canvas");
     let gameArea = canvas.getBoundingClientRect();
     let xPos = window.event.x - gameArea.left;
-    let yPos = window.event.y - gameArea.top - 120;
+    let yPos = window.event.y - gameArea.top;
 
     return [xPos, yPos]
 
