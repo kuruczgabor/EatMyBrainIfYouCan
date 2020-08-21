@@ -9,7 +9,12 @@ body {
 #game-canvas {
     position: fixed;
     cursor: crosshair;
-    margin-top: 50px;
+    /* margin-top: 50px; */
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -30%);
 }
 
 .game-title {
@@ -21,11 +26,16 @@ body {
 }
 
 .game-menu {
-    margin-top: 50px;
+    /* margin-top: 50px; */
     width: 1200px;
     height: 600px;
     background-color: rgb(18, 46, 22);
     z-index: 2;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -30%);
 }
 
 .game-menu-title {
@@ -113,14 +123,14 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 100px;
+    height: 80px;
     background-color: yellowgreen;
     display: flex;
     justify-content: space-between;
 }
 
 .game-menu-social img {
-    height: 60px;
+    height: 50px;
     width: auto;
     padding: 0px 10px;
 }
@@ -131,9 +141,9 @@ body {
 }
 
 .game-menu-social-developer h6 {
-    padding-top: 40px;
+    padding-top: 30px;
     font-family: 'Bangers', cursive;
-    font-size: 20px;
+    font-size: 25px;
     color: rgb(80, 6, 6);
 }
 
@@ -144,13 +154,13 @@ body {
 .game-menu-social-links-list {
     display: flex;
     background-color: tomato;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-right: 40px;
 }
 
 .game-footer-title {
     position: fixed;
-    bottom: 20;
+    bottom: 10;
     font-family: 'Bangers', cursive;
     font-size: 50px;
     color: rgb(80, 6, 6);
