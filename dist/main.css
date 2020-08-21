@@ -137,6 +137,10 @@ body {
     padding: 10px 30px;
 }
 
+.game-menu-controls-shooting img {
+    opacity: 50%;
+}
+
 .game-menu-controls-music {
     /* background-color: rgb(191, 212, 97); */
     display: flex;
@@ -145,6 +149,9 @@ body {
     padding: 10px 30px;
 }
 
+.game-menu-controls-music img {
+    opacity: 50%;
+}
 
 
 .game-menu-social {
@@ -162,6 +169,7 @@ body {
     height: 50px;
     width: auto;
     padding: 0px 10px;
+    opacity: 50%;
 }
 
 .game-menu-social-developer {
