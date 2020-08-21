@@ -1,6 +1,7 @@
 import Hero from "./hero";
 import Bullet from "./bullet";
 import Zombie from "./zombie";
+import Map from "./map";
 	
 const GAME_BG_COLOR = "#363636";
 const GAME_DIM_X = 1200;
@@ -11,6 +12,7 @@ const HERO_RADIUS = 15;
 class Game {
 
     constructor() {
+        this.map = new Map();
         this.heroes = [];
         this.bullets = [];
         this.zombies = [];
@@ -45,14 +47,21 @@ class Game {
         return zombie;
     }
 
+    // addMap() {
+    //     let that = this;
+    //     const map = new Map(that)
+    // }
+
     allObjects() {
         return [].concat(this.heroes, this.bullets, this.zombies);
     };
 
     draw(ctx) {
-        ctx.clearRect(0, 0, GAME_DIM_X, GAME_DIM_Y);
-        ctx.fillStyle = GAME_BG_COLOR;
-        ctx.fillRect(0, 0, GAME_DIM_X, GAME_DIM_Y);
+        // debugger
+        this.map.draw(ctx);
+        // ctx.clearRect(0, 0, GAME_DIM_X, GAME_DIM_Y);
+        // ctx.fillStyle = GAME_BG_COLOR;
+        // ctx.fillRect(0, 0, GAME_DIM_X, GAME_DIM_Y);
 
         this.allObjects().forEach(function (object) {
             object.draw(ctx);

@@ -11,26 +11,30 @@ class Bullet extends MovingObject {
         this.image = BULLET_IMAGE;
         this.height = 20;
         this.width = 20;
-
-        // this.isWrappable = false;
     }
 
-    // move(timeDelta) {
+    move(timeDelta) {
 
-    //     const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-    //         offsetX = this.vel[0] * velocityScale,
-    //         offsetY = this.vel[1] * velocityScale;
+        const map = this.game.map.mapPlan
 
-    //     this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+            offsetX = this.vel[0] * velocityScale,
+            offsetY = this.vel[1] * velocityScale;
 
-    //     if (this.game.isOutOfBounds(this.pos)) {
-    //         if (this.isWrappable) {
-    //             this.vel = [0, 0]
-    //         } else {
-    //             this.remove();
-    //         }
-    //     }
-    // };
+        const nextPos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        
+        const nextTileX = [Math.floor(nextPos[0] / 25)];
+        const nextTileY = [Math.floor(nextPos[1] / 25)];
+        const nextTile = map[nextTileY][nextTileX];
+
+        if (nextTile === 10) {
+            this.pos = nextPos
+        } else {
+            this.remove()
+        }
+
+        if (this.game.isOutOfBounds(this.pos)) this.remove();
+    }
 
 }
 
