@@ -37,11 +37,12 @@ class MovingObject {
         this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
 
         if (this.game.isOutOfBounds(this.pos)) {
-            if (this.isWrappable) {
-                this.vel = [0,0]
-            } else {
-                this.remove();
-            }
+            this.remove();
+            // if (this.isWrappable) {
+            //     this.vel = [0,0]
+            // } else {
+            //     this.remove();
+            // }
         }
     };
 

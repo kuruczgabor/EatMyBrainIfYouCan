@@ -60,10 +60,10 @@ class Game {
     };
 
     isOutOfBounds(pos) {
-        // return (pos[0] < 0) || (pos[1] < 0) ||
-        //     (pos[0] > GAME_DIM_X) || (pos[1] > GAME_DIM_Y);
-        return (pos[0] < HERO_RADIUS) || (pos[1] < HERO_RADIUS) ||
-            (pos[0] > GAME_DIM_X - HERO_RADIUS) || (pos[1] > GAME_DIM_Y - HERO_RADIUS);
+        return (pos[0] < 0) || (pos[1] < 0) ||
+            (pos[0] > GAME_DIM_X) || (pos[1] > GAME_DIM_Y);
+        // return (pos[0] < HERO_RADIUS) || (pos[1] < HERO_RADIUS) ||
+        //     (pos[0] > GAME_DIM_X - HERO_RADIUS) || (pos[1] > GAME_DIM_Y - HERO_RADIUS);
     };
 
     moveObjects(delta) {

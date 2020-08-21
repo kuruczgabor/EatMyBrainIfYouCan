@@ -172,6 +172,10 @@ body {
     opacity: 50%;
 }
 
+.game-menu-social img:hover {
+    opacity: 100%;
+}
+
 .game-menu-social-developer {
     /* background-color: turquoise; */
     margin-left: 40px;
