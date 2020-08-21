@@ -1,6 +1,22 @@
 import MovingObject from "./moving_object";
 import Util from "./util";
-import Bullet from "./bullet"
+// import Astar from "./astar";
+import Bullet from "./bullet";
+
+import {
+    astar,
+    // pathTo,
+    // addListToList,
+    // removeMatchingNodes,
+    // cullUnwantedNodes,
+    // areNodesEqual,
+    // returnNodeWithLowestFScore,
+    // isListEmpty,
+    // removeNodeFromList,
+    // addNodeToList,
+    // createTerminalNode,
+    // returnHScore
+} from "./astar"
 
 const ZOMBIE_ATTACK_SPEED = 1;
 const ZOMBIE_IMAGE = new Image();
@@ -16,6 +32,8 @@ class Zombie extends MovingObject {
         this.width = 50;
         this.angle = 0;
         this.vel = [0, 0];
+
+        this.nextPos = []
 
         this.image = ZOMBIE_IMAGE;
         this.zombieAnim = 'walk';
@@ -93,19 +111,33 @@ class Zombie extends MovingObject {
     }
 
     findAttackVel() {
-        const attackDir = [this.game.heroes[0].pos[0] - this.pos[0],
-                           this.game.heroes[0].pos[1] - this.pos[1]];
+        // const attackDir = [this.game.heroes[0].pos[0] - this.pos[0],
+        //                    this.game.heroes[0].pos[1] - this.pos[1]];
+        // const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
+        // return attackVel;
+
+        const attackDir = [this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]];
         const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
         return attackVel;
     }
 
     move(timeDelta) {
 
-        // const map = this.game.map.mapPlan
+        let nextMove = this.getAStarMovement();
+        let nextPos = [[nextMove['x'] * 25],[nextMove['y'] * 25]];
+        // debugger
+        console.log(nextMove[0], nextMove[1])
+        this.nextPos = nextPos;
 
-        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-        //     offsetX = this.vel[0] * velocityScale,
-        //     offsetY = this.vel[1] * velocityScale;
+        // debugger
+
+        const map = this.game.map.mapPlan
+
+        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+            offsetX = this.vel[0] * velocityScale,
+            offsetY = this.vel[1] * velocityScale;
+
+        this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
 
         // const nextPos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
 
@@ -119,29 +151,48 @@ class Zombie extends MovingObject {
         //     this.remove()
         // }
 
-        // if (this.game.isOutOfBounds(this.pos)) this.remove();
+        if (this.game.isOutOfBounds(this.pos)) this.remove();
 
-        getAStarMovement: function() {
-            var map = this.getWalkableMap(),
-                path;
-            map[Math.floor(this.position.y)][Math.floor(this.position.x)] = 's';
-            map[Math.floor(this.targetAgent.position.y)][Math.floor(this.targetAgent.
-                position.x)] = 'g';
 
-            path = astar(map, 'manhattan', true);
-            if (path && path.length > 1) {
-                return {
-                    x: path[1].col,
-                    y: path[1].row
-                };
+    }
+
+    getAStarMovement() {
+        var map = this.getWalkableMap(),
+            path;
+        
+        map[Math.floor(this.pos[1] / 25)][Math.floor(this.pos[0] / 25)] = 's';
+        map[Math.floor(this.game.heroes[0].pos[1] / 25)][Math.floor(this.game.heroes[0].pos[0] / 25)] = 'g';
+
+        path = astar(map, 'manhattan', false);
+        
+        if (path && path.length > 1) {
+            return {
+                x: path[1].col,
+                y: path[1].row
+            };
+        }
+        return this.position;
+
+    }
+
+    getWalkableMap() {
+        let basicMap = this.game.map.mapPlan;
+
+        const walkableMap = [];
+
+        for (var row = 0; row < basicMap.length; row++) {
+            const walkableRow = [];
+            for (var col = 0; col < basicMap[0].length; col++) {
+                if (basicMap[row][col] === 10) {
+                    walkableRow.push(0);
+                } else {
+                    walkableRow.push(basicMap[row][col]);
+                }
             }
-            return this.position;
+            walkableMap.push(walkableRow);
         }
 
-        chooseAction: function() {
-            var nextMove = this.getAStarMovement(),
-                dx = nextMove.x - this.position.x,
-                dy = nextMove.y - this.position.y,
+        return walkableMap;
     }
 
 }
