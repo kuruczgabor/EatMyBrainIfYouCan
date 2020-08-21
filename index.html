@@ -11,14 +11,18 @@
   <body>
     <!-- <h2 class="game-title">EAT MY BRAIN IF YOU CAN</h2> -->
     <canvas id="game-canvas"></canvas>
-    <div class="game-menu">
+    <div id="game-menu" class="game-menu">
       <div class="game-menu-title">
         <h5>EAT MY BRAIN IF YOU CAN</h5>
       </div>
-      <div class="game-menu-newgame">
+      <div class="game-menu-newgame" id="new-game">
         <h5>NEW GAME</h5>
       </div>
       <div class="game-menu-controls">
+        <div class="game-menu-controls-shooting">
+          <h5 class="game-menu-controls-movement-title">SHOOTING</h5>
+          <img src="./assets/controls/PC_lclick.png">
+        </div>
         <div class="game-menu-controls-movement">
           <h5 class="game-menu-controls-movement-title">MOVEMENT</h5>
           <div class="game-menu-controls-movement-images">
@@ -27,16 +31,13 @@
             <img src="./assets/controls/mod-arrows.png">
           </div>
         </div>
-        <div class="game-menu-controls-shooting">
-          <h5 class="game-menu-controls-movement-title">SHOOTING</h5>
+        <div class="game-menu-controls-music">
+          <h5 class="game-menu-controls-movement-title">MUSIC</h5>
           <img src="./assets/controls/PC_lclick.png">
-        </div>
-        <div class="game-menu-controls-xxx">
-
         </div>
       </div>
     </div>
-    <h2 class="game-footer-title">EAT MY BRAIN IF YOU CAN</h2>
+    <h2 id="game-footer-title" class="game-footer-title hide">EAT MY BRAIN IF YOU CAN</h2>
     <div class="game-menu-social">
       <div class="game-menu-social-developer">
         <h6>© 2020 Gabor Kurucz</h6>

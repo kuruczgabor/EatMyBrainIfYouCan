@@ -10,11 +10,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const ctx = cvs.getContext("2d");
 
-  const menu = new Menu();
   const game = new Game();
-  const gameView = new GameView(game, ctx);
+  const menu = new Menu(game, ctx);
+  // const game = new Game();
+  // const gameView = new GameView(game, ctx);
 
-  gameView.start();
+  // gameView.start();
 });
 
 // webpack --watch --mode=development

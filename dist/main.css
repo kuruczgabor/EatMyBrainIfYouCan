@@ -6,6 +6,10 @@ body {
     align-items: center;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 #game-canvas {
     position: fixed;
     cursor: crosshair;
@@ -29,7 +33,7 @@ body {
     /* margin-top: 50px; */
     width: 1200px;
     height: 600px;
-    background-color: rgb(18, 46, 22);
+    background-color: rgb(0, 0, 0);
     z-index: 2;
     position: fixed;
     top: 30%;
@@ -40,20 +44,20 @@ body {
 
 .game-menu-title {
     height: 150px;
-    background-color: slateblue;
+    /* background-color: slateblue; */
     font-family: 'Bangers', cursive;
     font-size: 80px;
     color: rgb(80, 6, 6);
     text-align: center;
 }
 
-.game-menu-title h5 {
+/* .game-menu-title h5 {
     padding-top: 20px;
-}
+} */
 
 .game-menu-newgame {
     height: 150px;
-    background-color: springgreen;
+    /* background-color: springgreen; */
     font-family: 'Bangers', cursive;
     font-size: 50px;
     color: rgb(63, 63, 63);
@@ -61,62 +65,87 @@ body {
 }
 
 .game-menu-newgame h5 {
+    /* background-color: tomato; */
+    text-align: center;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.game-menu-newgame h5:hover {
+    color: rgb(80, 6, 6);
+    cursor: pointer;
+}
+
+/* .game-menu-newgame:hover {
+    color: rgb(80, 6, 6);
+    cursor: pointer;
+} */
+
+.game-menu-newgame h5 {
     padding-top: 30px;
 }
 
 .game-menu-controls {
     height: 300px;
-    background-color: teal;
+    /* background-color: teal; */
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
+    justify-content: center;
 }
 
 .game-menu-controls img {
     height: 150px;
     width: auto;
-    background-color: tomato;
+    /* background-color: tomato; */
 }
 
 .game-menu-controls-movement {
-    background-color: violet;
+    /* background-color: violet; */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     text-align: center;
-    padding: 10px 20px;
+    padding: 10px 30px;
 }
 
 .game-menu-controls-movement-title {
     font-family: 'Bangers', cursive;
     font-size: 30px;
-    color: rgb(80, 6, 6);
+    color: rgb(63, 63, 63);
 }
 
 .game-menu-controls-movement-images {
     display: flex;
     flex-direction: row;
-    background-color: teal;
+    /* background-color: teal; */
 }
 
 .game-menu-controls-movement-images h6 {
     font-family: 'Bangers', cursive;
     font-size: 30px;
-    color: rgb(80, 6, 6);
+    color: rgb(63, 63, 63);
     padding: 50px 10px;
 }
 
 .game-menu-controls-shooting {
-    background-color: rgb(191, 212, 97);
+    /* background-color: rgb(191, 212, 97); */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 10px 20px;
+    padding: 10px 30px;
 }
 
-.game-menu-controls-xxx {
-    background-color: wheat;
-    width: 200px;
+.game-menu-controls-music {
+    /* background-color: rgb(191, 212, 97); */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 10px 30px;
 }
+
+
 
 .game-menu-social {
     position: fixed;
@@ -124,7 +153,7 @@ body {
     bottom: 0;
     width: 100%;
     height: 80px;
-    background-color: yellowgreen;
+    /* background-color: yellowgreen; */
     display: flex;
     justify-content: space-between;
 }
@@ -136,7 +165,7 @@ body {
 }
 
 .game-menu-social-developer {
-    background-color: turquoise;
+    /* background-color: turquoise; */
     margin-left: 40px;
 }
 
@@ -153,7 +182,7 @@ body {
 
 .game-menu-social-links-list {
     display: flex;
-    background-color: tomato;
+    /* background-color: tomato; */
     margin-top: 15px;
     margin-right: 40px;
 }
