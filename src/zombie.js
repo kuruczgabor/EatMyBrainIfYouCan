@@ -27,16 +27,16 @@ class Zombie extends MovingObject {
 
     constructor(game, pos) {
         super(game)
-        this.pos = pos || [800, 400];
+        this.pos = [800, 300];
         this.height = 50;
         this.width = 50;
         this.angle = 0;
         this.vel = [0, 0];
 
-        // this.moveUp = false;
-        // this.moveDown = false;
-        // this.moveLeft = false;
-        // this.moveRight = false;
+        this.moveUp = false;
+        this.moveDown = false;
+        this.moveLeft = false;
+        this.moveRight = false;
 
         this.nextPos = []
 
@@ -88,8 +88,12 @@ class Zombie extends MovingObject {
 
     draw(ctx) {
 
+        // if (this.zombieAnim !== 'die') {
+        //     this.angle = -Math.atan2(this.game.heroes[0].pos[0] - this.pos[0], this.game.heroes[0].pos[1] - this.pos[1]) * 180 / Math.PI;
+        // }
+
         if (this.zombieAnim !== 'die') {
-            this.angle = -Math.atan2(this.game.heroes[0].pos[0] - this.pos[0], this.game.heroes[0].pos[1] - this.pos[1]) * 180 / Math.PI;
+            this.angle = -Math.atan2(this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]) * 180 / Math.PI;
         }
 
         ctx.clearRect(0, 0, ctx.width, ctx.height);
@@ -115,32 +119,130 @@ class Zombie extends MovingObject {
         }
     }
 
-    findAttackVel() {
-        // const attackDir = [this.game.heroes[0].pos[0] - this.pos[0],
-        //                    this.game.heroes[0].pos[1] - this.pos[1]];
-        // const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
-        // return attackVel;
-
+    changeZombieVel() {
         const attackDir = [this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]];
         const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
-
-        // const roundedAttackVel = [Math.floor(attackVel[0]), Math.floor(attackVel[1])]
-
-        // console.log(attackVel)
-        return attackVel;
+        if (this.zombieAnim !== 'die') {
+            this.vel = attackVel
+        }
+        console.log('hello')
     }
+
+    // findAttackVel() {
+    //     // const attackDir = [this.game.heroes[0].pos[0] - this.pos[0],
+    //     //                    this.game.heroes[0].pos[1] - this.pos[1]];
+    //     // const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
+    //     // return attackVel;
+
+    //     const attackDir = [this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]];
+    //     const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
+
+    //     // const roundedAttackVel = [Math.floor(attackVel[0]), Math.floor(attackVel[1])]
+
+    //     // console.log(attackVel)
+    //     return attackVel;
+    // }
 
     move(timeDelta) {
 
-        let nextMove = this.getAStarMovement();
-        let nextPos = [nextMove['x'] * 25, nextMove['y'] * 25]
-        this.nextPos = nextPos
+        /////////////// SOLUTION 1
 
-        const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-            offsetX = this.vel[0] * velocityScale,
-            offsetY = this.vel[1] * velocityScale;
+        // let nextMove = this.getAStarMovement();
+        // this.nextPos = [nextMove['x'] * 25, nextMove['y'] * 25]
+        // this.changeZombieVel()
+        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+        //     offsetX = this.vel[0] * velocityScale,
+        //     offsetY = this.vel[1] * velocityScale;
+        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+
+        /////////////// SOLUTION 2
+
+        // const curPos = this.pos
+        // const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
+        // // debugger
+        // const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
+        
+        // const leftSqr = [curSqr[0], curSqr[1] - 1]
+        // const rightSqr = [curSqr[0], curSqr[1] + 1]
+        // const topSqr = [curSqr[0] - 1, curSqr[1]]
+        // const bottomSqr = [curSqr[0] + 1, curSqr[1]]
+
+        // let nextSqrNum;
+
+        // const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+
+        // let nextSqr = this.getAStarMovement() 
+        // if (nextSqr === undefined) nextSqr = curSqr
+        // if (nextSqr !== curSqr) {
+        //     nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
+        // }
+        // this.nextPos = [nextSqr['x'] * 25, nextSqr['y'] * 25]
+
+        // this.changeZombieVel()
+
+        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA
+        // const offsetX = this.vel[0] * velocityScale
+        // const offsetY = this.vel[1] * velocityScale
+
+        // console.log(this.vel)
 
         // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+
+        /////////////// SOLUTION 3
+
+        const curPos = this.pos
+        const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
+        // debugger
+        const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
+
+        const leftSqr = [curSqr[0], curSqr[1] - 1]
+        const rightSqr = [curSqr[0], curSqr[1] + 1]
+        const topSqr = [curSqr[0] - 1, curSqr[1]]
+        const bottomSqr = [curSqr[0] + 1, curSqr[1]]
+
+        let nextSqrNum;
+
+        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+
+        let nextSqr = this.getAStarMovement() 
+        if (nextSqr === undefined) nextSqr = curSqr
+        if (nextSqr !== curSqr) {
+            nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
+        }
+        this.nextPos = [nextSqr['x'] * 25, nextSqr['y'] * 25]
+
+        if (curSqr[0] > nextSqr['y']) {
+            this.moveUp = true
+        }
+
+        if (curSqr[0] < nextSqr['y']) {
+            this.moveDown = true
+        }
+
+        if (curSqr[1] < nextSqr['x']) {
+            this.moveRight = true
+        }
+
+        if (curSqr[1] > nextSqr['x']) {
+            this.moveLeft = true
+        }
+
+        if (this.moveLeft && this.moveUp) this.pos = [this.pos[0] - 1, this.pos[1] - 1]
+        if (this.moveLeft && this.moveDown) this.pos = [this.pos[0] - 1, this.pos[1] + 1]
+        if (this.moveRight && this.moveUp) this.pos = [this.pos[0] + 1, this.pos[1] - 1]
+        if (this.moveRight && this.moveDown) this.pos = [this.pos[0] + 1, this.pos[1] + 1]
+
+        if (this.moveLeft && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] - 1, this.pos[1]]
+        if (this.moveRight && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] + 1, this.pos[1]]
+        if (this.moveUp && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] - 1]
+        if (this.moveDown && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] + 1]
+        
+
+        this.moveUp = false
+        this.moveDown = false
+        this.moveLeft = false
+        this.moveRight = false
+
 
     }
 
@@ -150,11 +252,13 @@ class Zombie extends MovingObject {
         let start = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
         let end = [Math.floor(this.game.heroes[0].pos[1] / 25), Math.floor(this.game.heroes[0].pos[0] / 25)]
         // debugger
+        // console.log(start, end)
 
         let aStarInstance = new AStar(start, end, grid)
         aStarInstance.startAlgorithm()
         let optimalPath = aStarInstance.optimalPath
         // debugger
+        // console.log(optimalPath)
         
         if (optimalPath && optimalPath.length > 1) {
             return {
@@ -162,21 +266,22 @@ class Zombie extends MovingObject {
                 y: optimalPath[optimalPath.length - 2].row
             };
         }
-        return this.pos;
+        // return this.pos;
 
     }
 
     getWalkableMap() {
         let basicMap = this.game.map.mapPlan;
+        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
         const walkableMap = [];
 
         for (var row = 0; row < basicMap.length; row++) {
             const walkableRow = [];
             for (var col = 0; col < basicMap[0].length; col++) {
-                if (basicMap[row][col] === 10) {
+                if (walkableTiles.includes(basicMap[row][col])) {
                     walkableRow.push({wall: false, difficulty: 1});
                 } else {
-                    walkableRow.push({ wall: true, difficulty: 1 });
+                    walkableRow.push({ wall: true, difficulty: 1});
                 }
             }
             walkableMap.push(walkableRow);

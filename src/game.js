@@ -123,19 +123,19 @@ class Game {
         }
     }
 
-    changeZombieVel() {
-        if (this.zombies.length > 0) {
-            if (this.zombies[0].zombieAnim !== 'die') {
-                this.zombies[0].vel = this.zombies[0].findAttackVel()
-            }
-        }
-    }
+    // changeZombieVel() {
+    //     if (this.zombies.length > 0) {
+    //         if (this.zombies[0].zombieAnim !== 'die') {
+    //             this.zombies[0].vel = this.zombies[0].findAttackVel()
+    //         }
+    //     }
+    // }
 
     step(delta) {
         this.moveObjects(delta);
         this.animateObjects();
         this.checkCollisions();
-        this.changeZombieVel();
+        // this.changeZombieVel();
     };
 
 }
