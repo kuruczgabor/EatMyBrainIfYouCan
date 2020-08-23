@@ -134,10 +134,62 @@ class Hero extends MovingObject {
     }
 
     move() {
-        if ((this.pos[0] + this.heroSpeed < this.game.gameDimX - this.width / 2) && this.moveRight) this.pos[0] += this.heroSpeed;
-        if ((this.pos[0] - this.heroSpeed > 0 + this.width / 2) && this.moveLeft) this.pos[0] -= this.heroSpeed;
-        if ((this.pos[1] + this.heroSpeed < this.game.gameDimY - this.height / 2) && this.moveDown) this.pos[1] += this.heroSpeed;
-        if ((this.pos[1] - this.heroSpeed > 0 + this.height / 2) && this.moveUp) this.pos[1] -= this.heroSpeed;
+        // if ((this.pos[0] + this.heroSpeed < this.game.gameDimX - this.width / 2) && this.moveRight) this.pos[0] += this.heroSpeed;
+        // if ((this.pos[0] - this.heroSpeed > 0 + this.width / 2) && this.moveLeft) this.pos[0] -= this.heroSpeed;
+        // if ((this.pos[1] + this.heroSpeed < this.game.gameDimY - this.height / 2) && this.moveDown) this.pos[1] += this.heroSpeed;
+        // if ((this.pos[1] - this.heroSpeed > 0 + this.height / 2) && this.moveUp) this.pos[1] -= this.heroSpeed;
+        // console.log(this.game.map.mapPlan[Math.floor((this.pos[0] + this.heroSpeed) / 25)][Math.floor(this.pos[1] / 25)])
+        // console.log(this.game.map.mapPlan[Math.floor((this.pos[1]) / 25)][Math.floor(this.pos[0] / 25)])
+
+        const curPos = this.pos
+
+        const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
+        const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
+
+        const leftSqr = [curSqr[0], curSqr[1] - 1]
+        const rightSqr = [curSqr[0], curSqr[1] + 1]
+        const topSqr = [curSqr[0] - 1, curSqr[1]]
+        const bottomSqr = [curSqr[0] + 1, curSqr[1]]
+
+        let leftSqrNum = 0;
+        let rightSqrNum = 0;
+        let topSqrNum = 0;
+        let bottomSqrNum = 0;
+
+        if (leftSqr[1] > -1) {
+            leftSqrNum = this.game.map.mapPlan[leftSqr[0]][leftSqr[1]]
+        }
+
+        if (rightSqr[1] < this.game.map.mapPlan[0].length) {
+            rightSqrNum = this.game.map.mapPlan[rightSqr[0]][rightSqr[1]]
+        }
+
+        if (topSqr[0] > -1) {
+            topSqrNum = this.game.map.mapPlan[topSqr[0]][topSqr[1]]
+        }
+
+        if (bottomSqr[0] < this.game.map.mapPlan.length) {
+            bottomSqrNum = this.game.map.mapPlan[bottomSqr[0]][bottomSqr[1]]
+        }
+
+        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+
+        if (this.moveRight && walkableTiles.includes(rightSqrNum)) {
+            this.pos[0] += this.heroSpeed;
+        }
+
+        if (this.moveLeft && walkableTiles.includes(leftSqrNum)) {
+            this.pos[0] -= this.heroSpeed;
+        }
+
+        if (this.moveUp && walkableTiles.includes(topSqrNum)) {
+            this.pos[1] -= this.heroSpeed;
+        }
+
+        if (this.moveDown && walkableTiles.includes(bottomSqrNum)) {
+            this.pos[1] += this.heroSpeed;
+        }
+
     }
 
     // power(impulse) {
