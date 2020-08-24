@@ -8,6 +8,9 @@ class Bullet extends MovingObject {
 
     constructor(game, pos, vel) {
         super(game, pos, vel)
+        this.game = game;
+        this.pos = pos;
+        this.vel = vel;
         this.image = BULLET_IMAGE;
         this.height = 20;
         this.width = 20;
@@ -26,7 +29,7 @@ class Bullet extends MovingObject {
         const nextTileX = [Math.floor(nextPos[0] / 25)];
         const nextTileY = [Math.floor(nextPos[1] / 25)];
         let nextTile = 0;
-        if (nextTileX > -1 && nextTileX < 24 && nextTileY > -1 && nextTileY < 24) {
+        if (nextTileX > -1 && nextTileX < 49 && nextTileY > -1 && nextTileY < 24) {
             nextTile = map[nextTileY][nextTileX];
         }
         
@@ -39,7 +42,9 @@ class Bullet extends MovingObject {
             this.remove()
         }
 
-        if (this.game.isOutOfBounds(this.pos)) this.remove();
+        if (this.game.isOutOfBounds(this.pos)) {
+            this.remove();
+        }
     }
 
 }

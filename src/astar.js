@@ -241,6 +241,7 @@ class AStar {
         this.openQueue[0].heuristicCalculation(this.openQueue[0])
         while (this.openQueue.length > 0) {
             if (this.openQueue[0] === this.end) {
+                // debugger
                 break
             }
             let neighbours = this.openQueue[0].neighboursCalculation(this.openQueue)
@@ -250,6 +251,7 @@ class AStar {
             let sortedNeighbours = newQueue.sort(function (a, b) { return a.heuristic - b.heuristic })
             this.openQueue = sortedNeighbours
         }
+        // debugger
         if (this.openQueue.length !== 0) { this.retrieveOptimalPath(this.openQueue[0]) }
     }
     retrieveOptimalPath(node) {

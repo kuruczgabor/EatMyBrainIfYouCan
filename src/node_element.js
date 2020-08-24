@@ -15,6 +15,7 @@ class NodeElement {
         this.eucledianDistance = this.aStar.eucledianDistance(this)
         let difficultySums
         difficultySums = this.difficulty + Number(node.difficultySums)
+        // debugger
         if (this.difficultySums === '' ) {
             this.difficultySums = difficultySums
             this.through = node

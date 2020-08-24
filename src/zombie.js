@@ -23,11 +23,13 @@ const ZOMBIE_IMAGE = new Image();
 ZOMBIE_IMAGE.src = "./assets/zombie/walk/Walk_000.png";
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
+// const ZOMBIE_DIE_SOUND = new sound('./assets/sounds/')
+
 class Zombie extends MovingObject {
 
     constructor(game, pos) {
         super(game)
-        this.pos = [800, 300];
+        this.pos = [200, 300];
         this.height = 50;
         this.width = 50;
         this.angle = 0;
@@ -181,13 +183,28 @@ class Zombie extends MovingObject {
     getAStarMovement() {
         var grid = this.getWalkableMap()
 
-        let start = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
-        let end = [Math.floor(this.game.heroes[0].pos[1] / 25), Math.floor(this.game.heroes[0].pos[0] / 25)]
+        // let start = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
+        // let end = [Math.floor(this.game.heroes[0].pos[1] / 25), Math.floor(this.game.heroes[0].pos[0] / 25)]
+
+        let start, end;
+        let curZombierSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
+        let curHeroSqr = [Math.floor(this.game.heroes[0].pos[1] / 25), Math.floor(this.game.heroes[0].pos[0] / 25)]
+
+        if (curZombierSqr[1] > curHeroSqr[1]) {
+            start = curZombierSqr;
+            end = curHeroSqr;
+        } else {
+            start = curHeroSqr;
+            end = curZombierSqr;
+        }
+
+
         // debugger
         // console.log(start, end)
 
         let aStarInstance = new AStar(start, end, grid)
         aStarInstance.startAlgorithm()
+        // debugger
         let optimalPath = aStarInstance.optimalPath
         // debugger
         // console.log(optimalPath)
@@ -218,7 +235,7 @@ class Zombie extends MovingObject {
             }
             walkableMap.push(walkableRow);
         }
-
+        // debugger
         return walkableMap;
     }
 

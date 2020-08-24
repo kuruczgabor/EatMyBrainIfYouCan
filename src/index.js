@@ -10,8 +10,11 @@ window.addEventListener("DOMContentLoaded", function () {
 
   const ctx = cvs.getContext("2d");
 
-  const game = new Game();
-  const menu = new Menu(game, ctx);
+  // const game = new Game();
+  // const menu = new Menu(game, ctx);
+
+  const menu = new Menu(ctx);
+
   // const game = new Game();
   // const gameView = new GameView(game, ctx);
 
