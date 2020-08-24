@@ -33,6 +33,10 @@ class Zombie extends MovingObject {
         this.angle = 0;
         this.vel = [0, 0];
 
+        this.deadly = true;
+
+        this.zombieSpeed = 1;
+
         this.moveUp = false;
         this.moveDown = false;
         this.moveLeft = false;
@@ -106,14 +110,14 @@ class Zombie extends MovingObject {
     }
 
     zombieDie(otherObject) {
-        this.zombieAnim = 'die'
-        this.vel = [0,0]
-        // this.zombieAnimate()
+        this.zombieAnim = 'die';
+        this.zombieSpeed = 0;
+        this.deadly = false;
         otherObject.remove();
     }
 
     collideWith(otherObject) {
-        if (otherObject instanceof Bullet) {
+        if (otherObject instanceof Bullet && this.deadly) {
             this.zombieDie(otherObject);
             return true
         }
@@ -128,71 +132,10 @@ class Zombie extends MovingObject {
         console.log('hello')
     }
 
-    // findAttackVel() {
-    //     // const attackDir = [this.game.heroes[0].pos[0] - this.pos[0],
-    //     //                    this.game.heroes[0].pos[1] - this.pos[1]];
-    //     // const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
-    //     // return attackVel;
-
-    //     const attackDir = [this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]];
-    //     const attackVel = Util.scale(Util.dir(attackDir), ZOMBIE_ATTACK_SPEED);
-
-    //     // const roundedAttackVel = [Math.floor(attackVel[0]), Math.floor(attackVel[1])]
-
-    //     // console.log(attackVel)
-    //     return attackVel;
-    // }
-
     move(timeDelta) {
-
-        /////////////// SOLUTION 1
-
-        // let nextMove = this.getAStarMovement();
-        // this.nextPos = [nextMove['x'] * 25, nextMove['y'] * 25]
-        // this.changeZombieVel()
-        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-        //     offsetX = this.vel[0] * velocityScale,
-        //     offsetY = this.vel[1] * velocityScale;
-        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
-
-        /////////////// SOLUTION 2
-
-        // const curPos = this.pos
-        // const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
-        // // debugger
-        // const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
-        
-        // const leftSqr = [curSqr[0], curSqr[1] - 1]
-        // const rightSqr = [curSqr[0], curSqr[1] + 1]
-        // const topSqr = [curSqr[0] - 1, curSqr[1]]
-        // const bottomSqr = [curSqr[0] + 1, curSqr[1]]
-
-        // let nextSqrNum;
-
-        // const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
-
-        // let nextSqr = this.getAStarMovement() 
-        // if (nextSqr === undefined) nextSqr = curSqr
-        // if (nextSqr !== curSqr) {
-        //     nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
-        // }
-        // this.nextPos = [nextSqr['x'] * 25, nextSqr['y'] * 25]
-
-        // this.changeZombieVel()
-
-        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA
-        // const offsetX = this.vel[0] * velocityScale
-        // const offsetY = this.vel[1] * velocityScale
-
-        // console.log(this.vel)
-
-        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
-
-        /////////////// SOLUTION 3
 
         const curPos = this.pos
         const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
-        // debugger
         const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
 
         const leftSqr = [curSqr[0], curSqr[1] - 1]
@@ -204,45 +147,34 @@ class Zombie extends MovingObject {
 
         const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 
-        let nextSqr = this.getAStarMovement() 
+        let nextSqr;
+
+        if (this.deadly && this.game.heroes[0].alive) {
+            nextSqr = this.getAStarMovement()
+        } else {
+            nextSqr = curSqr
+        }
+
         if (nextSqr === undefined) nextSqr = curSqr
         if (nextSqr !== curSqr) {
             nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
         }
         this.nextPos = [nextSqr['x'] * 25, nextSqr['y'] * 25]
 
-        if (curSqr[0] > nextSqr['y']) {
-            this.moveUp = true
-        }
-
-        if (curSqr[0] < nextSqr['y']) {
-            this.moveDown = true
-        }
-
-        if (curSqr[1] < nextSqr['x']) {
-            this.moveRight = true
-        }
-
-        if (curSqr[1] > nextSqr['x']) {
-            this.moveLeft = true
-        }
-
-        if (this.moveLeft && this.moveUp) this.pos = [this.pos[0] - 1, this.pos[1] - 1]
-        if (this.moveLeft && this.moveDown) this.pos = [this.pos[0] - 1, this.pos[1] + 1]
-        if (this.moveRight && this.moveUp) this.pos = [this.pos[0] + 1, this.pos[1] - 1]
-        if (this.moveRight && this.moveDown) this.pos = [this.pos[0] + 1, this.pos[1] + 1]
-
-        if (this.moveLeft && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] - 1, this.pos[1]]
-        if (this.moveRight && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] + 1, this.pos[1]]
-        if (this.moveUp && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] - 1]
-        if (this.moveDown && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] + 1]
+        if (curSqr[0] > nextSqr['y']) this.moveUp = true
+        if (curSqr[0] < nextSqr['y']) this.moveDown = true
+        if (curSqr[1] < nextSqr['x']) this.moveRight = true
+        if (curSqr[1] > nextSqr['x']) this.moveLeft = true
         
-
+        if (this.moveLeft && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
+        if (this.moveRight && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
+        if (this.moveUp && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
+        if (this.moveDown && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
+        
         this.moveUp = false
         this.moveDown = false
         this.moveLeft = false
         this.moveRight = false
-
 
     }
 

@@ -19,6 +19,8 @@ class Hero extends MovingObject {
         this.angle = 0;
         this.vel = [0, 0];
 
+        this.alive = true;
+
         this.heroSpeed = 2;
 
         this.moveUp = false;
@@ -120,15 +122,19 @@ class Hero extends MovingObject {
     };
 
     heroDie(otherObject) {
-        this.heroAnim = 'die'
-        this.vel = [0, 0]
+        this.heroAnim = 'die';
+        this.vel = [0, 0];
+        this.alive = false;
+        this.game.gameOver = true;
+        this.game.gameOverMenu();
+
         // this.heroAnimate('die')
         // otherObject.remove();
     }
 
     collideWith(otherObject) {
         if (otherObject instanceof Zombie) {
-            this.heroDie(otherObject);
+            if (otherObject.deadly) this.heroDie(otherObject);
             return true
         }
     }

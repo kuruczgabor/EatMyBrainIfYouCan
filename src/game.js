@@ -19,6 +19,8 @@ class Game {
         this.addHero();
         this.addZombie();
 
+        this.gameOver = false;
+
         this.gameDimX = GAME_DIM_X;
         this.gameDimY = GAME_DIM_Y;
     }
@@ -137,6 +139,26 @@ class Game {
         this.checkCollisions();
         // this.changeZombieVel();
     };
+
+    gameOverMenu() {
+        const gameOverMenu = document.getElementById('game-over-window');
+        const mainMenuButton = document.getElementById('game-over-main-menu');
+        const mainMenu = document.getElementById('game-menu');
+
+        gameOverMenu.classList.remove('hide')
+
+        mainMenuButton.addEventListener('click', this.mainMenu)
+
+    }
+
+    mainMenu() {
+        const gameOverMenu = document.getElementById('game-over-window');
+        const mainMenuButton = document.getElementById('game-over-main-menu');
+        const mainMenu = document.getElementById('game-menu');
+
+        gameOverMenu.classList.add('hide');
+        mainMenu.classList.remove('hide');
+    }
 
 }
 

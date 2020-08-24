@@ -208,3 +208,47 @@ body {
     text-align: center;
     z-index: 3;
 }
+
+/* GAME OVER */
+
+.game-over-window {
+    width: 1200px;
+    height: 600px;
+    background-color: rgb(0, 0, 0);
+    z-index: 3;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    /* background-color: tomato; */
+}
+
+.game-over-title {
+    height: 150px;
+    /* background-color: slateblue; */
+    font-family: 'Bangers', cursive;
+    font-size: 100px;
+    color: rgb(80, 6, 6);
+    text-align: center;
+    /* background-color: yellow; */
+    padding-top: 200px;
+}
+
+.game-over-title h5 {
+    color: rgb(63, 63, 63);
+    padding-top: 100px;
+    font-size: 50px;
+    text-align: center;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    padding-top: 50px;
+}
+
+.game-over-title h5:hover {
+    color: rgb(80, 6, 6);
+    cursor: pointer;
+}
+
+

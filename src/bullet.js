@@ -25,10 +25,13 @@ class Bullet extends MovingObject {
         
         const nextTileX = [Math.floor(nextPos[0] / 25)];
         const nextTileY = [Math.floor(nextPos[1] / 25)];
-        const nextTile = map[nextTileY][nextTileX];
-
-        // const shootableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
-        const shootableTiles = [10]
+        let nextTile = 0;
+        if (nextTileX > -1 && nextTileX < 24 && nextTileY > -1 && nextTileY < 24) {
+            nextTile = map[nextTileY][nextTileX];
+        }
+        
+        const shootableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+        // const shootableTiles = [10]
 
         if (shootableTiles.includes(nextTile)) {
             this.pos = nextPos
