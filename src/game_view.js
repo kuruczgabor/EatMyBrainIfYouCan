@@ -150,6 +150,23 @@ class GameView {
     levelCompleterWindow() {
         const levelCompletedWindow = document.getElementById('level-completed-window')
         levelCompletedWindow.classList.remove('hide')
+
+        const lvlCompletedTrigger = document.getElementById('level-completed-trigger')
+        const lvlX = document.getElementById('level-completed-number')
+        lvlX.parentNode.removeChild(lvlX)
+        const completedLvlX = document.createElement('h2')
+        completedLvlX.innerHTML = `LEVEL ${this.level} COMPLETED`
+        completedLvlX.id = 'level-completed-number'
+        lvlCompletedTrigger.parentNode.insertBefore(completedLvlX, lvlCompletedTrigger)
+
+        // const newLevel = document.createElement('h2');
+        // newLevel.innerHTML = `LEVEL ${this.level}`
+        // newLevel.id = 'game-level-start-number'
+        // // newLevel.classList = 'game-start-level-number'
+        // // levelXTrigger.parentNode.insertBefore(newLevel, levelXTrigger.nextSibling)
+        // countDownTrigger.parentNode.insertBefore(newLevel, countDownTrigger)
+
+
         setTimeout(() => {
             levelCompletedWindow.classList.add('hide')
         }, 3000)
