@@ -37,7 +37,7 @@ class Zombie extends MovingObject {
 
         this.deadly = true;
 
-        this.zombieSpeed = 5;
+        this.zombieSpeed = 0.1;
 
         this.moveUp = false;
         this.moveDown = false;

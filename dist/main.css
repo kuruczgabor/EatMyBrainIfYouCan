@@ -256,4 +256,43 @@ html {
     cursor: pointer;
 }
 
+/* LEVELS */
 
+.game-level-window {
+    width: 1200px;
+    height: 600px;
+    background-color: rgb(0, 0, 0);
+    /* opacity: 50%; */
+    /* opacity: 50%; */
+    background-color:rgba(0, 0, 0, 0.5);
+    z-index: 3;
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    /* background-color: tomato; */
+}
+
+.game-level-title {
+    height: 150px;
+    /* background-color: slateblue; */
+    font-family: 'Bangers', cursive;
+    font-size: 100px;
+    color: rgb(80, 6, 6);
+    text-align: center;
+    /* background-color: yellow; */
+    padding-top: 100px;
+    opacity: 100%;
+}
+
+.game-level-title h4{
+    font-size: 40px;
+    padding-top: 40px;
+    opacity: 100%
+}
+
+.game-level-title h3{
+    font-size: 150px;
+    padding-top: 40px;
+    opacity: 100%
+}

@@ -13,6 +13,7 @@ class GameView {
     constructor(game, ctx) {
         this.game = game;
         this.ctx = ctx;
+        this.level = 1
     };
 
     bindKeyHandlers() {
@@ -83,6 +84,64 @@ class GameView {
             requestAnimationFrame(this.animate.bind(this));
         }
     };
+
+    selectLevel() {
+        this.levelStarter()
+    }
+
+    levelStarter() {
+        const levelStarterWindow = document.getElementById('game-level-window')
+        const countDownTrigger = document.getElementById('game-level-starts-in')
+
+        // const threeSecLeft = document.getElementById('game-level-3sec')
+        // const twoSecLeft = document.getElementById('game-level-2sec')
+        // const oneSecLeft = document.getElementById('game-level-1sec')
+
+        levelStarterWindow.classList.remove('hide')
+        setTimeout(() => {
+            levelStarterWindow.classList.add('hide')
+        }, 3000)
+
+        // setTimeout(() => {
+        //     threeSecLeft.classList.add('hide')
+        //     twoSecLeft.classList.remove('hide')
+        // }, 1000)
+
+        // setTimeout(() => {
+        //     twoSecLeft.classList.add('hide')
+        //     oneSecLeft.classList.remove('hide')
+        // }, 2000)
+
+        setTimeout(() => {
+            let threeSecLeft = document.getElementById('game-level-3sec')
+            threeSecLeft.parentNode.removeChild(threeSecLeft)
+            let twoSecLeft = document.createElement('h3');
+            twoSecLeft.innerHTML = '2';
+            twoSecLeft.id = 'game-level-2sec';
+            countDownTrigger.parentNode.insertBefore(twoSecLeft, countDownTrigger.nextSibling)
+        }, 1000)
+
+        setTimeout(() => {
+            let twoSecLeft = document.getElementById('game-level-2sec')
+            twoSecLeft.parentNode.removeChild(twoSecLeft)
+            let oneSecLeft = document.createElement('h3');
+            oneSecLeft.innerHTML = '1';
+            oneSecLeft.id = 'game-level-1sec';
+            countDownTrigger.parentNode.insertBefore(oneSecLeft, countDownTrigger.nextSibling)
+        }, 2000)
+
+        setTimeout(() => {
+            let oneSecLeft = document.getElementById('game-level-1sec');
+            oneSecLeft.parentNode.removeChild(oneSecLeft);
+            let threeSecLeft = document.createElement('h3');
+            threeSecLeft.innerHTML = '3';
+            threeSecLeft.id = 'game-level-3sec';
+            countDownTrigger.parentNode.insertBefore(threeSecLeft, countDownTrigger.nextSibling)
+        }, 3000)
+
+
+
+    }
 
 
     // stop() {
