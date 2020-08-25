@@ -9,19 +9,14 @@ const BULLET_SPEED = 15;
 const HERO_IMAGE = new Image();
 HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
 
-// const SHOOT_SOUNDS = new sound('./assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3')
-const SHOOT_SOUND = document.createElement("audio");
-SHOOT_SOUND.src = './assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3';
-
-// const SHOOT_SOUNDS = new Sound();
-// debugger
-
+const PAIN_SOUND = document.createElement("audio");
+PAIN_SOUND.src = './assets/sounds/Pain-SoundBible.com-1883168362.wav';
 
 class Hero extends MovingObject {
 
     constructor(game) {
         super(game)
-        this.pos = [700, 300];
+        this.pos = [100, 100];
         this.height = 40;
         this.width = 40;
         this.angle = 0;
@@ -122,8 +117,10 @@ class Hero extends MovingObject {
     };
 
     fireBullet(mousePos) {
-        SHOOT_SOUND.pause();
-        SHOOT_SOUND.play();
+
+        const shootSound = document.createElement("audio");
+        shootSound.src = './assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3';
+        if (!this.game.gameOver) shootSound.play()
 
         const bulletDir = [mousePos[0] - this.pos[0] - 10, mousePos[1] - this.pos[1] - 10];
         const bulletVel = Util.scale(Util.dir(bulletDir), BULLET_SPEED);
@@ -136,11 +133,14 @@ class Hero extends MovingObject {
         this.heroAnim = 'die';
         this.vel = [0, 0];
         this.alive = false;
+    
         this.game.gameOver = true;
+
+        PAIN_SOUND.play()
 
         this.game.gameOverMenu();
 
-        // setTimeout(this.game.gameOverMenu(), 3000);
+        setTimeout(this.game.gameOverMenu(), 3000);
 
         // this.heroAnimate('die')
         // otherObject.remove();
@@ -192,7 +192,7 @@ class Hero extends MovingObject {
             bottomSqrNum = this.game.map.mapPlan[bottomSqr[0]][bottomSqr[1]]
         }
 
-        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18, 40, 20, 21, 22, 23, 24, 25, 26, 27, 28]
 
         if (this.moveRight && walkableTiles.includes(rightSqrNum)) {
             this.pos[0] += this.heroSpeed;

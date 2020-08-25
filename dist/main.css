@@ -12,13 +12,18 @@ body {
 
 #game-canvas {
     position: fixed;
-    cursor: crosshair;
+    /* cursor: crosshair; */
+    cursor: url('../assets/controls/select.png') 15 15 , crosshair;
     /* margin-top: 50px; */
     position: fixed;
     top: 30%;
     left: 50%;
     /* bring your own prefixes */
     transform: translate(-50%, -30%);
+}
+
+html {
+    /* cursor: url('../assets/controls/target.png'), crosshair; */
 }
 
 .game-title {

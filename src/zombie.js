@@ -29,7 +29,7 @@ class Zombie extends MovingObject {
 
     constructor(game, pos) {
         super(game)
-        this.pos = [200, 300];
+        this.pos = [1100, 500];
         this.height = 50;
         this.width = 50;
         this.angle = 0;
@@ -37,7 +37,7 @@ class Zombie extends MovingObject {
 
         this.deadly = true;
 
-        this.zombieSpeed = 1;
+        this.zombieSpeed = 5;
 
         this.moveUp = false;
         this.moveDown = false;
@@ -147,7 +147,7 @@ class Zombie extends MovingObject {
 
         let nextSqrNum;
 
-        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18, 40, 20, 21, 22, 23, 24, 25, 26, 27, 28]
 
         let nextSqr;
 
@@ -221,7 +221,7 @@ class Zombie extends MovingObject {
 
     getWalkableMap() {
         let basicMap = this.game.map.mapPlan;
-        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18, 40, 20, 21, 22, 23, 24, 25, 26, 27, 28]
         const walkableMap = [];
 
         for (var row = 0; row < basicMap.length; row++) {
