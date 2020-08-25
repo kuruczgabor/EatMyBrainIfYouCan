@@ -46,7 +46,7 @@ class Menu {
         this.menu.classList.add('hide')
         this.footerTitle.classList.remove('hide')
         const gameView = new GameView(this.game, this.ctx);
-        gameView.selectLevel();
+        // gameView.selectLevel();
         gameView.start();
     }
 

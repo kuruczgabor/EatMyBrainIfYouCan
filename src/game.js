@@ -2,6 +2,7 @@ import Hero from "./hero";
 import Bullet from "./bullet";
 import Zombie from "./zombie";
 import Map from "./map";
+import GameView from "./game_view";
 	
 const GAME_BG_COLOR = "#363636";
 const GAME_DIM_X = 1200;
@@ -18,6 +19,11 @@ class Game {
         this.zombies = [];
         this.addHero();
         this.addZombie();
+
+        this.levelStarted = false;
+        this.levelCompleted = false;
+        this.levelChanged = false;
+        this.newLevelStarted = false;
 
         this.gameOver = false;
 
@@ -44,9 +50,15 @@ class Game {
 
     addZombie() {
         let that = this
-        const zombie = new Zombie(that, [800, 300])
-        this.add(zombie)
-        return zombie;
+
+        setTimeout(() => {
+            const zombie = new Zombie(that, [800, 300])
+            this.add(zombie)
+        }, 3000)
+
+        // const zombie = new Zombie(that, [800, 300])
+        // this.add(zombie)
+        // return zombie;
     }
 
     // addMap() {
@@ -97,7 +109,12 @@ class Game {
 
     animateObjects() {
         this.heroes[0].heroAnimate()
-        this.zombies[0].zombieAnimate()
+        // this.zombies[0].zombieAnimate()
+        if (this.zombies.length > 0) {
+            this.zombies.forEach((zombie) => {
+                zombie.zombieAnimate()
+            })
+        }
     }
 
     remove(object) {
@@ -137,8 +154,22 @@ class Game {
         this.moveObjects(delta);
         this.animateObjects();
         this.checkCollisions();
+        this.isLevelCompleted();
         // this.changeZombieVel();
     };
+
+    isLevelCompleted() {
+        let lvlComp = true;
+        if (this.zombies.length < 1) lvlComp = false;
+        this.zombies.forEach((zombie) => {
+            if (zombie.deadly) lvlComp = false;
+        });
+        if (lvlComp && !this.levelChanged) {
+            this.levelCompleted = true;
+            this.levelChanged = true; 
+        }
+        return lvlComp;
+    }
 
     gameOverMenu() {
         const gameOverMenu = document.getElementById('game-over-window');
@@ -148,7 +179,6 @@ class Game {
         gameOverMenu.classList.remove('hide')
 
         mainMenuButton.addEventListener('click', this.mainMenu)
-
     }
 
     mainMenu() {

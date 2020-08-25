@@ -1,19 +1,19 @@
 import Util from "./util";
 import MovingObject from "./moving_object";
 
-const GAME_VIEW_MOVES = {
-    w: [0, -2],
-    a: [-2, 0],
-    s: [0, 2],
-    d: [2, 0],
-};
+// const GAME_VIEW_MOVES = {
+//     w: [0, -2],
+//     a: [-2, 0],
+//     s: [0, 2],
+//     d: [2, 0],
+// };
 
 class GameView {
 
     constructor(game, ctx) {
         this.game = game;
         this.ctx = ctx;
-        this.level = 1
+        this.level = 1;
     };
 
     bindKeyHandlers() {
@@ -37,11 +37,6 @@ class GameView {
             let keyCode = e.which || window.event.keyCode
 
             if (hero.heroAnim !== 'walk') hero.heroAnim = 'walk'
-        
-            // if (keyCode === 65) hero.power(GAME_VIEW_MOVES["a"])
-            // if (keyCode === 68) hero.power(GAME_VIEW_MOVES["d"])           
-            // if (keyCode === 87) hero.power(GAME_VIEW_MOVES["w"])     
-            // if (keyCode === 83) hero.power(GAME_VIEW_MOVES["s"])
 
             if (keyCode === 65) hero.moveLeft = true;
             if (keyCode === 68) hero.moveRight = true;
@@ -53,9 +48,6 @@ class GameView {
             let keyCode = e.which || window.event.keyCode;
 
             if (hero.heroAnim !== 'idle') hero.heroAnim = 'idle'
-
-            // if (keyCode === 65 || keyCode === 68) that.game.heroes[0].vel[0] = 0 
-            // if (keyCode === 87 || keyCode === 83) that.game.heroes[0].vel[1] = 0
 
             if (keyCode === 65) hero.moveLeft = false;
             if (keyCode === 68) hero.moveRight = false;
@@ -73,44 +65,58 @@ class GameView {
     };
 
     animate(time) {
-        // debugger
         if (this.game.gameOver === false) {
-            const timeDelta = time - this.lastTime;
 
+            const timeDelta = time - this.lastTime;
             this.game.step(timeDelta);
             this.game.draw(this.ctx);
             this.lastTime = time;
 
             requestAnimationFrame(this.animate.bind(this));
         }
+
+        this.selectLevel()
+
+        // if (!this.game.levelStarted) {
+        //     this.levelStarterWindow();
+        // }
+
+        // if (this.game.levelCompleted) {
+        //     this.levelCompleterWindow();
+        // }
+
     };
 
     selectLevel() {
-        this.levelStarter()
+        if (!this.game.levelStarted) {
+            this.levelStarterWindow()
+            this.game.levelStarted = true
+        }
+        if (this.game.levelCompleted && !this.game.newLevelStarted) {
+            this.levelCompleterWindow()
+        }
+        
     }
 
-    levelStarter() {
+    levelStarterWindow() {
         const levelStarterWindow = document.getElementById('game-level-window')
         const countDownTrigger = document.getElementById('game-level-starts-in')
 
-        // const threeSecLeft = document.getElementById('game-level-3sec')
-        // const twoSecLeft = document.getElementById('game-level-2sec')
-        // const oneSecLeft = document.getElementById('game-level-1sec')
-
+        const levelXTrigger = document.getElementById("game-level-title")
+        const levelX = document.getElementById('game-level-start-number')
+        levelX.parentNode.removeChild(levelX)
+        const newLevel = document.createElement('h2');
+        newLevel.innerHTML = `LEVEL ${this.level}`
+        newLevel.id = 'game-level-start-number'
+        // newLevel.classList = 'game-start-level-number'
+        // levelXTrigger.parentNode.insertBefore(newLevel, levelXTrigger.nextSibling)
+        countDownTrigger.parentNode.insertBefore(newLevel, countDownTrigger)
         levelStarterWindow.classList.remove('hide')
+        // debugger
+
         setTimeout(() => {
             levelStarterWindow.classList.add('hide')
         }, 3000)
-
-        // setTimeout(() => {
-        //     threeSecLeft.classList.add('hide')
-        //     twoSecLeft.classList.remove('hide')
-        // }, 1000)
-
-        // setTimeout(() => {
-        //     twoSecLeft.classList.add('hide')
-        //     oneSecLeft.classList.remove('hide')
-        // }, 2000)
 
         setTimeout(() => {
             let threeSecLeft = document.getElementById('game-level-3sec')
@@ -139,14 +145,29 @@ class GameView {
             countDownTrigger.parentNode.insertBefore(threeSecLeft, countDownTrigger.nextSibling)
         }, 3000)
 
-
-
     }
 
+    levelCompleterWindow() {
+        const levelCompletedWindow = document.getElementById('level-completed-window')
+        levelCompletedWindow.classList.remove('hide')
+        setTimeout(() => {
+            levelCompletedWindow.classList.add('hide')
+        }, 3000)
 
-    // stop() {
+        // this.game.levelCompleted = true;
+        // this.game.levelChanged = true;
+        this.startNewLevel();
+    }
 
-    // };
+    startNewLevel() {
+        this.game.levelChanged = true; 
+        this.game.newLevelStarted = true;
+        this.level ++;
+        setTimeout(() => {
+            this.game.levelStarted = false;
+        }, 3000)
+        
+    }
 
 }
 

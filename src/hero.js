@@ -24,7 +24,7 @@ class Hero extends MovingObject {
 
         this.alive = true;
 
-        this.heroSpeed = 2;
+        this.heroSpeed = 3;
 
         this.moveUp = false;
         this.moveDown = false;
