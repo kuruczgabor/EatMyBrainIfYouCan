@@ -152,6 +152,17 @@ html {
     flex-direction: column;
     justify-content: space-around;
     padding: 10px 30px;
+    text-align: center;
+}
+
+.game-menu-controls-music h5 {
+    /* background-color: yellow; */
+    margin-bottom: 50px;
+}
+
+.game-menu-controls-music img {
+    height: 100px;
+    width: auto;
 }
 
 .game-menu-controls-music img {
@@ -239,6 +250,11 @@ html {
     padding-top: 200px;
 }
 
+.game-over-title h3 {
+    font-size: 50px;
+    padding-top: 40px;
+}
+
 .game-over-title h5 {
     color: rgb(63, 63, 63);
     padding-top: 100px;
@@ -322,6 +338,6 @@ html {
     color: rgba(30, 70, 17, 0.945);
     text-align: center;
     /* background-color: yellow; */
-    padding-top: 100px;
+    padding-top: 200px;
     opacity: 100%;
 }

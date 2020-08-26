@@ -37,7 +37,8 @@ class Hero extends MovingObject {
 
         this.idleFrameChanger = 8;
         this.walkFrameChanger = 8;
-        this.shootFrameChanger = 8;
+        // this.shootFrameChanger = 8;
+        this.shootFrameChanger = 2;
     }
 
     heroAnimate() {
@@ -57,6 +58,8 @@ class Hero extends MovingObject {
     }
 
     heroIdleAnim() {
+        this.height = 40
+
         if (this.frameCounter === this.idleFrameChanger) {
             if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
             let curFrameSrc = HERO_IMAGE.src;
@@ -69,6 +72,8 @@ class Hero extends MovingObject {
     }
 
     heroWalkAnim() {
+        this.height = 40
+
         if (this.frameCounter === this.walkFrameChanger) {
             if (HERO_IMAGE.src.split('/')[9] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
             let curFrameSrc = HERO_IMAGE.src;
@@ -81,6 +86,8 @@ class Hero extends MovingObject {
     }
 
     heroShootAnim() {
+        this.height = 50
+
         if (this.frameCounter === this.shootFrameChanger) {
             if (HERO_IMAGE.src.split('/')[9] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
             let curFrameSrc = HERO_IMAGE.src;

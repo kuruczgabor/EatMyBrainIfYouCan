@@ -3,6 +3,9 @@ import Util from "./util";
 import AStar from "./astar";
 import Bullet from "./bullet";
 
+// const ZOMBIE_DEATH_SOUND = document.createElement("audio")
+// ZOMBIE_DEATH_SOUND.src = './assets/sounds/Zombie Gets Attacked-SoundBible.com-20348330.mp3'
+
 import {
     astar,
     // pathTo,
@@ -31,8 +34,8 @@ class Zombie extends MovingObject {
         super(game)
         // this.pos = [1100, 500];
         this.pos = pos;
-        this.height = 50;
-        this.width = 50;
+        this.height = 40;
+        this.width = 40;
         this.angle = 0;
         this.vel = [0, 0];
 
@@ -72,6 +75,9 @@ class Zombie extends MovingObject {
     }
 
     zombieWalkAnim() {
+        this.height = 40
+        this.width = 40
+
         if (this.frameCounter === this.walkFrameChanger) {
             let curFrameSrc = this.image.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
@@ -83,6 +89,9 @@ class Zombie extends MovingObject {
     }
 
     zombieDieAnim() {
+        this.height = 50
+        this.width = 50
+
         if (this.frameCounter === this.dieFrameChanger) {
             if (this.image.src.split('/')[9] !== 'death') this.image.src = './assets/zombie/death/Death_000.png'
             let curFrameSrc = this.image.src;
@@ -116,6 +125,13 @@ class Zombie extends MovingObject {
     }
 
     zombieDie(otherObject) {
+
+        const zombieDieSound = document.createElement("audio")
+        zombieDieSound.src = './assets/sounds/Zombie Gets Attacked-SoundBible.com-20348330.mp3'
+        zombieDieSound.play()
+
+        this.game.eliminatedZombies ++
+
         this.zombieAnim = 'die';
         this.zombieSpeed = 0;
         this.deadly = false;

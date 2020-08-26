@@ -22,6 +22,7 @@ class Game {
         // this.addZombiesBasedOnLevel();
 
         this.gameLevel = 1;
+        this.eliminatedZombies = 0
 
         this.levelStarted = false;
         this.levelCompleted = false;
@@ -211,7 +212,14 @@ class Game {
     gameOverMenu() {
         const gameOverMenu = document.getElementById('game-over-window');
         const mainMenuButton = document.getElementById('game-over-main-menu');
-        const mainMenu = document.getElementById('game-menu');
+        const mainMenu = document.getElementById('game-menu')
+        const zombieNumber = document.getElementById('game-over-zombie-number')
+
+        zombieNumber.parentNode.removeChild(zombieNumber)
+        const newNumber = document.createElement('h3')
+        newNumber.innerHTML = `${this.eliminatedZombies} ZOMBIES ELIMINATED`
+        newNumber.id = 'game-over-zombie-number'
+        mainMenuButton.parentNode.insertBefore(newNumber, mainMenuButton)
 
         gameOverMenu.classList.remove('hide')
 
