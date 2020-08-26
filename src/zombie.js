@@ -26,6 +26,33 @@ const ZOMBIE_ATTACK_SPEED = 1;
 // this.image.src = "./assets/zombie/walk/Walk_000.png";
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
+const ZOMBIE_WALK_FRAME_0 = new Image();
+ZOMBIE_WALK_FRAME_0.src = "./assets/zombie/walk/Walk_000.png";
+
+const ZOMBIE_WALK_FRAME_1 = new Image();
+ZOMBIE_WALK_FRAME_1.src = "./assets/zombie/walk/Walk_001.png";
+
+const ZOMBIE_WALK_FRAME_2 = new Image();
+ZOMBIE_WALK_FRAME_2.src = "./assets/zombie/walk/Walk_002.png";
+
+const ZOMBIE_WALK_FRAME_3 = new Image();
+ZOMBIE_WALK_FRAME_3.src = "./assets/zombie/walk/Walk_003.png";
+
+const ZOMBIE_WALK_FRAME_4 = new Image();
+ZOMBIE_WALK_FRAME_4.src = "./assets/zombie/walk/Walk_004.png";
+
+const ZOMBIE_WALK_FRAME_5 = new Image();
+ZOMBIE_WALK_FRAME_5.src = "./assets/zombie/walk/Walk_005.png";
+
+const ZOMBIE_WALK_FRAME_6 = new Image();
+ZOMBIE_WALK_FRAME_6.src = "./assets/zombie/walk/Walk_006.png";
+
+const ZOMBIE_WALK_FRAME_7 = new Image();
+ZOMBIE_WALK_FRAME_7.src = "./assets/zombie/walk/Walk_007.png";
+
+const ZOMBIE_WALK_FRAME_8 = new Image();
+ZOMBIE_WALK_FRAME_8.src = "./assets/zombie/walk/Walk_008.png";
+
 // const ZOMBIE_DIE_SOUND = new sound('./assets/sounds/')
 
 class Zombie extends MovingObject {
@@ -50,9 +77,10 @@ class Zombie extends MovingObject {
 
         this.nextPos = []
 
-        // this.image = this.image;
-        this.image = new Image();
-        this.image.src = "./assets/zombie/walk/Walk_000.png";
+        this.image = ZOMBIE_WALK_FRAME_0;
+
+        // this.image = new Image();
+        // this.image.src = "./assets/zombie/walk/Walk_000.png";
 
         this.zombieAnim = 'walk';
         this.frameCounter = 0;
@@ -70,7 +98,7 @@ class Zombie extends MovingObject {
         }
 
         this.frameCounter++
-        if (this.frameCounter > 10) this.frameCounter = 0
+        // if (this.frameCounter > 10) this.frameCounter = 0
 
     }
 
@@ -78,12 +106,52 @@ class Zombie extends MovingObject {
         this.height = 40
         this.width = 40
 
+        // if (this.frameCounter === this.walkFrameChanger) {
+        //     let curFrameSrc = this.image.src;
+        //     let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
+        //     curFrameNum += 1
+        //     if (curFrameNum === 9) curFrameNum = 0
+        //     this.image.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
+        //     debugger
+        //     this.frameCounter = 0;
+        // }
+        // debugger
         if (this.frameCounter === this.walkFrameChanger) {
             let curFrameSrc = this.image.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
             if (curFrameNum === 9) curFrameNum = 0
-            this.image.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
+            // debugger
+            switch(curFrameNum) {
+                case 0:
+                    this.image = ZOMBIE_WALK_FRAME_0
+                    break
+                case 1:
+                    this.image = ZOMBIE_WALK_FRAME_1
+                    break
+                case 2:
+                    this.image = ZOMBIE_WALK_FRAME_2
+                    break
+                case 3:
+                    this.image = ZOMBIE_WALK_FRAME_3
+                    break
+                case 4:
+                    this.image = ZOMBIE_WALK_FRAME_4
+                    break
+                case 5:
+                    this.image = ZOMBIE_WALK_FRAME_5
+                    break
+                case 6:
+                    this.image = ZOMBIE_WALK_FRAME_6
+                    break
+                case 7:
+                    this.image = ZOMBIE_WALK_FRAME_7
+                    break
+                case 8:
+                    this.image = ZOMBIE_WALK_FRAME_8
+                    break
+                    
+            }
             this.frameCounter = 0;
         }
     }
