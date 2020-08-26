@@ -103,7 +103,7 @@ class Game {
 
 
     allObjects() {
-        return [].concat(this.heroes, this.bullets, this.zombies);
+        return [].concat(this.bullets, this.zombies, this.heroes);
     };
 
     draw(ctx) {
@@ -116,6 +116,8 @@ class Game {
         this.allObjects().forEach(function (object) {
             object.draw(ctx);
         });
+
+        this.map.drawTrees(ctx)
     };
 
     isOutOfBounds(pos) {

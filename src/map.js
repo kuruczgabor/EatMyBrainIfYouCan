@@ -51,6 +51,14 @@ WALL.src = './assets/tiles/Floor3.png';
 const FLOOR = new Image();
 FLOOR.src = './assets/tiles/Floor1.png';
 
+const TREE_1 = new Image();
+TREE_1.src = './assets/tiles/objects_outside_0011_Layer-12.png'
+
+const TREE_2 = new Image();
+TREE_2.src = './assets/tiles/objects_outside_0010_Layer-11.png'
+
+const TREE_3 = new Image();
+TREE_3.src = './assets/tiles/objects_outside_0009_Layer-10.png'
 
 class Map {
 
@@ -81,6 +89,15 @@ class Map {
             [11, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 14],
             [17, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 18]
         ];
+
+        // this.treeMap = [
+        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        //     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        // ]
         // this.mapPlan = [
         //     [5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6],
         //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
@@ -96,6 +113,7 @@ class Map {
         //     [7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8]
         // ];
         this.tileSize = 25;
+        // this.treeSize = 100;
         // this.tileSize = 50;
     }
 
@@ -155,6 +173,39 @@ class Map {
             img, Math.floor(x * this.tileSize), Math.floor(y * this.tileSize), this.tileSize, this.tileSize
         );
     }
+
+    drawTrees(ctx) {
+        // ctx.clearRect(0, 0, GAME_DIM_X, GAME_DIM_Y);
+        // ctx.save()
+        // ctx.fillStyle = GAME_BG_COLOR;
+        // this.treeMap.forEach((row, i) => {
+        //     row.forEach((tile, j) => {
+        //         if (tile === 1) {
+        //             this.drawTree(TREE_1, ctx, j, i)
+        //         }
+        //     })
+        // })
+        // ctx.restore();
+
+        ctx.drawImage(TREE_2, 30, 30, 200, 200)
+        ctx.drawImage(TREE_2, 400, 50, 200, 200)
+        ctx.drawImage(TREE_2, 630, 15, 200, 200)
+        ctx.drawImage(TREE_2, 1000, 350, 200, 200)
+        ctx.drawImage(TREE_2, 550, 400, 200, 200)
+
+        ctx.drawImage(TREE_3, 650, 250, 120, 100)
+        ctx.drawImage(TREE_3, 200, 0, 120, 100)
+
+        ctx.drawImage(TREE_1, 800, 450, 150, 150)
+
+
+    }
+
+    // drawTree(img, ctx, x, y) {
+    //     ctx.drawImage(
+    //         img, Math.floor(x * this.treeSize), Math.floor(y * this.treeSize), this.treeSize, this.treeSize
+    //     );
+    // }
 
 }
 
