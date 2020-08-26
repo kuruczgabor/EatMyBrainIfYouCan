@@ -13,6 +13,9 @@ HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
 const PAIN_SOUND = document.createElement("audio");
 PAIN_SOUND.src = './assets/sounds/Pain-SoundBible.com-1883168362.wav';
 
+const SHOOT_AUDIO = document.createElement("audio");
+SHOOT_AUDIO.src = './assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3';
+
 class Hero extends MovingObject {
 
     constructor(game) {
@@ -125,7 +128,6 @@ class Hero extends MovingObject {
     };
 
     fireBullet(mousePos) {
-
         const shootSound = document.createElement("audio");
         shootSound.src = './assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3';
         if (!this.game.gameOver) shootSound.play()
