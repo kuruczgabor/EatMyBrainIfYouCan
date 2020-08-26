@@ -6,6 +6,7 @@ import Game from "./game";
 
 const HERO_MAX_SPEED = 2;
 const BULLET_SPEED = 15;
+
 const HERO_IMAGE = new Image();
 HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
 
