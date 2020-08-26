@@ -18,6 +18,7 @@ class Menu {
         this.menu = document.getElementById('game-menu');
         this.newGameTrigger = document.getElementById('new-game');
         this.footerTitle = document.getElementById('game-footer-title');
+        this.gameMusicIcon = document.getElementById('game-music-icon')
 
         this.menuSound = false;
         this.gameMusic = false;
@@ -28,15 +29,42 @@ class Menu {
 
     gameStarter() {
         this.newGameTrigger.addEventListener('click', this.newGame);
+
+        // const gameMusicIcon = document.getElementById('game-music-icon')
+        const gameMusicIconTrigger = document.getElementById('game-developer-tag')
+
+        // gameMusicIcon.parentNode.removeChild(gameMusicIcon)
+        // const newIcon = document.createElement('img')
+        // newIcon.id = "game-music-icon"
+        // newIcon.src = "./assets/controls/sound_on.png"
+        // gameMusicIconTrigger.parentNode.insertBefore(newIcon, gameMusicIconTrigger)
+        const that = this
+
         
         document.addEventListener("keydown", (e) => {
             let keyCode = e.which || window.event.keyCode
             if (keyCode === 77 && this.gameMusic === false) {
                 this.gameMusic = true
                 GAME_MUSIC.play()
+
+                that.gameMusicIcon.parentNode.removeChild(that.gameMusicIcon)
+                const newIcon = document.createElement('img')
+                newIcon.id = "game-music-icon"
+                newIcon.src = "./assets/controls/sound_on.png"
+                gameMusicIconTrigger.parentNode.insertBefore(newIcon, gameMusicIconTrigger.nextSibling)
+                that.gameMusicIcon = document.getElementById('game-music-icon')
+
             } else if (keyCode === 77 && this.gameMusic === true) {
                 this.gameMusic = false
                 GAME_MUSIC.pause()
+
+                that.gameMusicIcon.parentNode.removeChild(that.gameMusicIcon)
+                const newIcon = document.createElement('img')
+                newIcon.id = "game-music-icon"
+                newIcon.src = "./assets/controls/sound_off.png"
+                gameMusicIconTrigger.parentNode.insertBefore(newIcon, gameMusicIconTrigger.nextSibling)
+                that.gameMusicIcon = document.getElementById('game-music-icon')
+
             }
         })
     }
@@ -45,6 +73,7 @@ class Menu {
         this.game = new Game();
         this.menu.classList.add('hide')
         this.footerTitle.classList.remove('hide')
+        this.gameMusicIcon.classList.remove('hide')
         const gameView = new GameView(this.game, this.ctx);
         // gameView.selectLevel();
         gameView.start();

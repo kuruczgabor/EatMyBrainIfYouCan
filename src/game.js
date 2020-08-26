@@ -214,6 +214,9 @@ class Game {
         const mainMenuButton = document.getElementById('game-over-main-menu');
         const mainMenu = document.getElementById('game-menu')
         const zombieNumber = document.getElementById('game-over-zombie-number')
+        const musicIcon = document.getElementById('game-music-icon')
+        
+        musicIcon.classList.add('hide');
 
         zombieNumber.parentNode.removeChild(zombieNumber)
         const newNumber = document.createElement('h3')
@@ -230,7 +233,9 @@ class Game {
         const gameOverMenu = document.getElementById('game-over-window');
         const mainMenuButton = document.getElementById('game-over-main-menu');
         const mainMenu = document.getElementById('game-menu');
+        const musicIcon = document.getElementById('game-music-icon')
 
+        musicIcon.classList.add('hide');
         gameOverMenu.classList.add('hide');
         mainMenu.classList.remove('hide');
     }

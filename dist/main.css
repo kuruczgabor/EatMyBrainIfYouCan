@@ -195,6 +195,12 @@ html {
 .game-menu-social-developer {
     /* background-color: turquoise; */
     margin-left: 40px;
+    display: flex;
+}
+
+.game-menu-social-developer img {
+    padding-left: 60px;
+    margin-top: 15px;
 }
 
 .game-menu-social-developer h6 {
@@ -297,7 +303,7 @@ html {
     color: rgb(80, 6, 6);
     text-align: center;
     /* background-color: yellow; */
-    padding-top: 100px;
+    padding-top: 130px;
     opacity: 100%;
 }
 
@@ -338,6 +344,6 @@ html {
     color: rgba(30, 70, 17, 0.945);
     text-align: center;
     /* background-color: yellow; */
-    padding-top: 200px;
+    padding-top: 250px;
     opacity: 100%;
 }
