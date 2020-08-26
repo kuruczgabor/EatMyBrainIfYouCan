@@ -7,6 +7,50 @@ MENU_SOUND.src = './assets/sounds/Group-Of-Zombies-Growling-A1-www.fesliyanstudi
 const GAME_MUSIC = document.createElement("audio");
 GAME_MUSIC.src = './assets/sounds/For Whom The Bell Tolls.mp3';
 
+const ZOMBIE_WALK_FRAME_0 = new Image();
+ZOMBIE_WALK_FRAME_0.src = "./assets/zombie/walk/Walk_000.png";
+
+const ZOMBIE_WALK_FRAME_1 = new Image();
+ZOMBIE_WALK_FRAME_1.src = "./assets/zombie/walk/Walk_001.png";
+
+const ZOMBIE_WALK_FRAME_2 = new Image();
+ZOMBIE_WALK_FRAME_2.src = "./assets/zombie/walk/Walk_002.png";
+
+const ZOMBIE_WALK_FRAME_3 = new Image();
+ZOMBIE_WALK_FRAME_3.src = "./assets/zombie/walk/Walk_003.png";
+
+const ZOMBIE_WALK_FRAME_4 = new Image();
+ZOMBIE_WALK_FRAME_4.src = "./assets/zombie/walk/Walk_004.png";
+
+const ZOMBIE_WALK_FRAME_5 = new Image();
+ZOMBIE_WALK_FRAME_5.src = "./assets/zombie/walk/Walk_005.png";
+
+const ZOMBIE_WALK_FRAME_6 = new Image();
+ZOMBIE_WALK_FRAME_6.src = "./assets/zombie/walk/Walk_006.png";
+
+const ZOMBIE_WALK_FRAME_7 = new Image();
+ZOMBIE_WALK_FRAME_7.src = "./assets/zombie/walk/Walk_007.png";
+
+const ZOMBIE_WALK_FRAME_8 = new Image();
+ZOMBIE_WALK_FRAME_8.src = "./assets/zombie/walk/Walk_008.png";
+
+const ZOMBIE_DIE_FRAME_0 = new Image();
+ZOMBIE_DIE_FRAME_0.src = "./assets/zombie/death/Death_000.png";
+
+const ZOMBIE_DIE_FRAME_1 = new Image();
+ZOMBIE_DIE_FRAME_1.src = "./assets/zombie/death/Death_001.png";
+
+const ZOMBIE_DIE_FRAME_2 = new Image();
+ZOMBIE_DIE_FRAME_2.src = "./assets/zombie/death/Death_002.png";
+
+const ZOMBIE_DIE_FRAME_3 = new Image();
+ZOMBIE_DIE_FRAME_3.src = "./assets/zombie/death/Death_003.png";
+
+const ZOMBIE_DIE_FRAME_4 = new Image();
+ZOMBIE_DIE_FRAME_4.src = "./assets/zombie/death/Death_004.png";
+
+const ZOMBIE_DIE_FRAME_5 = new Image();
+ZOMBIE_DIE_FRAME_5.src = "./assets/zombie/death/Death_005.png";
 
 class Menu {
 
