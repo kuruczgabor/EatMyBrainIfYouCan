@@ -16,7 +16,7 @@ class Hero extends MovingObject {
 
     constructor(game) {
         super(game)
-        this.pos = [100, 100];
+        this.pos = [600, 300];
         this.height = 40;
         this.width = 40;
         this.angle = 0;

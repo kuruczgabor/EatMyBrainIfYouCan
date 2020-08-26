@@ -92,9 +92,9 @@ class GameView {
             this.levelStarterWindow()
             this.game.levelStarted = true
         }
-        debugger
+        // debugger
         if (this.game.levelCompleted && !this.game.newLevelStarted) {
-            debugger
+            // debugger
             this.levelCompleterWindow()
             this.game.zombies = []
         }
@@ -183,6 +183,7 @@ class GameView {
         this.game.levelCompleted = false;
         this.game.newLevelStarted = true;
         this.level ++;
+        this.game.gameLevel ++;
         setTimeout(() => {
             this.game.levelStarted = false;
             // this.game.addZombie()

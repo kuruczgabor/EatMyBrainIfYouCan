@@ -29,7 +29,8 @@ class Zombie extends MovingObject {
 
     constructor(game, pos) {
         super(game)
-        this.pos = [1100, 500];
+        // this.pos = [1100, 500];
+        this.pos = pos;
         this.height = 50;
         this.width = 50;
         this.angle = 0;
@@ -37,7 +38,7 @@ class Zombie extends MovingObject {
 
         this.deadly = true;
 
-        this.zombieSpeed = 0.1;
+        this.zombieSpeed = 1;
 
         this.moveUp = false;
         this.moveDown = false;

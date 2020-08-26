@@ -19,6 +19,9 @@ class Game {
         this.zombies = [];
         this.addHero();
         this.addZombie();
+        // this.addZombiesBasedOnLevel();
+
+        this.gameLevel = 1;
 
         this.levelStarted = false;
         this.levelCompleted = false;
@@ -50,26 +53,53 @@ class Game {
 
     addZombiesBasedOnLevel() {
         this.newLevelStarted = false;
-        this.addZombie();
+        let that = this;
+
+        setTimeout(() => {
+
+
+            if (this.gameLevel === 2) {
+                const zombie1 = new Zombie(that, [100, 100])
+                const zombie2 = new Zombie(that, [1100, 500])
+                this.add(zombie1)
+                this.add(zombie2)            
+            }
+
+            if (this.gameLevel === 3) {
+                const zombie1 = new Zombie(that, [100, 100])
+                const zombie2 = new Zombie(that, [1100, 500])
+                const zombie3 = new Zombie(that, [1100, 400])
+                const zombie4 = new Zombie(that, [100, 200])
+                this.add(zombie1)
+                this.add(zombie2)
+                this.add(zombie3)
+                this.add(zombie4)
+            }
+
+            // if (this.gameLevel === 2) {
+            //     const zombie = new Zombie(that, [100, 100])
+            //     this.add(zombie)
+            // }
+
+
+
+
+
+
+        }, 3000)
+
     }
 
     addZombie() {
         let that = this
 
         setTimeout(() => {
-            const zombie = new Zombie(that, [800, 300])
+            const zombie = new Zombie(that, [1100, 500])
             this.add(zombie)
         }, 3000)
 
-        // const zombie = new Zombie(that, [800, 300])
-        // this.add(zombie)
-        // return zombie;
     }
 
-    // addMap() {
-    //     let that = this;
-    //     const map = new Map(that)
-    // }
 
     allObjects() {
         return [].concat(this.heroes, this.bullets, this.zombies);
@@ -117,6 +147,7 @@ class Game {
         // this.zombies[0].zombieAnimate()
         if (this.zombies.length > 0) {
             this.zombies.forEach((zombie) => {
+                debugger
                 zombie.zombieAnimate()
             })
         }
@@ -170,7 +201,7 @@ class Game {
             if (zombie.deadly) noZombiesOnMap = false;
         });
         if (noZombiesOnMap && !this.levelChanged) {
-            debugger
+            // debugger
             this.levelCompleted = true;
             this.levelChanged = true; 
         }
