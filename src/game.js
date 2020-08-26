@@ -48,6 +48,11 @@ class Game {
         return hero;
     };
 
+    addZombiesBasedOnLevel() {
+        this.newLevelStarted = false;
+        this.addZombie();
+    }
+
     addZombie() {
         let that = this
 
@@ -159,16 +164,17 @@ class Game {
     };
 
     isLevelCompleted() {
-        let lvlComp = true;
-        if (this.zombies.length < 1) lvlComp = false;
+        let noZombiesOnMap = true;
+        if (this.zombies.length < 1) noZombiesOnMap = false;
         this.zombies.forEach((zombie) => {
-            if (zombie.deadly) lvlComp = false;
+            if (zombie.deadly) noZombiesOnMap = false;
         });
-        if (lvlComp && !this.levelChanged) {
+        if (noZombiesOnMap && !this.levelChanged) {
+            debugger
             this.levelCompleted = true;
             this.levelChanged = true; 
         }
-        return lvlComp;
+        return noZombiesOnMap;
     }
 
     gameOverMenu() {
