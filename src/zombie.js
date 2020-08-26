@@ -19,8 +19,8 @@ import {
 } from "./astar"
 
 const ZOMBIE_ATTACK_SPEED = 1;
-const ZOMBIE_IMAGE = new Image();
-ZOMBIE_IMAGE.src = "./assets/zombie/walk/Walk_000.png";
+// const this.image = new Image();
+// this.image.src = "./assets/zombie/walk/Walk_000.png";
 const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
 // const ZOMBIE_DIE_SOUND = new sound('./assets/sounds/')
@@ -47,7 +47,10 @@ class Zombie extends MovingObject {
 
         this.nextPos = []
 
-        this.image = ZOMBIE_IMAGE;
+        // this.image = this.image;
+        this.image = new Image();
+        this.image.src = "./assets/zombie/walk/Walk_000.png";
+
         this.zombieAnim = 'walk';
         this.frameCounter = 0;
 
@@ -70,23 +73,23 @@ class Zombie extends MovingObject {
 
     zombieWalkAnim() {
         if (this.frameCounter === this.walkFrameChanger) {
-            let curFrameSrc = ZOMBIE_IMAGE.src;
+            let curFrameSrc = this.image.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
             if (curFrameNum === 9) curFrameNum = 0
-            ZOMBIE_IMAGE.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
+            this.image.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
             this.frameCounter = 0;
         }
     }
 
     zombieDieAnim() {
         if (this.frameCounter === this.dieFrameChanger) {
-            if (ZOMBIE_IMAGE.src.split('/')[9] !== 'death') ZOMBIE_IMAGE.src = './assets/zombie/death/Death_000.png'
-            let curFrameSrc = ZOMBIE_IMAGE.src;
+            if (this.image.src.split('/')[9] !== 'death') this.image.src = './assets/zombie/death/Death_000.png'
+            let curFrameSrc = this.image.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
             if (curFrameNum < 6) {
-                ZOMBIE_IMAGE.src = './assets/zombie/death/Death_00' + curFrameNum.toString() + '.png'
+                this.image.src = './assets/zombie/death/Death_00' + curFrameNum.toString() + '.png'
             } else {
                 console.log('zombie died')
             }

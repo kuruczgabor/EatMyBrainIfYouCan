@@ -147,7 +147,7 @@ class Game {
         // this.zombies[0].zombieAnimate()
         if (this.zombies.length > 0) {
             this.zombies.forEach((zombie) => {
-                debugger
+                // debugger
                 zombie.zombieAnimate()
             })
         }
