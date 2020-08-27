@@ -213,7 +213,7 @@ The GameView's selectLevel method checks if a level has started or completed and
     }
 ```
 
-#Plans for the Future
+# Plans for the Future
 - Update the A* algorithm to have smoother zombie movements
 - Add scoreboard
 - Add more weapons, characters, and superpowers
