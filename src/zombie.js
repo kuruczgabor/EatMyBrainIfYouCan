@@ -73,6 +73,9 @@ const NORMAL_FRAME_TIME_DELTA = 1000 / 60;
 
 // const ZOMBIE_DIE_SOUND = new sound('./assets/sounds/')
 
+// const ZOMBIE_IMAGE = new Image();
+// ZOMBIE_IMAGE.src = "./assets/zombie/walk/Walk_000.png";
+
 class Zombie extends MovingObject {
 
     constructor(game, pos) {
@@ -95,7 +98,7 @@ class Zombie extends MovingObject {
 
         this.nextPos = []
 
-        // this.image = ZOMBIE_WALK_FRAME_0;
+        // this.image = ZOMBIE_IMAGE;
 
         this.image = new Image();
         this.image.src = "./assets/zombie/walk/Walk_000.png";
@@ -178,14 +181,14 @@ class Zombie extends MovingObject {
         this.width = 50
 
         if (this.frameCounter === this.dieFrameChanger) {
-            if (this.image.src.split('/')[9] !== 'death') this.image.src = './assets/zombie/death/Death_000.png'
+            if (this.image.src.split('/')[this.image.src.split('/').length - 2] !== 'death') this.image.src = './assets/zombie/death/Death_000.png'
             let curFrameSrc = this.image.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
             if (curFrameNum < 6) {
                 this.image.src = './assets/zombie/death/Death_00' + curFrameNum.toString() + '.png'
             } else {
-                console.log('zombie died')
+                // console.log('zombie died')
             }
         }
 
