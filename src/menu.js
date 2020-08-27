@@ -137,7 +137,9 @@ class Menu {
         this.menu = document.getElementById('game-menu');
         this.newGameTrigger = document.getElementById('new-game');
         this.footerTitle = document.getElementById('game-footer-title');
-        this.gameMusicIcon = document.getElementById('game-music-icon')
+        this.gameMusicIcon = document.getElementById('game-music-icon');
+        this.gameMusicIconHolder = document.getElementById('game-music-icon-holder');
+        this.gameMusicIconLocation = document.getElementById('game-music-icon-location')
 
         this.menuSound = false;
         this.gameMusic = false;
@@ -147,10 +149,17 @@ class Menu {
     }
 
     gameStarter() {
-        this.newGameTrigger.addEventListener('click', this.newGame);
+        // this.newGameTrigger.addEventListener('click', this.newGame);
+        this.newGameTrigger.addEventListener('click', () => {
+            this.newGame()
+            GAME_MUSIC.play()
+            this.gameMusic = true
+        });
+
 
         // const gameMusicIcon = document.getElementById('game-music-icon')
         const gameMusicIconTrigger = document.getElementById('game-developer-tag')
+        const gameMusicIconLocation = document.getElementById('game-music-icon-location')
 
         // gameMusicIcon.parentNode.removeChild(gameMusicIcon)
         // const newIcon = document.createElement('img')
@@ -170,7 +179,7 @@ class Menu {
                 const newIcon = document.createElement('img')
                 newIcon.id = "game-music-icon"
                 newIcon.src = "./assets/controls/sound_on.png"
-                gameMusicIconTrigger.parentNode.insertBefore(newIcon, gameMusicIconTrigger.nextSibling)
+                gameMusicIconLocation.parentNode.insertBefore(newIcon, gameMusicIconLocation.nextSibling)
                 that.gameMusicIcon = document.getElementById('game-music-icon')
 
             } else if (keyCode === 77 && this.gameMusic === true) {
@@ -181,9 +190,33 @@ class Menu {
                 const newIcon = document.createElement('img')
                 newIcon.id = "game-music-icon"
                 newIcon.src = "./assets/controls/sound_off.png"
-                gameMusicIconTrigger.parentNode.insertBefore(newIcon, gameMusicIconTrigger.nextSibling)
+                gameMusicIconLocation.parentNode.insertBefore(newIcon, gameMusicIconLocation.nextSibling)
+                that.gameMusicIcon = document.getElementById('game-music-icon')
+            }
+        })
+
+        this.gameMusicIconHolder.addEventListener("click", (e) => {
+            if (this.gameMusic === false) {
+                this.gameMusic = true
+                GAME_MUSIC.play()
+
+                that.gameMusicIcon.parentNode.removeChild(that.gameMusicIcon)
+                const newIcon = document.createElement('img')
+                newIcon.id = "game-music-icon"
+                newIcon.src = "./assets/controls/sound_on.png"
+                gameMusicIconLocation.parentNode.insertBefore(newIcon, gameMusicIconLocation.nextSibling)
                 that.gameMusicIcon = document.getElementById('game-music-icon')
 
+            } else if (this.gameMusic === true) {
+                this.gameMusic = false
+                GAME_MUSIC.pause()
+
+                that.gameMusicIcon.parentNode.removeChild(that.gameMusicIcon)
+                const newIcon = document.createElement('img')
+                newIcon.id = "game-music-icon"
+                newIcon.src = "./assets/controls/sound_off.png"
+                gameMusicIconLocation.parentNode.insertBefore(newIcon, gameMusicIconLocation.nextSibling)
+                that.gameMusicIcon = document.getElementById('game-music-icon')
             }
         })
     }

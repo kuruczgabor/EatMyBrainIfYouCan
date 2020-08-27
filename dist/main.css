@@ -190,6 +190,7 @@ html {
 
 .game-menu-social img:hover {
     opacity: 100%;
+    cursor: pointer;
 }
 
 .game-menu-social-developer {
