@@ -109,9 +109,6 @@ HERO_SHOOT_FRAME_3.src = "./assets/soldier/shoot/Gun_Shot_003.png";
 const HERO_SHOOT_FRAME_4 = new Image();
 HERO_SHOOT_FRAME_4.src = "./assets/soldier/shoot/Gun_Shot_004.png";
 
-const HERO_SHOOT_FRAME_5 = new Image();
-HERO_SHOOT_FRAME_5.src = "./assets/soldier/shoot/Gun_Shot_005.png";
-
 const HERO_DIE_FRAME_0 = new Image();
 HERO_DIE_FRAME_0.src = "./assets/soldier/death/death_0000_Man.png";
 

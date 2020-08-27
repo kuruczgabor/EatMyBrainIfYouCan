@@ -65,7 +65,8 @@ class Hero extends MovingObject {
         this.height = 40
 
         if (this.frameCounter === this.idleFrameChanger) {
-            if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+            // if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
             let curFrameSrc = HERO_IMAGE.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
@@ -79,7 +80,7 @@ class Hero extends MovingObject {
         this.height = 40
 
         if (this.frameCounter === this.walkFrameChanger) {
-            if (HERO_IMAGE.src.split('/')[9] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
+            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
             let curFrameSrc = HERO_IMAGE.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
@@ -93,7 +94,7 @@ class Hero extends MovingObject {
         this.height = 50
 
         if (this.frameCounter === this.shootFrameChanger) {
-            if (HERO_IMAGE.src.split('/')[9] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
+            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
             let curFrameSrc = HERO_IMAGE.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
@@ -107,7 +108,7 @@ class Hero extends MovingObject {
     }
 
     heroDieAnim() {
-        if (HERO_IMAGE.src.split('/')[9] !== 'death') HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
+        if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'death') HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
         let curFrameSrc = HERO_IMAGE.src;
         let curFrameNum = parseInt(curFrameSrc.slice(-11, -8))
         curFrameNum += 1

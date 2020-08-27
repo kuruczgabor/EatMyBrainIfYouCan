@@ -130,7 +130,6 @@ class Zombie extends MovingObject {
             curFrameNum += 1
             if (curFrameNum === 9) curFrameNum = 0
             this.image.src = './assets/zombie/walk/Walk_00' + curFrameNum.toString() + '.png'
-            debugger
             this.frameCounter = 0;
         }
 
