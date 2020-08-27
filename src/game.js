@@ -58,34 +58,18 @@ class Game {
 
         setTimeout(() => {
 
+            const pos0min = 900
+            const pos0max = 1050
+            const pos1min = 350
+            const pos1max = 550
 
-            if (this.gameLevel === 2) {
-                const zombie1 = new Zombie(that, [100, 100])
-                const zombie2 = new Zombie(that, [1100, 500])
-                this.add(zombie1)
-                this.add(zombie2)            
+            const zombieNum = this.gameLevel * 2
+
+            for (let i = 0; i < zombieNum; i++) {
+                let zombie = new Zombie(that, [Math.floor(Math.random() * (pos0max - pos0min)) + pos0min, Math.floor(Math.random() * (pos1max - pos1min)) + pos1min])
+                zombie.zombieSpeed = 1 + this.gameLevel * 0.1
+                this.add(zombie)
             }
-
-            if (this.gameLevel === 3) {
-                const zombie1 = new Zombie(that, [100, 100])
-                const zombie2 = new Zombie(that, [1100, 500])
-                const zombie3 = new Zombie(that, [1100, 400])
-                const zombie4 = new Zombie(that, [100, 200])
-                this.add(zombie1)
-                this.add(zombie2)
-                this.add(zombie3)
-                this.add(zombie4)
-            }
-
-            // if (this.gameLevel === 2) {
-            //     const zombie = new Zombie(that, [100, 100])
-            //     this.add(zombie)
-            // }
-
-
-
-
-
 
         }, 3000)
 
