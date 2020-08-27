@@ -59,31 +59,56 @@ class Game {
 
         setTimeout(() => {
 
-            const pos0min = 900
-            const pos0max = 1050
-            const pos1min = 350
-            const pos1max = 550
+            // const bottomRightPosMin0 = 1150
+            // const bottomRightPosMax0 = 1150
+            // const bottomRightPosMin1 = 550
+            // const bottomRightPosMax1 = 550
 
-            const zombieNum = this.gameLevel * 2
+            // let zombie = new Zombie(that, [Math.floor(Math.random() * (bottomRightPosMax0 - bottomRightPosMin0)) + bottomRightPosMin0, Math.floor(Math.random() * (bottomRightPosMax1 - bottomRightPosMin1)) + bottomRightPosMin1])
+            // // zombie.zombieSpeed = this.gameLevel
+            // this.add(zombie)
+
+            // // BOTTOM RIGHT CORNER
+
+            const bottomRightPosMin0 = 900
+            const bottomRightPosMax0 = 1050
+            const bottomRightPosMin1 = 350
+            const bottomRightPosMax1 = 550
+
+            const zombieNum = this.gameLevel * 1.5
 
             for (let i = 0; i < zombieNum; i++) {
-                let zombie = new Zombie(that, [Math.floor(Math.random() * (pos0max - pos0min)) + pos0min, Math.floor(Math.random() * (pos1max - pos1min)) + pos1min])
-                zombie.zombieSpeed = 1 + this.gameLevel * 0.1
+                let zombie = new Zombie(that, [Math.floor(Math.random() * (bottomRightPosMax0 - bottomRightPosMin0)) + bottomRightPosMin0, Math.floor(Math.random() * (bottomRightPosMax1 - bottomRightPosMin1)) + bottomRightPosMin1])
+                zombie.zombieSpeed = Math.floor(1 + this.gameLevel * 0.2)
+                this.add(zombie)
+            }
+
+            // // TOP LEFT CORNER
+
+            const topLeftPosMin0 = 50
+            const topLeftPosMax0 = 150
+            const topLeftPosMin1 = 50
+            const topLeftPosMax1 = 150
+
+            const zombieNum2 = Math.floor(this.gameLevel * 1.5)
+
+            for (let i = 0; i < zombieNum2; i++) {
+                let zombie = new Zombie(that, [Math.floor(Math.random() * (topLeftPosMax0 - topLeftPosMin0)) + topLeftPosMin0, Math.floor(Math.random() * (topLeftPosMax1 - topLeftPosMin1)) + topLeftPosMin1])
+                zombie.zombieSpeed = Math.floor(1 + this.gameLevel * 0.2)
                 this.add(zombie)
             }
 
         }, 3000)
-
     }
 
     addZombie() {
         let that = this
 
         setTimeout(() => {
-            const zombie = new Zombie(that, [1100, 500])
+            const zombie = new Zombie(that, [1100, 550])
+            // const zombie = new Zombie(that, [10, 10])
             this.add(zombie)
         }, 3000)
-
     }
 
 

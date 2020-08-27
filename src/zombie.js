@@ -90,6 +90,7 @@ class Zombie extends MovingObject {
         this.deadly = true;
 
         this.zombieSpeed = 1;
+        // this.zombieSpeed = 3;
 
         this.moveUp = false;
         this.moveDown = false;
@@ -228,13 +229,13 @@ class Zombie extends MovingObject {
 
     draw(ctx) {
 
-        // if (this.zombieAnim !== 'die') {
-        //     this.angle = -Math.atan2(this.game.heroes[0].pos[0] - this.pos[0], this.game.heroes[0].pos[1] - this.pos[1]) * 180 / Math.PI;
-        // }
-
         if (this.zombieAnim !== 'die') {
-            this.angle = -Math.atan2(this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]) * 180 / Math.PI;
+            this.angle = -Math.atan2(this.game.heroes[0].pos[0] - this.pos[0], this.game.heroes[0].pos[1] - this.pos[1]) * 180 / Math.PI;
         }
+
+        // if (this.zombieAnim !== 'die') {
+        //     this.angle = -Math.atan2(this.nextPos[0] - this.pos[0], this.nextPos[1] - this.pos[1]) * 180 / Math.PI;
+        // }
 
         ctx.clearRect(0, 0, ctx.width, ctx.height);
         ctx.save();
@@ -279,16 +280,16 @@ class Zombie extends MovingObject {
 
         const curPos = this.pos
         const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
-        const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
+        // const curSqrNum = this.game.map.mapPlan[curSqr[0]][curSqr[1]]
 
-        const leftSqr = [curSqr[0], curSqr[1] - 1]
-        const rightSqr = [curSqr[0], curSqr[1] + 1]
-        const topSqr = [curSqr[0] - 1, curSqr[1]]
-        const bottomSqr = [curSqr[0] + 1, curSqr[1]]
+        // const leftSqr = [curSqr[0], curSqr[1] - 1]
+        // const rightSqr = [curSqr[0], curSqr[1] + 1]
+        // const topSqr = [curSqr[0] - 1, curSqr[1]]
+        // const bottomSqr = [curSqr[0] + 1, curSqr[1]]
 
-        let nextSqrNum;
+        // let nextSqrNum;
 
-        const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18, 40, 20, 21, 22, 23, 24, 25, 26, 27, 28]
+        // const walkableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18, 40, 20, 21, 22, 23, 24, 25, 26, 27, 28]
 
         let nextSqr;
 
@@ -299,20 +300,41 @@ class Zombie extends MovingObject {
         }
 
         if (nextSqr === undefined) nextSqr = curSqr
-        if (nextSqr !== curSqr) {
-            nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
-        }
-        this.nextPos = [nextSqr['x'] * 25, nextSqr['y'] * 25]
+        // if (nextSqr !== curSqr) {
+        //     nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
+        // }
 
-        if (curSqr[0] > nextSqr['y']) this.moveUp = true
-        if (curSqr[0] < nextSqr['y']) this.moveDown = true
-        if (curSqr[1] < nextSqr['x']) this.moveRight = true
-        if (curSqr[1] > nextSqr['x']) this.moveLeft = true
+        let nextPos = [Math.floor(nextSqr['x'] * 25), Math.floor(nextSqr['y'] * 25)]
+
+        // console.log(curSqr)
+        // console.log(nextSqr)
+
+        if (curPos[0] > nextPos[0]) this.moveLeft = true
+        if (curPos[0] < nextPos[0]) this.moveRight = true
+        if (curPos[1] < nextPos[1]) this.moveDown = true
+        if (curPos[1] > nextPos[1]) this.moveUp = true
+
+        // if (this.moveLeft && this.pos[0] - this.zombieSpeed >= 25) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
+        // if (this.moveRight && this.pos[0] + this.zombieSpeed <= 1150) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
+        // if (this.moveUp && this.pos[1] - this.zombieSpeed >= 25) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
+        // if (this.moveDown && this.pos[1] + this.zombieSpeed <= 550) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
+
+        if (this.moveLeft) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
+        if (this.moveRight) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
+        if (this.moveUp) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
+        if (this.moveDown) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
+
+        // this.nextPos = [(nextSqr['x'] * 25) - 37.5, (nextSqr['y'] * 25) - 37.5]
+
+        // if (curSqr[0] > nextSqr['y']) this.moveUp = true
+        // if (curSqr[0] < nextSqr['y']) this.moveDown = true
+        // if (curSqr[1] < nextSqr['x']) this.moveRight = true
+        // if (curSqr[1] > nextSqr['x']) this.moveLeft = true
         
-        if (this.moveLeft && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
-        if (this.moveRight && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
-        if (this.moveUp && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
-        if (this.moveDown && !this.moveLeft && !this.movwRight) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
+        // if (this.moveLeft && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
+        // if (this.moveRight && !this.moveUp && !this.moveDown) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
+        // if (this.moveUp && !this.moveLeft && !this.moveRight) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
+        // if (this.moveDown && !this.moveLeft && !this.moveRight) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
         
         this.moveUp = false
         this.moveDown = false
@@ -331,13 +353,19 @@ class Zombie extends MovingObject {
         let curZombierSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
         let curHeroSqr = [Math.floor(this.game.heroes[0].pos[1] / 25), Math.floor(this.game.heroes[0].pos[0] / 25)]
 
-        if (curZombierSqr[1] > curHeroSqr[1]) {
+        if (curZombierSqr[1] >= curHeroSqr[1]) {
             start = curZombierSqr;
             end = curHeroSqr;
         } else {
             start = curHeroSqr;
             end = curZombierSqr;
         }
+
+        // start = curZombierSqr;
+        // end = curHeroSqr;
+
+        // start = curHeroSqr;
+        // end = curZombierSqr;
 
 
         // debugger
@@ -348,14 +376,32 @@ class Zombie extends MovingObject {
         // debugger
         let optimalPath = aStarInstance.optimalPath
         // debugger
+        // console.log(`zombie:${curZombierSqr}`)
+        // console.log(`hero:${curHeroSqr}`)
         // console.log(optimalPath)
         
+        // if (optimalPath && optimalPath.length > 1) {
+        //     return {
+        //         x: optimalPath[optimalPath.length - 2].col,
+        //         y: optimalPath[optimalPath.length - 2].row
+        //     };
+        // }
+
         if (optimalPath && optimalPath.length > 1) {
-            return {
-                x: optimalPath[optimalPath.length - 2].col,
-                y: optimalPath[optimalPath.length - 2].row
-            };
-        }
+            if (curZombierSqr[1] >= curHeroSqr[1]) {
+                return {
+                    x: optimalPath[optimalPath.length - 2].col,
+                    y: optimalPath[optimalPath.length - 2].row
+                };
+            } else {
+                return {
+                    x: optimalPath[1].col,
+                    y: optimalPath[1].row
+                };
+            }
+        };
+
+
         // return this.pos;
 
     }

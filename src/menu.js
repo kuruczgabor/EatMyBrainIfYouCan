@@ -8,6 +8,14 @@ const GAME_MUSIC = document.createElement("audio");
 GAME_MUSIC.id = "metallica-background-music"
 GAME_MUSIC.src = './assets/sounds/For Whom The Bell Tolls.mp3';
 
+const shootSound = document.createElement("audio");
+shootSound.src = './assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3';
+shootSound.preload
+
+const zombieDieSound = document.createElement("audio")
+zombieDieSound.src = './assets/sounds/Zombie Gets Attacked-SoundBible.com-20348330.mp3'
+zombieDieSound.preload
+
 const ZOMBIE_WALK_FRAME_0 = new Image();
 ZOMBIE_WALK_FRAME_0.src = "./assets/zombie/walk/Walk_000.png";
 
