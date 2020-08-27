@@ -30,6 +30,7 @@ html {
     font-family: 'Bangers', cursive;
     font-size: 50px;
     color: rgb(80, 6, 6);
+    /* color: rgb(170, 9, 9); */
     text-align: center;
     padding-top: 40px;
 }
@@ -52,7 +53,8 @@ html {
     /* background-color: slateblue; */
     font-family: 'Bangers', cursive;
     font-size: 80px;
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
     text-align: center;
 }
 
@@ -79,11 +81,14 @@ html {
     /* border: 2px solid red; */
     border-radius: 20px;
     color: black;
-    background-color: rgb(63, 63, 63);
+    /* background-color: rgb(63, 63, 63); */
+    background-color: rgb(90, 90, 90);
 }
 
 .game-menu-newgame h5:hover {
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
+    background-color: rgb(107, 107, 107);
     /* color: rgba(30, 70, 17, 0.945); */
     cursor: pointer;
 }
@@ -123,7 +128,8 @@ html {
 .game-menu-controls-movement-title {
     font-family: 'Bangers', cursive;
     font-size: 30px;
-    color: rgb(63, 63, 63);
+    /* color: rgb(63, 63, 63); */
+    color: rgb(90, 90, 90);
 }
 
 .game-menu-controls-movement-images {
@@ -135,7 +141,8 @@ html {
 .game-menu-controls-movement-images h6 {
     font-family: 'Bangers', cursive;
     font-size: 30px;
-    color: rgb(63, 63, 63);
+    /* color: rgb(63, 63, 63); */
+    color: rgb(90, 90, 90);
     padding: 50px 10px;
 }
 
@@ -148,7 +155,7 @@ html {
 }
 
 .game-menu-controls-shooting img {
-    opacity: 50%;
+    opacity: 80%;
 }
 
 .game-menu-controls-music {
@@ -171,7 +178,7 @@ html {
 }
 
 .game-menu-controls-music img {
-    opacity: 50%;
+    opacity: 60%;
 }
 
 
@@ -190,7 +197,7 @@ html {
     height: 50px;
     width: auto;
     padding: 0px 10px;
-    opacity: 50%;
+    opacity: 70%;
 }
 
 .game-menu-social img:hover {
@@ -213,7 +220,8 @@ html {
     padding-top: 30px;
     font-family: 'Bangers', cursive;
     font-size: 25px;
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
 }
 
 .game-menu-social-links {
@@ -232,7 +240,8 @@ html {
     bottom: 10;
     font-family: 'Bangers', cursive;
     font-size: 50px;
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
     text-align: center;
     z-index: 3;
 }
@@ -256,7 +265,8 @@ html {
     /* background-color: slateblue; */
     font-family: 'Bangers', cursive;
     font-size: 100px;
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
     text-align: center;
     /* background-color: yellow; */
     padding-top: 200px;
@@ -280,7 +290,8 @@ html {
 }
 
 .game-over-title h5:hover {
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
     cursor: pointer;
 }
 
@@ -306,7 +317,8 @@ html {
     /* background-color: slateblue; */
     font-family: 'Bangers', cursive;
     font-size: 100px;
-    color: rgb(80, 6, 6);
+    /* color: rgb(80, 6, 6); */
+    color: rgb(128, 2, 2);
     text-align: center;
     /* background-color: yellow; */
     padding-top: 130px;
@@ -347,7 +359,8 @@ html {
     /* background-color: slateblue; */
     font-family: 'Bangers', cursive;
     font-size: 100px;
-    color: rgba(30, 70, 17, 0.945);
+    /* color: rgba(30, 70, 17, 0.945); */
+    color: rgba(47, 107, 27, 0.945);
     text-align: center;
     /* background-color: yellow; */
     padding-top: 250px;
