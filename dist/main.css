@@ -75,11 +75,16 @@ html {
     width: 200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px;
+    padding: 20px 40px;
+    /* border: 2px solid red; */
+    border-radius: 20px;
+    color: black;
+    background-color: rgb(63, 63, 63);
 }
 
 .game-menu-newgame h5:hover {
     color: rgb(80, 6, 6);
+    /* color: rgba(30, 70, 17, 0.945); */
     cursor: pointer;
 }
 

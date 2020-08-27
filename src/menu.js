@@ -5,6 +5,7 @@ const MENU_SOUND = document.createElement("audio");
 MENU_SOUND.src = './assets/sounds/Group-Of-Zombies-Growling-A1-www.fesliyanstudios.com (1).mp3';
 
 const GAME_MUSIC = document.createElement("audio");
+GAME_MUSIC.id = "metallica-background-music"
 GAME_MUSIC.src = './assets/sounds/For Whom The Bell Tolls.mp3';
 
 const ZOMBIE_WALK_FRAME_0 = new Image();
@@ -142,7 +143,7 @@ class Menu {
         this.gameMusicIconLocation = document.getElementById('game-music-icon-location')
 
         this.menuSound = false;
-        this.gameMusic = false;
+        this.gameMusic = true;
 
         this.newGame = this.newGame.bind(this);
         this.gameStarter()
@@ -152,8 +153,7 @@ class Menu {
         // this.newGameTrigger.addEventListener('click', this.newGame);
         this.newGameTrigger.addEventListener('click', () => {
             this.newGame()
-            GAME_MUSIC.play()
-            this.gameMusic = true
+            if (this.gameMusic === true) GAME_MUSIC.play()
         });
 
 

@@ -3,6 +3,7 @@ import Bullet from "./bullet";
 import Zombie from "./zombie";
 import Map from "./map";
 import GameView from "./game_view";
+import Menu from "./menu";
 	
 const GAME_BG_COLOR = "#363636";
 const GAME_DIM_X = 1200;
@@ -196,6 +197,8 @@ class Game {
     }
 
     gameOverMenu() {
+        debugger
+
         const gameOverMenu = document.getElementById('game-over-window');
         const mainMenuButton = document.getElementById('game-over-main-menu');
         const mainMenu = document.getElementById('game-menu')
