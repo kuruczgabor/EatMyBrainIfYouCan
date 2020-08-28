@@ -299,12 +299,25 @@ class Zombie extends MovingObject {
             nextSqr = curSqr
         }
 
-        if (nextSqr === undefined) nextSqr = curSqr
+        if (nextSqr === undefined) {
+            const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
+                offsetX = this.vel[0] * velocityScale,
+                offsetY = this.vel[1] * velocityScale;
+
+            this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
+        }
+
         // if (nextSqr !== curSqr) {
         //     nextSqrNum = this.game.map.mapPlan[nextSqr['y']][nextSqr['x']]
         // }
 
-        let nextPos = [Math.floor(nextSqr['x'] * 25), Math.floor(nextSqr['y'] * 25)]
+        let nextPos;
+
+        if (nextSqr !== undefined) {
+            nextPos = [Math.floor(nextSqr['x'] * 25), Math.floor(nextSqr['y'] * 25)]
+        } else {
+            nextPos = [600, 300]
+        }
 
         // console.log(curSqr)
         // console.log(nextSqr)
@@ -319,10 +332,10 @@ class Zombie extends MovingObject {
         // if (this.moveUp && this.pos[1] - this.zombieSpeed >= 25) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
         // if (this.moveDown && this.pos[1] + this.zombieSpeed <= 550) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
 
-        if (this.moveLeft) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
-        if (this.moveRight) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
-        if (this.moveUp) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
-        if (this.moveDown) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
+        if (this.moveLeft && this.pos[0] - this.zombieSpeed > 0) this.pos = [this.pos[0] - this.zombieSpeed, this.pos[1]]
+        if (this.moveRight && this.pos[0] + this.zombieSpeed < 1200) this.pos = [this.pos[0] + this.zombieSpeed, this.pos[1]]
+        if (this.moveUp && this.pos[1] - this.zombieSpeed > 0) this.pos = [this.pos[0], this.pos[1] - this.zombieSpeed]
+        if (this.moveDown && this.pos[1] + this.zombieSpeed < 600) this.pos = [this.pos[0], this.pos[1] + this.zombieSpeed]
 
         // this.nextPos = [(nextSqr['x'] * 25) - 37.5, (nextSqr['y'] * 25) - 37.5]
 

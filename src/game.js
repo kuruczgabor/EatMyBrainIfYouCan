@@ -222,7 +222,7 @@ class Game {
     }
 
     gameOverMenu() {
-        debugger
+        // debugger
 
         const gameOverMenu = document.getElementById('game-over-window');
         const mainMenuButton = document.getElementById('game-over-main-menu');
