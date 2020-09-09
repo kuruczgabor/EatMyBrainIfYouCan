@@ -29,21 +29,7 @@ class MovingObject {
     }
 
     move(timeDelta) {
-
-        // const map = this.game.map.mapPlan
-
-        // const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
-        //     offsetX = this.vel[0] * velocityScale,
-        //     offsetY = this.vel[1] * velocityScale;
-
-        // this.pos = [this.pos[0] + offsetX, this.pos[1] + offsetY];
-
-        // if (this.game.isOutOfBounds(this.pos)) this.remove();
-
-
-
         const map = this.game.map.mapPlan
-
 
         const velocityScale = timeDelta / NORMAL_FRAME_TIME_DELTA,
             offsetX = this.vel[0] * velocityScale,
@@ -54,7 +40,6 @@ class MovingObject {
         const curTileX = [Math.floor(this.pos[0] / 25)];
         const curTileY = [Math.floor(this.pos[1] / 25)];
         const curTile = map[curTileY][curTileX];
-        // debugger
         const nextTileX = [Math.floor(nextPos[0] / 25)];
         const nextTileY = [Math.floor(nextPos[1] / 25)];
         const nextTile = map[nextTileY][nextTileX];
@@ -65,13 +50,10 @@ class MovingObject {
             this.pos = this.pos
         }
 
-        // debugger
-
         if (this.game.isOutOfBounds(this.pos)) this.remove();
     }
 
     remove() {
-        // debugger
         this.game.remove(this);
     };
 

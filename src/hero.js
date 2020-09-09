@@ -2,17 +2,13 @@ import MovingObject from "./moving_object";
 import Bullet from "./bullet";
 import Util from "./util";
 import Zombie from "./zombie";
-import Game from "./game";
 
-const HERO_MAX_SPEED = 2;
 const BULLET_SPEED = 15;
 
 const HERO_IMAGE = new Image();
 HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png';
-
 const PAIN_SOUND = document.createElement("audio");
 PAIN_SOUND.src = './assets/sounds/Pain-SoundBible.com-1883168362.wav';
-
 const SHOOT_AUDIO = document.createElement("audio");
 SHOOT_AUDIO.src = './assets/sounds/9mm Glock 17-SoundBible.com-1873916083.mp3';
 
@@ -41,7 +37,6 @@ class Hero extends MovingObject {
 
         this.idleFrameChanger = 8;
         this.walkFrameChanger = 8;
-        // this.shootFrameChanger = 8;
         this.shootFrameChanger = 2;
     }
 
@@ -57,16 +52,14 @@ class Hero extends MovingObject {
         }
         this.frameCounter++
         if (this.frameCounter > 10) this.frameCounter = 0
-
-        // console.log(this.vel)
     }
 
     heroIdleAnim() {
         this.height = 40
-
         if (this.frameCounter === this.idleFrameChanger) {
-            // if (HERO_IMAGE.src.split('/')[9] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
-            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'idle') HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'idle') {
+                HERO_IMAGE.src = './assets/soldier/idle/Idle_gun_000.png'
+            }
             let curFrameSrc = HERO_IMAGE.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
@@ -80,7 +73,9 @@ class Hero extends MovingObject {
         this.height = 40
 
         if (this.frameCounter === this.walkFrameChanger) {
-            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'walk') HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
+            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'walk') {
+                HERO_IMAGE.src = './assets/soldier/walk/Walk_gun_000.png'
+            }
             let curFrameSrc = HERO_IMAGE.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
@@ -94,7 +89,9 @@ class Hero extends MovingObject {
         this.height = 50
 
         if (this.frameCounter === this.shootFrameChanger) {
-            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'shoot') HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
+            if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'shoot') {
+                HERO_IMAGE.src = './assets/soldier/shoot/Gun_Shot_000.png'
+            }
             let curFrameSrc = HERO_IMAGE.src;
             let curFrameNum = parseInt(curFrameSrc.slice(-7, -4))
             curFrameNum += 1
@@ -108,7 +105,9 @@ class Hero extends MovingObject {
     }
 
     heroDieAnim() {
-        if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'death') HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
+        if (HERO_IMAGE.src.split('/')[HERO_IMAGE.src.split('/').length - 2] !== 'death') {
+            HERO_IMAGE.src = './assets/soldier/death/death_0000_Man.png'
+        }
         let curFrameSrc = HERO_IMAGE.src;
         let curFrameNum = parseInt(curFrameSrc.slice(-11, -8))
         curFrameNum += 1
@@ -144,17 +143,10 @@ class Hero extends MovingObject {
         this.heroAnim = 'die';
         this.vel = [0, 0];
         this.alive = false;
-    
         this.game.gameOver = true;
-
         PAIN_SOUND.play()
-
         this.game.gameOverMenu();
-
         setTimeout(this.game.gameOverMenu(), 3000);
-
-        // this.heroAnimate('die')
-        // otherObject.remove();
     }
 
     collideWith(otherObject) {
@@ -165,13 +157,6 @@ class Hero extends MovingObject {
     }
 
     move() {
-        // if ((this.pos[0] + this.heroSpeed < this.game.gameDimX - this.width / 2) && this.moveRight) this.pos[0] += this.heroSpeed;
-        // if ((this.pos[0] - this.heroSpeed > 0 + this.width / 2) && this.moveLeft) this.pos[0] -= this.heroSpeed;
-        // if ((this.pos[1] + this.heroSpeed < this.game.gameDimY - this.height / 2) && this.moveDown) this.pos[1] += this.heroSpeed;
-        // if ((this.pos[1] - this.heroSpeed > 0 + this.height / 2) && this.moveUp) this.pos[1] -= this.heroSpeed;
-        // console.log(this.game.map.mapPlan[Math.floor((this.pos[0] + this.heroSpeed) / 25)][Math.floor(this.pos[1] / 25)])
-        // console.log(this.game.map.mapPlan[Math.floor((this.pos[1]) / 25)][Math.floor(this.pos[0] / 25)])
-
         const curPos = this.pos
 
         const curSqr = [Math.floor(this.pos[1] / 25), Math.floor(this.pos[0] / 25)]
@@ -222,13 +207,6 @@ class Hero extends MovingObject {
         }
 
     }
-
-    // power(impulse) {
-    //     if (impulse[0] > 0 && this.vel[0] < HERO_MAX_SPEED) this.vel[0] += impulse[0]
-    //     if (impulse[0] < 0 && this.vel[0] > -HERO_MAX_SPEED) this.vel[0] += impulse[0]
-    //     if (impulse[1] > 0 && this.vel[1] < HERO_MAX_SPEED) this.vel[1] += impulse[1]
-    //     if (impulse[1] < 0 && this.vel[1] > -HERO_MAX_SPEED) this.vel[1] += impulse[1]
-    // };
 
 }
 

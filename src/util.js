@@ -29,16 +29,14 @@ const Util = {
     return [vec[0] * m, vec[1] * m];
   },
   
-  // Find the position of the cursor
+  // Find the position of the cursor.
   findCursorCoords(event) {
 
     let canvas = document.getElementById("game-canvas");
     let gameArea = canvas.getBoundingClientRect();
     let xPos = window.event.x - gameArea.left;
     let yPos = window.event.y - gameArea.top;
-
     return [xPos, yPos]
-
   }
 
 };

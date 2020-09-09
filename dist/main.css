@@ -22,10 +22,6 @@ body {
     transform: translate(-50%, -30%);
 }
 
-html {
-    /* cursor: url('../assets/controls/target.png'), crosshair; */
-}
-
 .game-title {
     font-family: 'Bangers', cursive;
     font-size: 50px;
@@ -222,10 +218,6 @@ html {
     font-size: 25px;
     /* color: rgb(80, 6, 6); */
     color: rgb(128, 2, 2);
-}
-
-.game-menu-social-links {
-    
 }
 
 .game-menu-social-links-list {

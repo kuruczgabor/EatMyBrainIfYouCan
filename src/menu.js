@@ -139,8 +139,6 @@ HERO_DIE_FRAME_5.src = "./assets/soldier/death/death_0005_Man.png";
 class Menu {
 
     constructor(ctx) {
-        // this.game = game
-        // this.game = new Game();
         this.ctx = ctx
 
         this.menu = document.getElementById('game-menu');
@@ -158,24 +156,15 @@ class Menu {
     }
 
     gameStarter() {
-        // this.newGameTrigger.addEventListener('click', this.newGame);
         this.newGameTrigger.addEventListener('click', () => {
             this.newGame()
             if (this.gameMusic === true) GAME_MUSIC.play()
         });
 
-
-        // const gameMusicIcon = document.getElementById('game-music-icon')
         const gameMusicIconTrigger = document.getElementById('game-developer-tag')
         const gameMusicIconLocation = document.getElementById('game-music-icon-location')
 
-        // gameMusicIcon.parentNode.removeChild(gameMusicIcon)
-        // const newIcon = document.createElement('img')
-        // newIcon.id = "game-music-icon"
-        // newIcon.src = "./assets/controls/sound_on.png"
-        // gameMusicIconTrigger.parentNode.insertBefore(newIcon, gameMusicIconTrigger)
         const that = this
-
         
         document.addEventListener("keydown", (e) => {
             let keyCode = e.which || window.event.keyCode
@@ -235,7 +224,6 @@ class Menu {
         this.footerTitle.classList.remove('hide')
         this.gameMusicIcon.classList.remove('hide')
         const gameView = new GameView(this.game, this.ctx);
-        // gameView.selectLevel();
         gameView.start();
     }
 

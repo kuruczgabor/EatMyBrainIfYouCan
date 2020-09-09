@@ -1,12 +1,4 @@
 import Util from "./util";
-import MovingObject from "./moving_object";
-
-// const GAME_VIEW_MOVES = {
-//     w: [0, -2],
-//     a: [-2, 0],
-//     s: [0, 2],
-//     d: [2, 0],
-// };
 
 class GameView {
 
@@ -77,14 +69,6 @@ class GameView {
 
         this.selectLevel()
 
-        // if (!this.game.levelStarted) {
-        //     this.levelStarterWindow();
-        // }
-
-        // if (this.game.levelCompleted) {
-        //     this.levelCompleterWindow();
-        // }
-
     };
 
     selectLevel() {
@@ -92,9 +76,7 @@ class GameView {
             this.levelStarterWindow()
             this.game.levelStarted = true
         }
-        // debugger
         if (this.game.levelCompleted && !this.game.newLevelStarted) {
-            // debugger
             this.levelCompleterWindow()
             this.game.zombies = []
         }
@@ -110,11 +92,8 @@ class GameView {
         const newLevel = document.createElement('h2');
         newLevel.innerHTML = `LEVEL ${this.level}`
         newLevel.id = 'game-level-start-number'
-        // newLevel.classList = 'game-start-level-number'
-        // levelXTrigger.parentNode.insertBefore(newLevel, levelXTrigger.nextSibling)
         countDownTrigger.parentNode.insertBefore(newLevel, countDownTrigger)
         levelStarterWindow.classList.remove('hide')
-        // debugger
 
         setTimeout(() => {
             levelStarterWindow.classList.add('hide')
@@ -161,20 +140,10 @@ class GameView {
         completedLvlX.id = 'level-completed-number'
         lvlCompletedTrigger.parentNode.insertBefore(completedLvlX, lvlCompletedTrigger)
 
-        // const newLevel = document.createElement('h2');
-        // newLevel.innerHTML = `LEVEL ${this.level}`
-        // newLevel.id = 'game-level-start-number'
-        // // newLevel.classList = 'game-start-level-number'
-        // // levelXTrigger.parentNode.insertBefore(newLevel, levelXTrigger.nextSibling)
-        // countDownTrigger.parentNode.insertBefore(newLevel, countDownTrigger)
-
-
         setTimeout(() => {
             levelCompletedWindow.classList.add('hide')
         }, 3000)
 
-        // this.game.levelCompleted = true;
-        // this.game.levelChanged = true;
         this.startNewLevel();
     }
 
@@ -186,9 +155,7 @@ class GameView {
         this.game.gameLevel ++;
         setTimeout(() => {
             this.game.levelStarted = false;
-            // this.game.addZombie()
             this.game.addZombiesBasedOnLevel()
-            // this.game.newLevelStarted = false;
         }, 3000)
 
 

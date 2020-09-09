@@ -1,5 +1,3 @@
-
-
 const GAME_BG_COLOR = "#363636";
 const GAME_DIM_X = 1200;
 const GAME_DIM_Y = 600;
@@ -44,9 +42,7 @@ BOTTOM_LEFT_ASPHALT.src = './assets/tiles/asphalt_tiles_0005_Layer-7.png';
 BOTTOM_RIGHT_ASPHALT.src = './assets/tiles/asphalt_tiles_0006_Layer-6.png';
 
 const WALL = new Image();
-// WALL.src = './assets/tiles/walls_0025_Layer-26.png';
 WALL.src = './assets/tiles/Floor3.png';
-
 
 const FLOOR = new Image();
 FLOOR.src = './assets/tiles/Floor1.png';
@@ -90,31 +86,7 @@ class Map {
             [17, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 18]
         ];
 
-        // this.treeMap = [
-        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //     [0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        //     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        // ]
-        // this.mapPlan = [
-        //     [5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4],
-        //     [7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 8]
-        // ];
         this.tileSize = 25;
-        // this.treeSize = 100;
-        // this.tileSize = 50;
     }
 
     draw(ctx) {
@@ -175,18 +147,6 @@ class Map {
     }
 
     drawTrees(ctx) {
-        // ctx.clearRect(0, 0, GAME_DIM_X, GAME_DIM_Y);
-        // ctx.save()
-        // ctx.fillStyle = GAME_BG_COLOR;
-        // this.treeMap.forEach((row, i) => {
-        //     row.forEach((tile, j) => {
-        //         if (tile === 1) {
-        //             this.drawTree(TREE_1, ctx, j, i)
-        //         }
-        //     })
-        // })
-        // ctx.restore();
-
         ctx.drawImage(TREE_2, 30, 30, 200, 200)
         ctx.drawImage(TREE_2, 400, 50, 200, 200)
         ctx.drawImage(TREE_2, 630, 15, 200, 200)
@@ -197,15 +157,7 @@ class Map {
         ctx.drawImage(TREE_3, 200, 0, 120, 100)
 
         ctx.drawImage(TREE_1, 800, 450, 150, 150)
-
-
     }
-
-    // drawTree(img, ctx, x, y) {
-    //     ctx.drawImage(
-    //         img, Math.floor(x * this.treeSize), Math.floor(y * this.treeSize), this.treeSize, this.treeSize
-    //     );
-    // }
 
 }
 

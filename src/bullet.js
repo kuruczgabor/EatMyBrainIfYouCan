@@ -1,4 +1,4 @@
-import MovingObject from "./moving_object"
+import MovingObject from "./moving_object";
 
 const BULLET_IMAGE = new Image();
 BULLET_IMAGE.src = "./assets/bullet/bullet_0001.png";
@@ -34,7 +34,6 @@ class Bullet extends MovingObject {
         }
         
         const shootableTiles = [10, 11, 12, 13, 14, 15, 16, 17, 18, 40, 20, 21, 22, 23, 24, 25, 26, 27, 28]
-        // const shootableTiles = [10]
 
         if (shootableTiles.includes(nextTile)) {
             this.pos = nextPos

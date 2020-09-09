@@ -1,3 +1,5 @@
+// Created based on: https://medium.com/datadriveninvestor/how-to-solve-a-maze-with-an-a-star-algorithm-javascript-if-you-are-not-a-slime-mold-8eae685cb018
+
 class NodeElement {
     constructor(row, col, difficulty, isWall, aStarInstance) {
         this.row = row
@@ -15,7 +17,6 @@ class NodeElement {
         this.eucledianDistance = this.aStar.eucledianDistance(this)
         let difficultySums
         difficultySums = this.difficulty + Number(node.difficultySums)
-        // debugger
         if (this.difficultySums === '' ) {
             this.difficultySums = difficultySums
             this.through = node
