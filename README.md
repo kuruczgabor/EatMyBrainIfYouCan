@@ -6,6 +6,8 @@ Have you ever thought about a post-apocalyptic world full of mindless, brain-eat
 
 [PLAY NOW](https://kuruczgabor.github.io/EatMyBrainIfYouCan/)
 
+For the best experience, please use Google Chrome.
+
 # Technologies
 
 - JavaScript
